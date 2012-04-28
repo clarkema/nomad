@@ -1,3 +1,6 @@
 [submodule ".vim/bundle/tagbar"]
 	path = .vim/bundle/tagbar
 	url = git://github.com/majutsushi/tagbar
+[submodule ".vim/bundle/gundo"]
+	path = .vim/bundle/gundo
+	url = git://github.com/sjl/gundo.vim.git
