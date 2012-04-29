@@ -1,0 +1,51 @@
+#! /bin/zsh
+
+# php-deprecated-syntax
+# Mike Clarke <clarkema@gmail.com>
+
+read -r -d '' help <<"HELP"
+php-deprecated-syntax [PHPDOC_STRUCTURE_FILE]
+
+Read a phpDocumentor2 structure file and generate a vim(1) script that,
+when read with ':source', will cause vim to highlight deprecated functions.
+
+Since the highlighting should only be applied when editing the project
+for which it was generated, it's best included using an autocommand.
+
+    :au BufRead $HOME/git/moodle/*.php :so /path/to/script.vim
+HELP
+
+structure_file=$1
+
+read -r -d '' stylesheet <<'END'
+<?xml version="1.0"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:output method="text" />
+
+    <xsl:template match="text()"/>
+
+    <xsl:template match="/">
+        <xsl:text>syntax keyword phpProjectDeprecated </xsl:text>
+        <xsl:apply-templates />
+        <xsl:text> contained&#10;</xsl:text>
+        <xsl:text>syntax cluster phpClConst add=phpProjectDeprecated&#10;</xsl:text>
+        <xsl:text>hi phpProjectDeprecated cterm=standout ctermfg=13&#10;</xsl:text>
+    </xsl:template>
+    <xsl:template match="//docblock/tag[@name='deprecated']">
+        <xsl:value-of select="../../name" />
+        <xsl:text> </xsl:text>
+    </xsl:template>
+</xsl:stylesheet>
+END
+
+if ! (( $+commands[xsltproc] )); then
+    echo "Usage: $0:t depends on xsltproc, but can't find it." > /dev/stderr
+fi
+
+if [[ -z "$structure_file" ]]; then
+    echo "Usage: $0:t [PHPDOC_STRUCTURE_FILE]" > /dev/stderr
+elif [[ "$structure_file" == "--help" ]]; then
+    echo $help > /dev/stderr
+else
+    xsltproc <(echo $stylesheet) $structure_file
+fi
