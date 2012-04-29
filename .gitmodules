@@ -13,3 +13,6 @@
 [submodule ".vim/bundle/vim-colors-solarized"]
 	path = .vim/bundle/vim-colors-solarized
 	url = git://github.com/clarkema/vim-colors-solarized.git
+[submodule ".vim/bundle/syntastic"]
+	path = .vim/bundle/syntastic
+	url = git://github.com/clarkema/syntastic.git
