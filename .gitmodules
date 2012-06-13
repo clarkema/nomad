@@ -1,39 +1,39 @@
-[submodule ".vim/bundle/tagbar"]
-	path = .vim/bundle/tagbar
+[submodule "vim/bundle/tagbar"]
+	path = vim/bundle/tagbar
 	url = git://github.com/majutsushi/tagbar
-[submodule ".vim/bundle/gundo"]
-	path = .vim/bundle/gundo
+[submodule "vim/bundle/gundo"]
+	path = vim/bundle/gundo
 	url = git://github.com/sjl/gundo.vim.git
-[submodule ".vim/bundle/vim-fugitive"]
-	path = .vim/bundle/vim-fugitive
+[submodule "vim/bundle/vim-fugitive"]
+	path = vim/bundle/vim-fugitive
 	url = git://github.com/tpope/vim-fugitive.git
-[submodule ".vim/bundle/nerdcommenter"]
-	path = .vim/bundle/nerdcommenter
+[submodule "vim/bundle/nerdcommenter"]
+	path = vim/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
-[submodule ".vim/bundle/vim-colors-solarized"]
-	path = .vim/bundle/vim-colors-solarized
+[submodule "vim/bundle/vim-colors-solarized"]
+	path = vim/bundle/vim-colors-solarized
 	url = git://github.com/clarkema/vim-colors-solarized.git
-[submodule ".vim/bundle/syntastic"]
-	path = .vim/bundle/syntastic
+[submodule "vim/bundle/syntastic"]
+	path = vim/bundle/syntastic
 	url = git://github.com/clarkema/syntastic.git
-[submodule ".vim/bundle/ultisnips"]
-	path = .vim/bundle/ultisnips
+[submodule "vim/bundle/ultisnips"]
+	path = vim/bundle/ultisnips
 	url = git://github.com/SirVer/ultisnips.git
-[submodule ".vim/bundle/vim-surround"]
-	path = .vim/bundle/vim-surround
+[submodule "vim/bundle/vim-surround"]
+	path = vim/bundle/vim-surround
 	url = git://github.com/tpope/vim-surround.git
-[submodule ".vim/bundle/slimv"]
-	path = .vim/bundle/slimv
+[submodule "vim/bundle/slimv"]
+	path = vim/bundle/slimv
 	url = git://github.com/vim-scripts/slimv.vim.git
-[submodule ".vim/bundle/vim-repeat"]
-	path = .vim/bundle/vim-repeat
+[submodule "vim/bundle/vim-repeat"]
+	path = vim/bundle/vim-repeat
 	url = git://github.com/tpope/vim-repeat.git
-[submodule ".vim/bundle/vim-abolish"]
-	path = .vim/bundle/vim-abolish
+[submodule "vim/bundle/vim-abolish"]
+	path = vim/bundle/vim-abolish
 	url = git://github.com/tpope/vim-abolish.git
-[submodule ".vim/bundle/vim-coffee-script"]
-	path = .vim/bundle/vim-coffee-script
+[submodule "vim/bundle/vim-coffee-script"]
+	path = vim/bundle/vim-coffee-script
 	url = git://github.com/kchmck/vim-coffee-script.git
-[submodule ".vim/bundle/vim-lusty"]
-	path = .vim/bundle/vim-lusty
+[submodule "vim/bundle/vim-lusty"]
+	path = vim/bundle/vim-lusty
 	url = git://github.com/sjbach/lusty.git
