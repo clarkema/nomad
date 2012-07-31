@@ -10,6 +10,8 @@
 
 set nocompatible
 
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+
 set modeline
 set hidden
 
