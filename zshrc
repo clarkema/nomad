@@ -216,7 +216,6 @@ alias gf='git fetch'
 alias gl='git log'
 alias glg='git log --graph --format="%C(yellow)%h%Creset [%aN]%Cgreen%d%Creset% s" --all'
 alias gp='git push'
-alias gpo='git push origin'
 alias gpfo='git push -f origin'
 alias gr='git rebase'
 alias gri='git rebase -i'
@@ -225,6 +224,17 @@ alias gs='git status'
 alias gst='git stash'
 alias gsp='git stash pop'
 alias gsm='git submodule'
+
+function gpo ()
+{
+    local branch=${1:-$(parse_git_branch)}
+
+    if [[ -n $branch ]]; then
+        git push origin $branch
+    else
+        echo "No branch found."
+    fi
+}
 
 function rtm ()
 {
