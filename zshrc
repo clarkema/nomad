@@ -208,6 +208,7 @@ alias g=git
 alias g+='git add'
 alias gco='git checkout'
 alias gci='git commit'
+alias gcia='git commit --all'
 alias gcp='git cherry-pick'
 alias gd='git diff'
 alias gdc='git diff --cached'
