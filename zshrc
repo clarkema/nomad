@@ -7,7 +7,6 @@ setopt no_beep
 #setopt auto_menu
 setopt complete_in_word
 
-
 setopt share_history
 setopt hist_ignore_dups
 is-at-least 4.3.11 && setopt hist_lex_words
@@ -110,6 +109,8 @@ chpwd_functions=( ${chpwd_functions} chpwd_profiles )
 
 fi # is433
 
+[[ -f $HOME/sh/shared ]] && . $HOME/sh/shared
+
 #
 # Custom function definitions, including custom completions.
 #
@@ -194,36 +195,11 @@ export PATH
 
 #=====================================================================
 # Aliases
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
 alias doch='sudo $(fc -ln -1)' # not much shorter than 'sudo !!'
                                # but more satisfying!
 alias ez='exec zsh'
 alias -g L='| less'
 alias -g G='| grep'
-alias v='vim'
-
-alias g=git
-alias g+='git add'
-alias gco='git checkout'
-alias gci='git commit'
-alias gcia='git commit --all'
-alias gcp='git cherry-pick'
-alias gd='git diff'
-alias gdc='git diff --cached'
-alias gf='git fetch'
-alias gl='git log'
-alias glg='git log --graph --format="%C(yellow)%h%Creset [%aN]%Cgreen%d%Creset% s" --all'
-alias gp='git push'
-alias gpfo='git push -f origin'
-alias gr='git rebase'
-alias gri='git rebase -i'
-alias gs='git status'
-alias gs='git status'
-alias gst='git stash'
-alias gsp='git stash pop'
-alias gsm='git submodule'
 
 function gpo ()
 {

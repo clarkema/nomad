@@ -1,0 +1,46 @@
+########################################################################
+# Nomad
+#
+# This file contains shell snippets shared between zsh and bash.
+########################################################################
+
+#=======================================================================
+# Navigation
+#=======================================================================
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+#=======================================================================
+# Git
+#=======================================================================
+
+alias g=git
+alias ga='git add'
+alias gci='git commit'
+alias gcia='git commit --all'
+alias gco='git checkout'
+alias gcp='git cherry-pick'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gf='git fetch'
+alias gl='git log'
+alias glg='git log --graph --format="%C(yellow)%h%Creset [%aN]%Cgreen%d%Creset% s" --all'
+alias gp='git push'
+alias gpfo='git push -f origin'
+alias gr='git rebase'
+alias gri='git rebase -i'
+alias gs='git status'
+alias gsm='git submodule'
+alias gsp='git stash pop'
+alias gst='git stash'
+
+#=======================================================================
+# Misc.
+#=======================================================================
+
+alias v='vim'
+
+# vim: set ft=sh:
