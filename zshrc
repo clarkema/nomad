@@ -109,7 +109,7 @@ chpwd_functions=( ${chpwd_functions} chpwd_profiles )
 
 fi # is433
 
-[[ -f $HOME/sh/shared ]] && . $HOME/sh/shared
+[[ -f $HOME/.sh/shared ]] && . $HOME/.sh/shared
 
 #
 # Custom function definitions, including custom completions.
