@@ -1,0 +1,27 @@
+[core]
+    excludesfile = ~/.cvsignore
+[color]
+    branch      = auto
+    diff        = auto
+    grep        = auto
+    interactive = auto
+    status      = auto
+    ui          = auto
+[diff]
+    renames = true
+[diff "ruby"]
+    funcname = "^ *\\(\\(def\\) .*\\)"
+[help]
+    autocorrect = 10
+[include]
+    path = ~/.gitconfig.local
+[interactive]
+    singlekey = true
+[merge]
+    tool = vimdif
+[push]
+    default = upstream
+[rebase]
+    autosquash = true
+[rerere]
+    enabled = true
