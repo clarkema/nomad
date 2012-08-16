@@ -160,7 +160,7 @@ precmd() {
 }
 
 PATH=$HOME/bin:$HOME/local/bin:/usr/local/bin:/usr/local/sbin:$PATH:$HOME/.cabal/bin
-PATH=$PATH:/usr/local/texlive/2011/bin/universal-darwin
+PATH=$PATH:/usr/local/texlive/2012/bin/universal-darwin
 
 function parse_git_branch ()
 {
