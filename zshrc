@@ -201,17 +201,6 @@ alias ez='exec zsh'
 alias -g L='| less'
 alias -g G='| grep'
 
-function gpo ()
-{
-    local branch=${1:-$(parse_git_branch)}
-
-    if [[ -n $branch ]]; then
-        git push origin $branch
-    else
-        echo "No branch found."
-    fi
-}
-
 function rtm ()
 {
     local server=$1

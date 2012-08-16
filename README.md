@@ -40,8 +40,7 @@ Aliases
  * `gl`    - `git log`
  * `glg`   - `git log --graph --all` with custom format
  * `gp`    - `git push`
- * `gpo`   - `git push origin` (defaults to current branch)
- * `gpfo`  - `git push -f origin`
+ * `gpf`   - `git push -f`
 
 ### Misc. Utilities
 
