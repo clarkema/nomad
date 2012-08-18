@@ -76,3 +76,42 @@ Vim Plugins
  * Solarized
  * Repeat
  * Surround
+
+GNU Stow
+========
+
+When working on a remote system, I often find that it doesn't have all
+the tools and libraries that I might wish for.  Assuming I have root
+and the tool I want is packaged for the relevant distribution or OS,
+no problem.  However, if I don't have admin, or I want to install
+the software with options other than those it was packaged with (this
+is often the case with Vim) then I end up compiling it by hand.
+
+The problem with this approach is the lack of package management;
+over time you lose track of what belongs to what and upgrades and
+uninstallation become difficult.
+
+[GNU Stow](http://www.gnu.org/software/stow/) solves the problem by
+automatically managing a symlink farm; allowing you to install each
+package in its own directory and then merging them together into a
+shared tree.
+
+Nomad doesn't come with Stow, but does support it if you need it.
+
+To get started:
+
+ 1. Create `$HOME/.local`
+ 2. Install Stow in `$HOME/.local/stow/stow-X.Y.Z`
+ 3. Re-exec your shell (`ez`)
+ 4. `$STOW_DIR/stow-X.Y.Z/bin/stow stow-X.Y.Z`
+ 5. Read the Stow documentation for the details of package installation,
+    but in essence:
+
+        $ ./configure --prefix $HOME/.local
+        $ make
+        $ make install prefix=$HOME/.local/stow/package-X.Y.Z
+        $ stow package-X.Y.Z
+    
+
+
+
