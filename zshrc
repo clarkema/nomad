@@ -109,8 +109,6 @@ chpwd_functions=( ${chpwd_functions} chpwd_profiles )
 
 fi # is433
 
-[[ -f $HOME/.sh/shared ]] && . $HOME/.sh/shared
-
 #
 # Custom function definitions, including custom completions.
 #
@@ -161,6 +159,8 @@ precmd() {
 
 PATH=$HOME/bin:$HOME/local/bin:/usr/local/bin:/usr/local/sbin:$PATH:$HOME/.cabal/bin
 PATH=$PATH:/usr/local/texlive/2012/bin/universal-darwin
+
+[[ -f $HOME/.sh/shared ]] && . $HOME/.sh/shared
 
 function parse_git_branch ()
 {
