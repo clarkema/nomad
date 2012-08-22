@@ -1,0 +1,8 @@
+########################################################################
+# Nomad
+#
+# sh/env: environment settings similar to dotfiles/.zshev, but shared
+# between zsh and bash.
+########################################################################
+
+export LESS="Rew"

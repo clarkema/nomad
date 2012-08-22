@@ -1,10 +1,12 @@
 ########################################################################
 # Nomad
 #
-# .zshenv: sourced on all invocations of the shell.
+# dotfiles/.zshenv: sourced on all invocations of the shell.
 # Here we set search paths and other environment variables that are
 # required regardless of how the shell being used.
 ########################################################################
+
+export NOMAD=$HOME/.nomad
 
 typeset -U path
 path=(
@@ -22,3 +24,5 @@ path=(
     /sbin
     /bin
 )
+
+source $NOMAD/sh/env
