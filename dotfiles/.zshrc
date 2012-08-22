@@ -157,9 +157,6 @@ precmd() {
     fi
 }
 
-PATH=$HOME/bin:$HOME/local/bin:/usr/local/bin:/usr/local/sbin:$PATH:$HOME/.cabal/bin
-PATH=$PATH:/usr/local/texlive/2012/bin/universal-darwin
-
 [[ -f $HOME/.sh/shared ]] && . $HOME/.sh/shared
 
 function parse_git_branch ()
@@ -190,8 +187,6 @@ function git_clean_p ()
 {
     git status 2> /dev/null | fgrep 'working directory clean' > /dev/null
 }
-
-export PATH
 
 #=====================================================================
 # Aliases

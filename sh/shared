@@ -20,7 +20,6 @@ alias .....='cd ../../../..'
 if [ -d $HOME/.local ]; then
     stow_prefix=$HOME/.local
     export STOW_DIR=$stow_prefix/stow
-    export PATH=$stow_prefix/bin:$PATH
     export MANPATH=$stow_prefix/share/man:$MANPATH
     export INFOPATH=$stow_prefix/share/info:$INFOPATH
     export C_INCLUDE_PATH=$stow_prefix/include
