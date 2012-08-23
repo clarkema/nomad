@@ -6,3 +6,17 @@
 ########################################################################
 
 export LESS="Rew"
+
+#=======================================================================
+# Stow
+#=======================================================================
+
+stow_prefix=$NOMAD/local
+export STOW_DIR=$stow_prefix/stow
+export MANPATH=$stow_prefix/share/man:$MANPATH
+export INFOPATH=$stow_prefix/share/info:$INFOPATH
+export C_INCLUDE_PATH=$stow_prefix/include
+export CPLUS_INCLUDE_PATH=$stow_prefix/include
+export LDFLAGS="-L$stow_prefix/lib"
+export LD_LIBRARY_PATH=$stow_prefix/lib
+unset stow_prefix

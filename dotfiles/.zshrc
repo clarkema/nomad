@@ -157,7 +157,7 @@ precmd() {
     fi
 }
 
-[[ -f $HOME/.sh/shared ]] && . $HOME/.sh/shared
+[[ -f $HOME/.nomad/sh/shared ]] && . $HOME/.nomad/sh/shared
 
 function parse_git_branch ()
 {
