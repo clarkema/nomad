@@ -1,11 +1,17 @@
 autoload -U is-at-least
 
+#=======================================================================
+# Basic options                                                      {{{
+#=======================================================================
+
 setopt autocd
 setopt auto_pushd
 setopt pushd_ignore_dups
 setopt no_beep
-#setopt auto_menu
 setopt complete_in_word
+setopt extended_glob
+
+# }}} END basic options
 
 setopt share_history
 setopt hist_ignore_dups
@@ -16,7 +22,10 @@ SAVEHIST=5000
 
 REPORTTIME=5
 
-setopt extended_glob
+
+#=======================================================================
+# Keybindings                                                        {{{
+#=======================================================================
 
 bindkey -v
 bindkey '^R'  history-incremental-search-backward
@@ -70,6 +79,12 @@ function ft-zshexit {
 }
 zle -N ft-zshexit
 
+# }}} END keybindings
+
+#=======================================================================
+# Per-directory profiles                                             {{{
+#=======================================================================
+
 if is-at-least 4.3.3 ; then
 
 # chpwd_profiles(): Directory Profiles, Quickstart:
@@ -109,6 +124,8 @@ chpwd_functions=( ${chpwd_functions} chpwd_profiles )
 
 fi # is433
 
+# }}} END per-directory profiles
+
 #
 # Custom function definitions, including custom completions.
 #
@@ -123,8 +140,12 @@ if ! (is-at-least 4.3.9); then
     colors
 fi
 
-#=====================================================================
-# Git-ified prompt
+[[ -f $HOME/.nomad/sh/shared ]] && . $HOME/.nomad/sh/shared
+
+#=======================================================================
+# Git-ified prompt                                                   {{{
+#=======================================================================
+
 default_prompt="%h %n@%m:%~ ${vcs_info_msg_0_}%(!.#.>) "
 precmd() {
     local git_branch=$(parse_git_branch)
@@ -157,8 +178,6 @@ precmd() {
     fi
 }
 
-[[ -f $HOME/.nomad/sh/shared ]] && . $HOME/.nomad/sh/shared
-
 function parse_git_branch ()
 {
     #git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
@@ -188,13 +207,29 @@ function git_clean_p ()
     git status 2> /dev/null | fgrep 'working directory clean' > /dev/null
 }
 
-#=====================================================================
-# Aliases
+# }}}
+
+#=======================================================================
+# Source shared aliases                                              {{{
+#=======================================================================
+
+[ -f $NOMAD/sh/aliases ] && . $NOMAD/sh/aliases
+
+# }}} END source shared aliases
+
+#=======================================================================
+# Zsh-specific aliases                                               {{{
+# These make use of features specific to zsh.  More general aliases
+# are in sh/aliases.
+#=======================================================================
+
 alias doch='sudo $(fc -ln -1)' # not much shorter than 'sudo !!'
                                # but more satisfying!
 alias ez='exec zsh'
 alias -g L='| less'
 alias -g G='| grep'
+
+# }}}
 
 function rtm ()
 {
@@ -204,13 +239,17 @@ function rtm ()
     ssh -t "$server" "SHELL=/usr/bin/zsh ~/bin/tm $@"
 }
 
-#---------------------------------------------------------------------
-# OS-specifc aliases
+#=======================================================================
+# OS-specifc aliases                                                 {{{
+#=======================================================================
+
 case $(uname) in
     Darwin)
         alias ls='ls -GF'
         ;;
 esac
+
+# }}}
 
 export EDITOR=vim
 
