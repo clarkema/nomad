@@ -66,6 +66,10 @@ if has( "unix" )
 end
 " }}}
 
+" UltiSnips {{{
+let g:UltiSNipsNoPythonWarning = 1
+" }}}
+
 " GUI options {{{
 set guioptions=aciegr " Text-only GUI with scrollbars and icons
 set guicursor=a:block-blinkwait0-Cursor/lCursor " Xterm-style block cursor
