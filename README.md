@@ -80,12 +80,13 @@ Vim Plugins
 GNU Stow
 ========
 
-When working on a remote system, I often find that it doesn't have all
-the tools and libraries that I might wish for.  Assuming I have root
-and the tool I want is packaged for the relevant distribution or OS,
-no problem.  However, if I don't have admin, or I want to install
-the software with options other than those it was packaged with (this
-is often the case with Vim) then I end up compiling it by hand.
+When working on a remote system, I often find that it doesn't have
+all the tools and libraries that I might wish for.  Assuming I have
+root and the tool I want is packaged for the relevant distribution
+or OS, no problem.  However, if I don't have admin, or I want to
+install the software using options other than those with which it
+was packaged (this is often the case with Vim) then I end up
+compiling it by hand.
 
 The problem with this approach is the lack of package management;
 over time you lose track of what belongs to what and upgrades and
