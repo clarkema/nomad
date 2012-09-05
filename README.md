@@ -113,6 +113,42 @@ To get started:
         $ make install prefix=$HOME/.local/stow/package-X.Y.Z
         $ stow package-X.Y.Z
     
+Stow and node.js
+----------------
 
+There are a few quirks when using node.js with GNU Stow, due to the
+fact that node.js is itself a package manager.
 
+To start with, you'll need a version of Python that supports the bz2
+module.  To test if yours does, run `python -c 'import bz2'`.  If it
+exits silently, all is well.  If not you might find yourself needing
+to install libbzip2 and a custom version of Python.  To do this:
+
+ 1. Download and unpack the bzip2 source.
+ 2. Run the following in the source directory:
+
+        $ make -f Makefile-libbz2_so
+        $ make install PREFIX=$HOME/.nomad/local/stow/bzip2
+
+ 3. `stow bzip2`
+ 4. Build and install Python in the usual way; it should pick up
+    on your local bzip2 installation.
+ 5. Once the `python -c 'import bz2` test is passing, download
+    and unpack the node.js source.
+ 6. Build and install node.js as normal, *except* that instead of
+    the 'split prefix' approach described in the main Stow section
+    you should:
+
+        $ configure --prefix=$HOME/.nomad/local/stow/node-x.y.z
+        $ make
+        $ make install
+
+ 7. `stow node-x.y.z`
+ 8. You should now be able to do 'global' installations, such as
+    `npm install -g handlebars` and have it install to
+    `$HOME/.nomad/local/stow/node-x.y.z/bin/handlebars`
+ 9. In summary, this results in node keeping everything neatly within
+    the prefix it was configured with, *but* you need to re-Stow
+    node every time you install a new package to create the
+    new symlinks required.
 
