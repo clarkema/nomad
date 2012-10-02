@@ -254,11 +254,11 @@ augroup perl_files
     au FileType perl let perl_extended_vars=1
     au FileType perl let perl_fold=1
     au FileType perl ab subr #######################################ka Parameters: 2ka sub
-    inoremap <buffer> ;f =>
-    inoremap <buffer> ;a ->
-    inoremap <buffer> ;h ->{'
-    inoremap <buffer> ;j '}
-    inoremap <buffer> ;; ;
+    au FileType perl inoremap <buffer> ;f =>
+    au FileType perl inoremap <buffer> ;a ->
+    au FileType perl inoremap <buffer> ;h ->{'
+    au FileType perl inoremap <buffer> ;j '}
+    au FileType perl inoremap <buffer> ;; ;
 augroup END
 
 augroup erlang_files
