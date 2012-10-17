@@ -3,3 +3,6 @@ checkout = git clone git://github.com/clarkema/nomad-ack ack
 
 [local/stow/tm]
 checkout = git clone git://github.com/clarkema/tm
+
+[local/stow/rnotify]
+checkout = git clone git://github.com/clarkema/rnotify
