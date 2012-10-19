@@ -25,3 +25,5 @@
     autosquash = true
 [rerere]
     enabled = true
+[alias]
+    debt = grep -I 'FIXME\\|TODO\\|XXX'
