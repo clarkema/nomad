@@ -129,7 +129,7 @@ fi # is433
 #
 # Custom function definitions, including custom completions.
 #
-fpath=( ~/.zsh/functions $fpath )
+fpath=( ~/.zsh/functions ~/.nomad/local/share/zsh/functions "${fpath[@]}" )
 autoload -U _tm
 
 # Programmable completion
