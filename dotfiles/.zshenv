@@ -16,9 +16,9 @@ path=(
     $HOME/.local/bin
     $HOME/.cabal/bin
     /usr/local/texlive/2012/bin/universal-darwin
-    $path
     /usr/local/sbin
     /usr/local/bin
+    $path
     /usr/sbin
     /usr/bin
     /sbin
