@@ -23,6 +23,10 @@ path=(
     /usr/bin
     /sbin
     /bin
+    $HOME/.rvm/bin
 )
+
+# Use only those elements of the path array that exist.
+path=($^path(N-/))
 
 source $NOMAD/sh/env
