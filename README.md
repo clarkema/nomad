@@ -101,16 +101,16 @@ Nomad doesn't come with Stow, but does support it if you need it.
 
 To get started:
 
- 1. Create `$HOME/.local`
- 2. Install Stow in `$HOME/.local/stow/stow-X.Y.Z`
+ 1. Create `$HOME/.nomad/local`
+ 2. Install Stow in `$HOME/.nomad/local/stow/stow-X.Y.Z`
  3. Re-exec your shell (`ez`)
  4. `$STOW_DIR/stow-X.Y.Z/bin/stow stow-X.Y.Z`
  5. Read the Stow documentation for the details of package installation,
     but in essence:
 
-        $ ./configure --prefix $HOME/.local
+        $ ./configure --prefix $HOME/.nomad/local
         $ make
-        $ make install prefix=$HOME/.local/stow/package-X.Y.Z
+        $ make install prefix=$HOME/.nomad/local/stow/package-X.Y.Z
         $ stow package-X.Y.Z
     
 Stow and node.js
