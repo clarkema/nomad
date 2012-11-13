@@ -29,18 +29,17 @@ Aliases
 
 ### Git
 
- * `g`     - `git`
- * `gco`   - `git checkout`
- * `gci`   - `git commit`
- * `gcia`  - `git commit --all`
- * `gcp`   - `git cherry-pick`
- * `gd`    - `git diff`
- * `gdc`   - `git diff --cached`
- * `gf`    - `git fetch`
- * `gl`    - `git log`
- * `glg`   - `git log --graph --all` with custom format
- * `gp`    - `git push`
- * `gpf`   - `git push -f`
+ * `kco`   - `git checkout`
+ * `kci`   - `git commit`
+ * `kcia`  - `git commit --all`
+ * `kcp`   - `git cherry-pick`
+ * `kd`    - `git diff`
+ * `kdc`   - `git diff --cached`
+ * `kf`    - `git fetch`
+ * `kl`    - `git log`
+ * `klg`   - `git log --graph --all` with custom format
+ * `kp`    - `git push`
+ * `kpf`   - `git push -f`
 
 ### Misc. Utilities
 
