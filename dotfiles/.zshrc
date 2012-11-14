@@ -323,3 +323,5 @@ source_environment_specific_files
 if [[ -f ~/.secrets ]] then
     source ~/.secrets
 fi
+
+[ -s $NOMAD/breeze/scm_breeze.sh ] && source $NOMAD/breeze/scm_breeze.sh
