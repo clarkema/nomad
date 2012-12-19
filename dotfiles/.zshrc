@@ -324,4 +324,6 @@ if [[ -f ~/.secrets ]] then
     source ~/.secrets
 fi
 
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 [ -s $NOMAD/breeze/scm_breeze.sh ] && source $NOMAD/breeze/scm_breeze.sh
