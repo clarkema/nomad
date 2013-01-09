@@ -229,15 +229,6 @@ if has("autocmd")
 autocmd!
 
 "==========================================================================
-" Stuff for new files
-"==========================================================================
-augroup new_files
-
-    au BufNewFile * ab tabcomment =tcomment
-
-augroup END
-
-"==========================================================================
 " Stuff for individual files
 "==========================================================================
 au BufRead .vimmain set filetype=vim
@@ -245,56 +236,55 @@ au BufRead .vimmain set filetype=vim
 "==========================================================================
 " HTML-like markup stuff
 "==========================================================================
-augroup html_files
 
-    au FileType html,xml map <F3> I<td>A</td>   " put <td>s around a line
-    au FileType html,xml map <F7> A<br>j
-
-augroup END
+au FileType html,xml map <F3> I<td>A</td>   " put <td>s around a line
+au FileType html,xml map <F7> A<br>j
 
 "==========================================================================
-" Perl specific stuff
+" Perl {{{
 "==========================================================================
-augroup perl_files
-    au BufRead *.cgi set filetype=perl
+au BufRead *.cgi set filetype=perl
 
-    au FileType perl let perl_extended_vars=1
-    au FileType perl let perl_fold=1
-    au FileType perl ab subr #######################################ka Parameters: 2ka sub
-    au FileType perl inoremap <buffer> ;f =>
-    au FileType perl inoremap <buffer> ;a ->
-    au FileType perl inoremap <buffer> ;h ->{'
-    au FileType perl inoremap <buffer> ;j '}
-    au FileType perl inoremap <buffer> ;; ;
-augroup END
+au FileType perl let perl_extended_vars=1
+au FileType perl let perl_fold=1
+au FileType perl inoremap <buffer> ;f =>
+au FileType perl inoremap <buffer> ;a ->
+au FileType perl inoremap <buffer> ;h ->{'
+au FileType perl inoremap <buffer> ;j '}
+au FileType perl inoremap <buffer> ;; ;
+" }}}
 
-augroup erlang_files
-    au FileType erlang let g:erlang_folding=1
-augroup END
 "==========================================================================
-" C specific stuff
+" CoffeeScript {{{
 "==========================================================================
-augroup c_files
-    au FileType c,cpp setl cindent
-    au FileType c,cpp,lex ab subr /* **************************************** *\0C\* **************************************** */ka 
-augroup END
+au FileType coffee set sw=2 isk+=$
+au FileType coffee inoremap <buffer> ;f =>
+au FileType coffee inoremap <buffer> ;a ->
+au FileType coffee inoremap <buffer> ;; ;
+" }}}
+
+"==========================================================================
+" Erlang {{{
+"==========================================================================
+au FileType erlang let g:erlang_folding=1
+" }}}
+
+"==========================================================================
+" C {{{
+"==========================================================================
+au FileType c,cpp setl cindent
+" }}}
 
 "au FileType gitcommit DiffGitCached | wincmd p
 au FileType gitcommit set tw=68 spell
 
 "==========================================================================
-" Ruby
+" Ruby {{{
 "==========================================================================
-augroup ruby_files
-    au FileType ruby setl list
-    au FileType ruby let ruby_fold = 1
-    "au FileType ruby let ruby_space_errors = 1
-augroup END
-
-augroup php_files
-    au!
-    au BufRead $HOME/git/moodle/*.php so $HOME/rules/deprecated.vim
-augroup END
+au FileType ruby setl list
+au FileType ruby let ruby_fold = 1
+"au FileType ruby let ruby_space_errors = 1
+" }}}
 
 endif
 "end autocommands }}}
