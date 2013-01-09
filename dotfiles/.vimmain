@@ -25,6 +25,9 @@ set showcmd           " Show partial commands as they are typed
 set number
 set history=1000
 
+set autoread
+set autowrite
+
 let mapleader = ","
 
 " }}}
@@ -50,7 +53,7 @@ filetype plugin indent on
 " Status line {{{
 " Note that spaces must be escaped!
 "set statusline=%\n\ %f\ %m%r\ \ %y%=\ L%-5.5l\ C%-3.3v\ %3.3p%%\ \ 
-set laststatus=1      " Always show the status line defined below
+set laststatus=2      " Always show the status line defined below
 set statusline=%n\ %f\ %m%r\ \ 
 set statusline+=%{tagbar#currenttag('[%s]\ ','','s')}
 " }}}
@@ -80,6 +83,10 @@ let g:tex_fold_enabled              = 1 " Syntax folding
 " Searching {{{
 set incsearch
 set hlsearch
+" Use <C-L> to clear the highlighting of :set hlsearch.
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
+endif
 " }}}
 
 " Undo {{{
@@ -300,3 +307,8 @@ map <leader>ew :e %%
 map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
+
+" Load matchit.vim, but only if the user hasn't installed a newer version.
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+    runtime! macros/matchit.vim
+endif
