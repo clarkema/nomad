@@ -18,7 +18,7 @@ alias .....='cd ../../../..'
 #=======================================================================
 
 alias k=git
-alias ka='git add'
+alias ka='git_add_shortcuts'
 alias kci='git commit'
 alias kcia='git commit --all'
 alias kco='git checkout'
@@ -32,11 +32,12 @@ alias kp='git push'
 alias kpf='git push -f'
 alias kr='git rebase'
 alias kri='git rebase -i'
-alias ks='git status'
+alias ks='git_status_shortcuts'
 alias ksm='git submodule'
 alias ksp='git stash pop'
 alias kst='git stash'
 alias kv='git show'
+alias kvf='git_show_affected_files'
 
 #=======================================================================
 # Misc.
