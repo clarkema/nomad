@@ -94,17 +94,6 @@ endif
 set undodir=~/.vim/backups
 set undofile
 " }}}
-" Tagbar {{{
-if v:version >= 700
-    nmap <S-F8> :TagbarToggle<CR>
-end
-" }}}
-
-" Gundo {{{
-if v:version >= 700 && has( "python" )
-    nmap <S-F7> :GundoToggle<CR>
-end
-" }}}
 
 " Syntastic {{{
 let g:syntastic_enable_signs=1
@@ -151,8 +140,8 @@ inoremap Op 0
 " Cursor stuff
 "==========================================================================
 if exists( "&cursorline" )
-    map <silent> gc :set cursorline!<CR>:set cursorcolumn!<CR>
-    imap <silent> <Leader>gc <C-O>:set cursorline!<CR><C-O>:set cursorcolumn!<CR>
+    noremap <silent> gc :set cursorline!<CR>:set cursorcolumn!<CR>
+    inoremap <silent> <Leader>gc <C-O>:set cursorline!<CR><C-O>:set cursorcolumn!<CR>
 endif
 
 colorscheme solarized
@@ -293,10 +282,6 @@ inoremap jj <Esc>
 
 " Copied from vimcasts for editing a file relative to the current one.
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-map <leader>ew :e %%
-map <leader>es :sp %%
-map <leader>ev :vsp %%
-map <leader>et :tabe %%
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
