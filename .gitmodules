@@ -58,3 +58,6 @@
 [submodule "breeze"]
 	path = breeze
 	url = git://github.com/clarkema/nomad-breeze.git
+[submodule "vim/bundle/dwm"]
+	path = vim/bundle/dwm
+	url = git://github.com/spolu/dwm.vim.git
