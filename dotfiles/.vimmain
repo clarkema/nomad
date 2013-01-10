@@ -183,7 +183,6 @@ if has("user_commands")
     command! Bash set filetype=sh | normal gg!!which bashI#!
     command! Perl set filetype=perl | normal gg!!which perlI#!A -w
     command! Python set filetype=python | normal gg!!which pythonI#!
-    command! Rehash source ~/.vimrc
 endif
 
 " Autocommands {{{1
@@ -231,6 +230,10 @@ au FileType ruby let ruby_fold = 1
 "au FileType ruby let ruby_space_errors = 1
 
 endif
+
+" Editing vimrc {{{1
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Misc {{{1
 
