@@ -29,6 +29,7 @@ set autoread
 set autowrite
 
 let mapleader = ","
+let maplocalleader = "\\"
 
 " Pathogen {{{1
 if ! exists("g:pathogen_disabled")
