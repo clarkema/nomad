@@ -19,6 +19,9 @@ alias .....='cd ../../../..'
 
 alias k=git
 alias ka='git_add_shortcuts'
+alias kb='git branch'
+alias kbd='git branch -d'
+alias kbdd='git branch -D'
 alias kci='git commit'
 alias kcia='git commit --all'
 alias kco='git checkout'
