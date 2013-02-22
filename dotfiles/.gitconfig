@@ -19,6 +19,7 @@
     singlekey = true
 [merge]
     tool = vimdiff
+    summary = true
 [push]
     default = upstream
 [rebase]
