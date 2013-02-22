@@ -83,8 +83,10 @@ endif
 
 " Undo {{{1
 "silent !mkdir -p $HOME/.vim/backups > /dev/null 2>&1
-set undodir=~/.vim/backups
-set undofile
+if has ( "persistent_undo" )
+    set undodir=~/.vim/backups
+    set undofile
+end
 
 " Syntastic {{{1
 let g:syntastic_enable_signs=1
