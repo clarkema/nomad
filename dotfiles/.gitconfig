@@ -11,8 +11,6 @@
     renames = true
 [diff "ruby"]
     funcname = "^ *\\(\\(def\\) .*\\)"
-[help]
-    autocorrect = 10
 [include]
     path = ~/.gitconfig.local
 [interactive]
