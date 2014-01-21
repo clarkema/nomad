@@ -25,4 +25,6 @@
 [rerere]
     enabled = true
 [alias]
-    debt = grep -I 'FIXME\\|TODO\\|XXX'
+    debt = grep -FI -e TODO -e FIXME -e XXX
+[mergetool]
+	keepBackup = true
