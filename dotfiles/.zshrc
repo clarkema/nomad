@@ -187,17 +187,9 @@ function parse_git_branch ()
 
 function path_within_git_repo ()
 {
-    local repo_base=$( git rev-parse --git-dir )
+    local repo_base=${$( git rev-parse --git-dir ):A}
 
-    if [[ $repo_base == '.' ]]; then
-        # We're in the base repo directory, so git rev-parse has just
-        # given us '.'
-        repo_base=$PWD
-    elif [[ $repo_base == '.git' ]]; then
-        repo_base=$PWD
-    fi
-
-    local repo_parent=${${repo_base%%.git}:h}
+    local repo_parent=${${repo_base%.git}:h}
     print -r ${PWD##$repo_parent/}
 }
 
