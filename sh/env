@@ -19,4 +19,5 @@ export C_INCLUDE_PATH=$stow_prefix/include
 export CPLUS_INCLUDE_PATH=$stow_prefix/include
 export LDFLAGS="-L$stow_prefix/lib"
 export LD_LIBRARY_PATH=$stow_prefix/lib
+export TEXMFHOME=$HOME/.texmf
 unset stow_prefix
