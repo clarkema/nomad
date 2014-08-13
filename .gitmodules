@@ -67,3 +67,15 @@
 [submodule "vim/bundle/emmet"]
 	path = vim/bundle/emmet
 	url = https://github.com/mattn/emmet-vim.git
+[submodule "vim/bundle/unite"]
+	path = vim/bundle/unite
+	url = https://github.com/Shougo/unite.vim.git
+[submodule "vim/bundle/vimproc"]
+	path = vim/bundle/vimproc
+	url = https://github.com/Shougo/vimproc.vim.git
+[submodule "tmux/plugins/tmux-open"]
+	path = tmux/plugins/tmux-open
+	url = https://github.com/tmux-plugins/tmux-open.git
+[submodule "tmux/plugins/tmux-copycat"]
+	path = tmux/plugins/tmux-copycat
+	url = https://github.com/tmux-plugins/tmux-copycat
