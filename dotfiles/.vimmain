@@ -221,6 +221,7 @@ au FileType coffee inoremap <buffer> ;; ;
 au FileType erlang let g:erlang_folding=1
 
 " C {{{2
+au BufRead *.ino set filetype=c " Treat Arduino source as C
 au FileType c,cpp setl cindent
 
 "au FileType gitcommit DiffGitCached | wincmd p
