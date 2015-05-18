@@ -27,6 +27,8 @@ REPORTTIME=5
 # Keybindings                                                        {{{
 #=======================================================================
 
+autoload -U edit-command-line
+
 bindkey -v
 bindkey '^R'  history-incremental-search-backward
 bindkey '^A'  beginning-of-line
@@ -45,6 +47,10 @@ function zle-line-init zle-keymap-select {
 }
 zle -N zle-line-init
 zle -N zle-keymap-select
+
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
 
 zle_use_ctrl_d="yes"
 if [[ ${zle_use_ctrl_d} == 'yes' ]]; then
