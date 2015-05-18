@@ -15,7 +15,7 @@ path=(
     $HOME/.nomad/local/bin
     $HOME/.local/bin
     $HOME/.cabal/bin
-    /usr/local/texlive/2013/bin/universal-darwin
+    /usr/local/texlive/2014/bin/x86_64-darwin
     /usr/local/sbin
     /usr/local/bin
     $path
