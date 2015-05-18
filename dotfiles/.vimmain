@@ -65,7 +65,8 @@ if has( "unix" )
 end
 
 " UltiSnips {{{1
-let g:UltiSNipsNoPythonWarning = 1
+let g:UltiSnipsNoPythonWarning = 1
+let g:UltiSnipsJumpBackwardTrigger = "<c-s-j>"
 
 " GUI options {{{1
 set guioptions=aciegr " Text-only GUI with scrollbars and icons
