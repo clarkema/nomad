@@ -91,3 +91,6 @@
 [submodule "vim/bundle/vim-obsession"]
 	path = vim/bundle/vim-obsession
 	url = https://github.com/tpope/vim-obsession.git
+[submodule "vim/bundle/vim-tbone"]
+	path = vim/bundle/vim-tbone
+	url = https://github.com/tpope/vim-tbone.git
