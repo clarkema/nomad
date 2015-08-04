@@ -94,3 +94,6 @@
 [submodule "vim/bundle/vim-tbone"]
 	path = vim/bundle/vim-tbone
 	url = https://github.com/tpope/vim-tbone.git
+[submodule "vim/bundle/julia-vim"]
+	path = vim/bundle/julia-vim
+	url = git://github.com/JuliaLang/julia-vim.git
