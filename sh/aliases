@@ -47,5 +47,6 @@ alias kvf='git_show_affected_files'
 #=======================================================================
 
 alias v='vim'
+alias vs='vim -S Session.vim'
 
 # vim: set ft=sh:
