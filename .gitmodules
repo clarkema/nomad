@@ -15,7 +15,7 @@
 	url = git://github.com/clarkema/vim-colors-solarized.git
 [submodule "vim/bundle/syntastic"]
 	path = vim/bundle/syntastic
-	url = git@github.com:scrooloose/syntastic.git
+	url = git://github.com/scrooloose/syntastic.git
 [submodule "vim/bundle/ultisnips"]
 	path = vim/bundle/ultisnips
 	url = git://github.com/SirVer/ultisnips.git
