@@ -13,7 +13,21 @@ export LESS="Rew"
 
 stow_prefix=$NOMAD/local
 export STOW_DIR=$stow_prefix/stow
-export MANPATH=$stow_prefix/share/man:$MANPATH
+
+# On some systems, MANPATH is searched in _addition_ to the default
+# path.  However, on FreeBSD setting MANPATH _overrides_ the default.
+# Manually setting MANPATH means that man(1) won't find any pages
+# but those in the specified paths.  This is not what we want, since
+# we won't be able to see the system manpages.
+#
+# Fortunately, we don't need to manually add a path for Stow's
+# manpages on FreeBSD, because the directory is in the expected
+# place relative to a 'bin' directory in PATH.  See manpath(1) for
+# more details.
+if [ `uname -s` != "FreeBSD" ]; then
+    export MANPATH=$stow_prefix/share/man:$MANPATH
+fi
+
 export INFOPATH=$stow_prefix/share/info:$INFOPATH
 export C_INCLUDE_PATH=$stow_prefix/include
 export CPLUS_INCLUDE_PATH=$stow_prefix/include
