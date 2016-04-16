@@ -94,3 +94,12 @@
 [submodule "vim/bundle/vim-tbone"]
 	path = vim/bundle/vim-tbone
 	url = https://github.com/tpope/vim-tbone.git
+[submodule "emacs/vendor/helm"]
+	path = emacs/vendor/helm
+	url = https://github.com/emacs-helm/helm.git
+[submodule "emacs/vendor/async"]
+	path = emacs/vendor/async
+	url = https://github.com/jwiegley/emacs-async.git
+[submodule "emacs/vendor/sly"]
+	path = emacs/vendor/sly
+	url = https://github.com/clarkema/sly.git

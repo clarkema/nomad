@@ -24,8 +24,8 @@
 
 (when window-system (set-exec-path-from-shell-PATH))
 
-(require 'ido)
-(ido-mode t)
+;(require 'ido)
+;(ido-mode t)
 
 (require 'fill-column-indicator)
 
@@ -61,3 +61,15 @@
 
 (setq next-line-add-newlines t)
 
+
+(add-to-list 'load-path "~/.emacs.d/vendor/async")
+(add-to-list 'load-path "~/.emacs.d/vendor/helm")
+(require 'helm)
+(require 'helm-config)
+(helm-mode 1)
+
+(global-set-key (kbd "M-x") 'undefined)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-c <SPC>") 'helm-all-mark-rings)
