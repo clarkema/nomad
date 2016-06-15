@@ -9,6 +9,7 @@
     ui          = auto
 [diff]
     renames = true
+    compactionHeuristic = true
 [diff "ruby"]
     funcname = "^ *\\(\\(def\\) .*\\)"
 [include]
