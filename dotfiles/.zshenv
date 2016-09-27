@@ -15,6 +15,7 @@ path=(
     $HOME/.nomad/local/bin
     $HOME/.local/bin
     $HOME/.cabal/bin
+    $HOME/.cargo/bin
     /usr/local/texlive/2015/bin/x86_64-darwin
     /usr/local/sbin
     /usr/local/bin
