@@ -66,6 +66,8 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/helm")
 (require 'helm)
 (require 'helm-config)
+;; If you're seeing errors about helm-autoload, try running make
+;; in the helm directory
 (helm-mode 1)
 
 (global-set-key (kbd "M-x") 'undefined)
