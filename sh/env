@@ -35,3 +35,5 @@ export LDFLAGS="-L$stow_prefix/lib"
 export LD_LIBRARY_PATH=$stow_prefix/lib
 export TEXMFHOME=$HOME/.texmf
 unset stow_prefix
+
+export HOMEBREW_NO_AUTO_UPDATE=1
