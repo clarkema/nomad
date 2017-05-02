@@ -103,3 +103,6 @@
 [submodule "emacs/vendor/sly"]
 	path = emacs/vendor/sly
 	url = https://github.com/clarkema/sly.git
+[submodule "vim/bundle/nim"]
+	path = vim/bundle/nim
+	url = git://github.com/zah/nim.vim.git
