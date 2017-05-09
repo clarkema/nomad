@@ -1,11 +1,10 @@
 (require 'package)
 (add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
+                          '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
 (defvar my-packages '(company
                        clojure-mode
-                       cider
                        solarized-theme
                        win-switch))
 
@@ -62,16 +61,16 @@
 (setq next-line-add-newlines t)
 
 
-(add-to-list 'load-path "~/.emacs.d/vendor/async")
-(add-to-list 'load-path "~/.emacs.d/vendor/helm")
-(require 'helm)
-(require 'helm-config)
+;(add-to-list 'load-path "~/.emacs.d/vendor/async")
+;(add-to-list 'load-path "~/.emacs.d/vendor/helm")
+;(require 'helm)
+;(require 'helm-config)
 ;; If you're seeing errors about helm-autoload, try running make
 ;; in the helm directory
-(helm-mode 1)
+;(helm-mode 1)
 
-(global-set-key (kbd "M-x") 'undefined)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-c <SPC>") 'helm-all-mark-rings)
+;(global-set-key (kbd "M-x") 'undefined)
+;(global-set-key (kbd "M-x") 'helm-M-x)
+;(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+;(global-set-key (kbd "C-x C-f") 'helm-find-files)
+;(global-set-key (kbd "C-c <SPC>") 'helm-all-mark-rings)
