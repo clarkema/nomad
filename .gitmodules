@@ -106,3 +106,6 @@
 [submodule "vim/bundle/nim"]
 	path = vim/bundle/nim
 	url = git://github.com/zah/nim.vim.git
+[submodule "vim/bundle/vim-ripgrep"]
+	path = vim/bundle/vim-ripgrep
+	url = https://github.com/jremmen/vim-ripgrep.git
