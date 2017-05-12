@@ -237,6 +237,10 @@ au FileType ruby let ruby_fold = 1
 au BufRead,BufNewFile *.txr set filetype=txr | set lisp
 au BufRead,BufNewFile *.tl set filetype=txl | set lisp
 
+" Disable earlier <CR> remapping in Quickfix Lists, so that we can
+" still use enter to jump to a file in the list.
+au BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+
 endif
 
 " Editing vimrc {{{1
