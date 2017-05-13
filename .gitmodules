@@ -109,3 +109,6 @@
 [submodule "vim/bundle/vim-ripgrep"]
 	path = vim/bundle/vim-ripgrep
 	url = https://github.com/jremmen/vim-ripgrep.git
+[submodule "vim/bundle/alchemist.vim"]
+	path = vim/bundle/alchemist.vim
+	url = https://github.com/slashmili/alchemist.vim.git
