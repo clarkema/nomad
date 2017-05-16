@@ -316,6 +316,16 @@ function source_environment_specific_files ()
 }
 source_environment_specific_files
 
+function tmx ()
+{
+   tmux resize-pane -x ${1-80}
+}
+
+function tmy ()
+{
+    tmux resize-pane -y ${1-25}
+}
+
 #=====================================================================
 # Pull in secret configuration settings from ~/.secrets
 if [[ -f ~/.secrets ]] then
