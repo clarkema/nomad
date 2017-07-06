@@ -112,3 +112,12 @@
 [submodule "vim/bundle/alchemist.vim"]
 	path = vim/bundle/alchemist.vim
 	url = https://github.com/slashmili/alchemist.vim.git
+[submodule "vim/bundle/supertab"]
+	path = vim/bundle/supertab
+	url = https://github.com/ervandew/supertab.git
+[submodule "vim/bundle/vim-vue"]
+	path = vim/bundle/vim-vue
+	url = https://github.com/posva/vim-vue.git
+[submodule "vim/bundle/vim-elm"]
+	path = vim/bundle/vim-elm
+	url = https://github.com/ElmCast/elm-vim.git
