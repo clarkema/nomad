@@ -35,9 +35,12 @@ bindkey '^A'  beginning-of-line
 bindkey '^E'  end-of-line
 bindkey '^L'  clear-screen
 bindkey '^U'  kill-whole-line
+bindkey '^Y'  yank
 bindkey '^[.' insert-last-word
 bindkey '^[q' push-line
 bindkey '^G'  ft-zshexit
+bindkey '^P'  up-line-or-history
+bindkey '^N'  down-line-or-history
 bindkey -M vicmd "ga" what-cursor-position
 
 function zle-line-init zle-keymap-select {
