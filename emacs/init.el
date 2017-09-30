@@ -23,12 +23,14 @@
 
 (add-to-list 'load-path "~/.emacs.d/packages")
 
+(desktop-save-mode 1)
 ;; Stop super-annoying default popup window behaviour
 (require 'popwin)
 (popwin-mode 1)
 
 (push '("*cider-error*" :height 20) popwin:special-display-config)
 (push '("*cider-test-report*" :height 20) popwin:special-display-config)
+(push '("*cider-macroexpansion*" :height 20) popwin:special-display-config)
 ;(require 'julia-mode)
 
 (defun set-exec-path-from-shell-PATH ()
@@ -61,7 +63,7 @@
 
 (load-theme 'solarized-light t)
 (set-cursor-color "#ff0000")
-;(require 'column-marker)
+(require 'column-marker)
 (require 'flymake)
 (setq ispell-program-name "aspell")
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
@@ -99,6 +101,7 @@
 
 ;; Enable paredit for Clojure
 (add-hook 'clojure-mode-hook 'enable-paredit-mode)
+(add-hook 'clojure-mode-hook (lambda () () (column-marker-1 80)))
 
 ;; This is useful for working with camel-case tokens, like names of
 ;; Java classes (e.g. JavaClassName)
@@ -190,3 +193,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
