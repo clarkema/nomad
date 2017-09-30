@@ -338,3 +338,12 @@ fi
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
 
 [ -s $NOMAD/breeze/scm_breeze.sh ] && source $NOMAD/breeze/scm_breeze.sh
+
+function docker () {
+  local cmd=$1; shift
+  if command -v "docker-$cmd" >/dev/null 2>/dev/null; then
+    "docker-$cmd" "$@"
+  else
+    command docker "$cmd" "$@"
+  fi
+}
