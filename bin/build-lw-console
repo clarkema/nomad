@@ -1,0 +1,20 @@
+#! /usr/bin/env zsh
+
+# This isn't especially robust or intelligent, but exists to save me
+# having to remember how to build a console-only version of LispWorks
+# every time I want one.  Change paths below to suit.
+#
+# See http://www.lispworks.com/documentation/lw51/LWUG/html/lwuser-16.htm
+# for more details.
+
+LW="/Applications/LispWorks 7.1 (32-bit)/LispWorks (32-bit).app/Contents/MacOS/lispworks-7-1-0-x86-darwin"
+
+$LW -build =(<<END
+(in-package "CL-USER")
+(load-all-patches)
+(save-image "$NOMAD/bin/lw-console"
+            :console t
+            :environment nil
+            :multiprocessing t)
+END
+)
