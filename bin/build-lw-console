@@ -12,6 +12,12 @@ LW="/Applications/LispWorks 7.1 (32-bit)/LispWorks (32-bit).app/Contents/MacOS/l
 $LW -build =(<<END
 (in-package "CL-USER")
 (load-all-patches)
+(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
+                                       (user-homedir-pathname))))
+  (when (probe-file quicklisp-init)
+    (load quicklisp-init)
+    (eval (read-from-string "(ql:quickload :flexi-streams)"))))
+
 (save-image "$NOMAD/bin/lw-console"
             :console t
             :environment nil
