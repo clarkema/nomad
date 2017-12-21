@@ -48,5 +48,10 @@ alias kvf='git_show_affected_files'
 
 alias v='vim'
 alias vs='vim -S Session.vim'
+alias nv='nvim'
+alias nvs='nvim -S Session.vim'
+alias 6='perl6'
+
+alias pssh="ssh -o ProxyCommand='nc -x localhost:1080 %h %p' "
 
 # vim: set ft=sh:
