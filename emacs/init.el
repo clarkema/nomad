@@ -1,6 +1,6 @@
 (require 'package)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+;(add-to-list 'package-archives
+             ;'("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
@@ -15,7 +15,17 @@
     clojure-mode-extra-font-locking
     cider
     solarized-theme
-    win-switch))
+    win-switch
+    popwin
+    fill-column-indicator
+    ;;column-marker
+    helm
+   ))
+
+
+(menu-bar-mode 0)
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -61,9 +71,9 @@
 ;; free for use in key combinations such as # (alt-3) and € (alt-2).
 (setq ns-right-alternate-modifier 'none)
 
-(load-theme 'solarized-light t)
+(load-theme 'solarized-dark t)
 (set-cursor-color "#ff0000")
-(require 'column-marker)
+;(require 'column-marker)
 (require 'flymake)
 (setq ispell-program-name "aspell")
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
