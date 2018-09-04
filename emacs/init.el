@@ -1,8 +1,7 @@
 (require 'package)
-;(add-to-list 'package-archives
-             ;'("marmalade" . "http://marmalade-repo.org/packages/") t)
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                         ("marmalade" . "https://marmalade-repo.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")))
 
 (package-initialize)
 
@@ -16,16 +15,10 @@
     cider
     solarized-theme
     win-switch
-    popwin
-    fill-column-indicator
-    ;;column-marker
-    helm
+    helm-rg
+    helm-cider
    ))
 
-
-(menu-bar-mode 0)
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -33,6 +26,9 @@
 
 (add-to-list 'load-path "~/.emacs.d/packages")
 
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+(scroll-bar-mode 0)
 (desktop-save-mode 1)
 ;; Stop super-annoying default popup window behaviour
 (require 'popwin)
@@ -54,14 +50,16 @@
 ;(ido-mode t)
 
 (require 'fill-column-indicator)
+(setq-default fill-column 80)
+(column-number-mode 1)
 
-;(load (expand-file-name "~/quicklisp/slime-helper.el"))
-(add-to-list 'load-path "~/.emacs.d/vendor/sly")
-(require 'sly-autoloads)
+(load (expand-file-name "~/quicklisp/slime-helper.el"))
+;(add-to-list 'load-path "~/.emacs.d/vendor/sly")
+;(require 'sly-autoloads)
 ;; Replace "sbcl" with the path to your implementation
-(setq inferior-lisp-program "/usr/local/bin/sbcl")
-;(setq inferior-lisp-program "/Users/clarkema/.nomad/bin/lw-console")
-(setq sly-contribs '(sly-fancy))
+;(setq inferior-lisp-program "/usr/local/bin/sbcl")
+(setq inferior-lisp-program "/Users/clarkema/.nomad/bin/lw-console")
+;(setq sly-contribs '(sly-fancy))
 (add-hook 'lisp-mode-hook #'enable-paredit-mode)
 (add-hook 'lisp-mode-hook #'show-paren-mode)
 (add-hook 'lisp-mode-hook #'fci-mode)
@@ -97,7 +95,7 @@
 ;; in the helm directory
 (helm-mode 1)
 
-(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-;") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
@@ -111,7 +109,11 @@
 
 ;; Enable paredit for Clojure
 (add-hook 'clojure-mode-hook 'enable-paredit-mode)
-(add-hook 'clojure-mode-hook (lambda () () (column-marker-1 80)))
+;;(add-hook 'clojure-mode-hook (lambda () () (column-marker-1 80)))
+(add-hook 'clojure-mode-hook (lambda () ()
+                               (fci-mode)
+                               (show-paren-mode)))
+
 
 ;; This is useful for working with camel-case tokens, like names of
 ;; Java classes (e.g. JavaClassName)
@@ -120,25 +122,12 @@
 ;; A little more syntax highlighting
 (require 'clojure-mode-extra-font-locking)
 
-;; syntax hilighting for midje
-(add-hook 'clojure-mode-hook
-          (lambda ()
-            (setq inferior-lisp-program "lein repl")
-            (font-lock-add-keywords
-             nil
-             '(("(\\(facts?\\)"
-                (1 font-lock-keyword-face))
-               ("(\\(background?\\)"
-                (1 font-lock-keyword-face))))
-            (define-clojure-indent (fact 1))
-            (define-clojure-indent (facts 1))))
-
 ;;;;
 ;; Cider
 ;;;;
 
 ;; provides minibuffer documentation for the code you're typing into the repl
-(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+(add-hook 'cider-mode-hook 'eldoc-mode)
 
 ;; go right to the REPL buffer when it's finished connecting
 (setq cider-repl-pop-to-buffer-on-connect t)
@@ -196,11 +185,28 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (popwin helm paredit clojure-mode-extra-font-locking win-switch solarized-theme fill-column-indicator company cider))))
+    (rnc-mode evil markdown-mode helm-rg helm-cider magit rainbow-delimiters restclient popwin helm paredit clojure-mode-extra-font-locking win-switch solarized-theme fill-column-indicator company))))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(helm-rg-active-arg-face ((t (:foreground "LightGreen"))))
+ '(helm-rg-base-rg-cmd-face ((t (:background "#eee8d5" :foreground "#657b83"))))
+ '(helm-rg-colon-separator-ripgrep-output-face ((t (:foreground "#fdf6e3" :background "#fdf6e3"))))
+ '(helm-rg-directory-cmd-face ((t (:background "#eee8d5" :foreground "#cb4b16"))))
+ '(helm-rg-directory-header-face ((t (:background "#eee8d5" :foreground "#cb4b16"))))
+ '(helm-rg-error-message ((t (:background "#eee8d5" :foreground "#dc322f"))))
+ '(helm-rg-file-match-face ((t (:foreground "LightGreen" :underline t))))
+ '(helm-rg-inactive-arg-face ((t (:background "#eee8d5" :foreground "#657b83"))))
+ '(helm-rg-line-number-match-face ((t (:foreground "#eee8d5" :background "#eee8d5"))))
+ '(helm-rg-preview-line-highlight ((t (:background "LightGreen" :foreground "black"))))
+ '(helm-rg-title-face ((t (:background "red"))))
+ '(helm-selection ((t (:foreground "#f00" :background "#000"))))
+ '(helm-source-header ((t (:background "green")))))
+
+
+
+(setq-default indent-tabs-mode nil)
 
