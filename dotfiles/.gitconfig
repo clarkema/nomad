@@ -1,5 +1,5 @@
 [core]
-    excludesfile = ~/.cvsignore
+    excludesfile = ~/.nomad/dotfiles/.gitignore
 [color]
     branch      = auto
     diff        = auto
