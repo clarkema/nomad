@@ -69,7 +69,7 @@
 ;; free for use in key combinations such as # (alt-3) and € (alt-2).
 (setq ns-right-alternate-modifier 'none)
 
-(load-theme 'solarized-dark t)
+(load-theme 'solarized-light t)
 (set-cursor-color "#ff0000")
 ;(require 'column-marker)
 (require 'flymake)
@@ -110,9 +110,13 @@
 ;; Enable paredit for Clojure
 (add-hook 'clojure-mode-hook 'enable-paredit-mode)
 ;;(add-hook 'clojure-mode-hook (lambda () () (column-marker-1 80)))
-(add-hook 'clojure-mode-hook (lambda () ()
-                               (fci-mode)
-                               (show-paren-mode)))
+(add-hook 'clojure-mode-hook
+          (lambda () ()
+            (fci-mode)
+            (show-paren-mode)
+
+            (clj-refactor-mode 1)
+            (cljr-add-keybindings-with-prefix "C-c C-m")))
 
 
 ;; This is useful for working with camel-case tokens, like names of
@@ -185,7 +189,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (rnc-mode evil markdown-mode helm-rg helm-cider magit rainbow-delimiters restclient popwin helm paredit clojure-mode-extra-font-locking win-switch solarized-theme fill-column-indicator company))))
+    (slamhound clj-refactor rnc-mode evil markdown-mode helm-rg helm-cider magit rainbow-delimiters restclient popwin helm paredit clojure-mode-extra-font-locking win-switch solarized-theme fill-column-indicator company))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
