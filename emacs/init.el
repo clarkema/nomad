@@ -1,7 +1,7 @@
 (require 'package)
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("marmalade" . "https://marmalade-repo.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")))
+                         ("melpa-stable" . "https://stable.melpa.org/packages/")))
 
 (package-initialize)
 
@@ -29,6 +29,8 @@
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (scroll-bar-mode 0)
+
+(defalias 'yes-or-no-p 'y-or-n-p)
 (desktop-save-mode 1)
 ;; Stop super-annoying default popup window behaviour
 (require 'popwin)
@@ -37,7 +39,7 @@
 (push '("*cider-error*" :height 20) popwin:special-display-config)
 (push '("*cider-test-report*" :height 20) popwin:special-display-config)
 (push '("*cider-macroexpansion*" :height 20) popwin:special-display-config)
-;(require 'julia-mode)
+(push '("*json-path*" :height 5) popwin:special-display-config)
 
 (defun set-exec-path-from-shell-PATH ()
   (let ((path-from-shell (shell-command-to-string "$SHELL -i -c 'echo $PATH'")))
@@ -46,16 +48,22 @@
 
 (when window-system (set-exec-path-from-shell-PATH))
 
-;(require 'ido)
-;(ido-mode t)
+(add-hook 'after-init-hook 'global-company-mode)
 
 (require 'fill-column-indicator)
 (setq-default fill-column 80)
 (column-number-mode 1)
 
+(add-to-list 'load-path "~/.emacs.d/vendor/perl6-mode")
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
 ;(add-to-list 'load-path "~/.emacs.d/vendor/sly")
 ;(require 'sly-autoloads)
+(require 'slime)
+(setq slime-contribs '(slime-fancy))
+;(add-ho 'sly-mode-hook 'sly-company-mode)
+;(eval-after-load 'company
+;  '(add-to-list
+;    'company-backends '(sly-company)))
 ;; Replace "sbcl" with the path to your implementation
 ;(setq inferior-lisp-program "/usr/local/bin/sbcl")
 (setq inferior-lisp-program "/Users/clarkema/.nomad/bin/lw-console")
@@ -71,7 +79,10 @@
 
 (load-theme 'solarized-light t)
 (set-cursor-color "#ff0000")
-;(require 'column-marker)
+(add-hook 'after-make-frame-functions
+	  (lambda (frame) (set-frame-parameter frame 'cursor-color "#ff0000")))
+
+(require 'column-marker)
 (require 'flymake)
 (setq ispell-program-name "aspell")
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
@@ -80,11 +91,11 @@
 (setq visible-bell nil)
 
 (global-set-key "\C-xo" 'win-switch-dispatch)
+(global-set-key (kbd "C-x g") 'magit-status)
 
-(add-hook 'after-init-hook 'global-company-mode)
+
 
 (setq next-line-add-newlines t)
-
 
 ;(add-to-list 'load-path "~/.emacs.d/vendor/async")
 ;(add-to-list 'load-path "~/.emacs.d/vendor/helm")
@@ -134,26 +145,26 @@
 (add-hook 'cider-mode-hook 'eldoc-mode)
 
 ;; go right to the REPL buffer when it's finished connecting
-(setq cider-repl-pop-to-buffer-on-connect t)
+;(setq cider-repl-pop-to-buffer-on-connect t)
 
 ;; When there's a cider error, show its buffer and switch to it
-(setq cider-show-error-buffer t)
-(setq cider-auto-select-error-buffer t)
+;(setq cider-show-error-buffer t)
+;(setq cider-auto-select-error-buffer t)
 
 ;; Where to store the cider history.
-(setq cider-repl-history-file "~/.emacs.d/cider-history")
+;(setq cider-repl-history-file "~/.emacs.d/cider-history")
 
 ;; Wrap when navigating history.
-(setq cider-repl-wrap-history t)
+;(setq cider-repl-wrap-history t)
 
 ;; enable paredit in your REPL
-(add-hook 'cider-repl-mode-hook 'paredit-mode)
+;(add-hook 'cider-repl-mode-hook 'paredit-mode)
 
 ;; Use clojure mode for other extensions
-(add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))
-(add-to-list 'auto-mode-alist '("\\.boot$" . clojure-mode))
-(add-to-list 'auto-mode-alist '("\\.cljs.*$" . clojure-mode))
-(add-to-list 'auto-mode-alist '("lein-env" . enh-ruby-mode))
+;(add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))
+;(add-to-list 'auto-mode-alist '("\\.boot$" . clojure-mode))
+;(add-to-list 'auto-mode-alist '("\\.cljs.*$" . clojure-mode))
+;(add-to-list 'auto-mode-alist '("lein-env" . enh-ruby-mode))
 
 
 ;; key bindings
@@ -190,7 +201,6 @@
  '(package-selected-packages
    (quote
     (slamhound clj-refactor rnc-mode evil markdown-mode helm-rg helm-cider magit rainbow-delimiters restclient popwin helm paredit clojure-mode-extra-font-locking win-switch solarized-theme fill-column-indicator company))))
-
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -214,3 +224,26 @@
 
 (setq-default indent-tabs-mode nil)
 
+(require 'restclient)
+
+(defun fontify-frame (&optional frame)
+  (interactive)
+  (if window-system
+    (let* ((frame (or frame (selected-frame)))
+           (displays (display-monitor-attributes-list frame))
+           (display (car (cl-remove-if-not (lambda (d)
+                                             (memq frame (assq 'frames d)))
+                                           displays)))
+           (px-width (nth 3 (assq 'geometry display)))
+           (mm-width (nth 1 (assq 'mm-size display))))
+      ;; The '4' below is a magic number that is the cut-off point between
+      ;; the built-in display on my Retina MBP and an external Zenscreen.
+      ;; It's likely to need tweaking for other combinations.
+      (if (> (/ px-width mm-width) 4)
+        (set-frame-parameter frame 'font "Iosevka 16")
+        ;(set-frame-parameter frame 'font "Source Code Pro 16")
+        (set-frame-parameter frame 'font "Source Code Pro 12")
+        ;;(set-frame-parameter frame 'font "Menlo 12")
+        ))))
+
+(add-hook 'window-configuration-change-hook 'fontify-frame)
