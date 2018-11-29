@@ -124,3 +124,6 @@
 [submodule "vim/bundle/vim-test"]
 	path = vim/bundle/vim-test
 	url = https://github.com/janko-m/vim-test
+[submodule "vim/bundle/swift.vim"]
+	path = vim/bundle/swift.vim
+	url = git://github.com/keith/swift.vim.git
