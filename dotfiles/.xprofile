@@ -1,0 +1,2 @@
+xcape &
+export PATH=`$HOME/.nomad/sh/profile-shim`
