@@ -1,0 +1,9 @@
+#! /usr/bin/env perl6
+
+multi MAIN("on") {
+    run <systemctl start libvirtd>;
+}
+
+multi MAIN("off") {
+    run <systemctl stop libvirtd>;
+}
