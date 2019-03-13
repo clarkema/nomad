@@ -2,6 +2,7 @@
 
 multi MAIN("on") {
     run <systemctl start libvirtd>;
+    run <virsh net-start default>;
 }
 
 multi MAIN("off") {
