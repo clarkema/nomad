@@ -27,6 +27,10 @@
 (add-to-list 'load-path "~/.emacs.d/packages")
 (add-to-list 'load-path "~/.emacs.d/language-config")
 
+(if (version<= "26.0.50" emacs-version)
+    (global-display-line-numbers-mode)
+  (global-linum-mode 1))
+
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (scroll-bar-mode 0)
