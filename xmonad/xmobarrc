@@ -1,0 +1,47 @@
+Config {
+      font = "xft:Bitstream Vera Sans Mono Nerd Font:size=10:antialias=true"
+    , position = Top
+
+    -- layout
+    , sepChar = "%"
+    , alignSep = "}{"
+    , template = "%StdinReader% }{ %cpufreq% | %multicpu% | %memory% |  %coretemp% | %date% "
+
+
+    -- plugins
+    , commands =
+        [ Run StdinReader
+        , Run CpuFreq ["-t", "Freq:<cpu0>|<cpu1>GHz", "-L", "0", "-H", "2", "-l", "lightblue", "-n","white", "-h", "red"] 50
+
+        -- cpu activity monitor
+        , Run MultiCpu [ "--template" , "Cpu: <total>||<autototal>||<autoipat>"
+            , "--Low"      , "50"         -- units: %
+            , "--High"     , "85"         -- units: %
+            , "--low"      , "darkgreen"
+            , "--normal"   , "darkorange"
+            , "--high"     , "darkred"
+            , "--"
+            , "--fallback-icon-pattern" , "<icon=/home/clarkema/xpm/foo_%%.xpm/>" ]
+            10
+
+        , Run Date "%a %d/%m %H:%M" "date" 10
+
+        -- memory usage monitor
+        , Run Memory         [ "--template" ,"Mem: <used> (<cache>)"
+        , "--Low"      , "20"        -- units: %
+        , "--High"     , "90"        -- units: %
+        , "--low"      , "darkgreen"
+        , "--normal"   , "darkorange"
+        , "--high"     , "darkred"
+        ] 10
+
+        -- cpu core temperature monitor
+        , Run CoreTemp [ "--template" , "<core0>°"
+            , "--Low"      , "70"        -- units: °C
+            , "--High"     , "80"        -- units: °C
+            , "--low"      , "darkgreen"
+            , "--normal"   , "darkorange"
+            , "--high"     , "darkred"
+            ] 50
+        ]
+}

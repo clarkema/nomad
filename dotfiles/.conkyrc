@@ -1,0 +1,138 @@
+conky.config = {
+    alignment = 'top_left',
+	color1 = 'ff92d0', -- bar fill
+    color2 = '44aacc', -- words
+    color3 = '44aacc', -- headings
+    color4 = 'ff5555', -- alert
+    color5 = 'e6e6e6', -- clock
+	color6 = '011b36', -- invisible, from wallpaper
+    background = false,
+    border_width = 1,
+    cpu_avg_samples = 2,
+    default_color = 'white',
+    default_outline_color = 'white',
+    default_shade_color = 'white',
+    double_buffer = true,
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    use_xft = true,
+	font = 'Oligopoly:size=10',
+    gap_x = 5,
+    gap_y = 60,
+    minimum_height = 5,
+    minimum_width = 410,
+    maximum_width = 410,
+    net_avg_samples = 2,
+    no_buffers = true,
+    out_to_console = false,
+    out_to_ncurses = false,
+    out_to_stderr = false,
+    out_to_x = true,
+    extra_newline = false,
+    own_window = false,
+    own_window_class = 'Conky',
+    own_window_type = 'panel',
+    stippled_borders = 0,
+    update_interval = 1.0,
+    uppercase = false,
+    use_spacer = 'left',
+    show_graph_scale = false,
+    show_graph_range = false,
+	template0 = [[${if_match ${cpu \1} > ${cpu \2}}${goto 20}$color2${cpubar \1 10,205}${goto 20}$color1${cpubar \2 10,205}${else}${goto 20}$color2${cpubar \2 10,205}${goto 20}$color1${cpubar \1 10,205}${endif}${goto 20}$color6${execbar 10,205}]]}
+
+conky.text = [[
+${voffset 200}
+#
+# CLOCK
+#
+${font Oligopoly:style=Light:pixelsize=140}${color5}\
+$alignc${execi 1 date '+%-H:%M'}${font Oligopoly:size=26}
+${voffset 20}$alignc${execi 60 date '+%-d %B %Y'}\
+
+$alignc${color3}${font Oligopoly:style=Bold:size=14}\
+#
+${nodename_short}
+#
+# CPU BLOCK
+$font${voffset 10}
+${font Oligopoly:size=10}
+${color2}cpu: $cpu% @ ${freq_g}GHz
+
+${font Roboto:pixelsize=8}${voffset 6}\
+${template0 cpu1 cpu2}
+${template0 cpu3 cpu4}
+${template0 cpu5 cpu6}
+${template0 cpu7 cpu8}
+${template0 cpu9 cpu10}
+${template0 cpu11 cpu12}
+${template0 cpu13 cpu14}
+${template0 cpu15 cpu16}
+${template0 cpu17 cpu18}
+${template0 cpu19 cpu20}
+${template0 cpu21 cpu22}
+${template0 cpu23 cpu24}
+${template0 cpu25 cpu26}
+${template0 cpu27 cpu28}\
+#${goto 20}${voffset -70}${color1}${execbar 80,205}\
+#${goto 19}${color6}${execbar 80,207}
+#
+# RAM BLOCK
+${font Oligopoly:size=10}${voffset -136}\
+${goto 235}${color2}ram: ${color1}$memperc%\
+  ${goto 320}${voffset 3}${membar 12,110}\
+  ${goto 320}${color 042851}${execbar 12,111}
+${voffset -3}\
+${goto 235}${color2}alloc:   ${goto 360}$color$mem
+${goto 235}${color2}buffers: ${goto 360}$color$buffers
+${goto 235}${color2}cache:   ${goto 360}$color$cached
+
+${font Oligopoly:size=10}
+$hr
+${color grey}RAM Usage:$color $mem/$memmax - $memperc% ${membar 4}
+${color grey}Swap Usage:$color $swap/$swapmax - $swapperc% ${swapbar 4}
+${color grey}CPU Usage:$color $cpu% ${cpubar 4}
+${color grey}Processes:$color $processes  ${color grey}Running:$color $running_processes
+$hr
+$hr
+
+#
+# FILESYSTEM
+${voffset 10}${color2}filesystem $color\
+  $alignr${fs_free /} free
+ #bulk $color${fs_used /mnt/bulk}/${fs_size /mnt/bulk} ${fs_bar 6 /mnt/bulk}
+${voffset -2}${color1}${fs_bar 4 /}\
+${goto 20}${color6}${execbar 4,408}
+#
+# VGA
+${color2}gpu:\
+${alignr}$color${nvidia gputemp}°C
+${voffset -5}$color1${nvidiabar gpuutil}
+${voffset -14}${nvidiabar membwutil}
+${voffset -23}${goto 20}${color6}${execbar 0,408}
+${voffset -20}${goto 19}${execbar 12,409}
+#$color2${goto 80}  down:$color${downspeed enp4s0} \
+#$color2${goto 265} sshd:   $color${execi 11 who | grep -v tty | wc -l}
+#$color2${goto 80}  up:  $color${upspeed enp4s0}\
+#$color2${goto 265} psql:   $color${execi 10 psql -f ~/.config/conky/psql_remote_count.sql | sed -n 3p | sed 's/ //g'}
+
+$alignc$color3${font Oligopoly:style=Bold:size=14}\
+
+$hr
+${color grey}File systems:
+ / $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
+ bulk $color${fs_used /mnt/bulk}/${fs_size /mnt/bulk} ${fs_bar 6 /mnt/bulk}
+${color grey}Networking:
+Up:$color ${upspeed} ${color grey} - Down:$color ${downspeed}
+
+${if_mpd_playing}
+$hr
+$alignc${color3}MUSIC
+${color2}${font}\
+${mpd_album}
+${mpd_title}
+${mpd_artist}
+${endif}
+
+]]
