@@ -99,11 +99,10 @@ $hr
 
 #
 # FILESYSTEM
-${voffset 10}${color2}filesystem $color\
-  $alignr${fs_free /} free
- #bulk $color${fs_used /mnt/bulk}/${fs_size /mnt/bulk} ${fs_bar 6 /mnt/bulk}
-${voffset -2}${color1}${fs_bar 4 /}\
-${goto 20}${color6}${execbar 4,408}
+${voffset 10}${color2}filesystems $color
+/ ${fs_free /} free, ${fs_used_perc}% full
+bulk ${fs_free /mnt/bulk} free, ${fs_used_perc /mnt/bulk}% full
+
 #
 # VGA
 ${color2}gpu:\
@@ -112,20 +111,12 @@ ${voffset -5}$color1${nvidiabar gpuutil}
 ${voffset -14}${nvidiabar membwutil}
 ${voffset -23}${goto 20}${color6}${execbar 0,408}
 ${voffset -20}${goto 19}${execbar 12,409}
-#$color2${goto 80}  down:$color${downspeed enp4s0} \
-#$color2${goto 265} sshd:   $color${execi 11 who | grep -v tty | wc -l}
-#$color2${goto 80}  up:  $color${upspeed enp4s0}\
-#$color2${goto 265} psql:   $color${execi 10 psql -f ~/.config/conky/psql_remote_count.sql | sed -n 3p | sed 's/ //g'}
+
+${voffset 10}${color2}network $color
+Up:$color ${upspeedf enp0s31f6} ${color grey} - Down:$color ${downspeedf enp0s31f6}
+${downspeedgraph enp0s31f6 100,410}
 
 $alignc$color3${font Oligopoly:style=Bold:size=14}\
-
-$hr
-${color grey}File systems:
- / $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
- bulk $color${fs_used /mnt/bulk}/${fs_size /mnt/bulk} ${fs_bar 6 /mnt/bulk}
-${color grey}Networking:
-Up:$color ${upspeed} ${color grey} - Down:$color ${downspeed}
-
 ${if_mpd_playing}
 $hr
 $alignc${color3}MUSIC
