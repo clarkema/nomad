@@ -1,3 +1,12 @@
 #! /bin/sh
 
-alacritty --config-file $HOME/.config/alacritty/alacritty-focus.yml
+case "$(uname)" in
+    "Darwin")
+        ALACRITTY=/Applications/Alacritty.app/Contents/MacOS/alacritty
+        ;;
+    *)
+        ALACRITTY=alacritty
+        ;;
+esac
+
+"$ALACRITTY" --config-file "$HOME/.config/alacritty/alacritty-focus.yml"
