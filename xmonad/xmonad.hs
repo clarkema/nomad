@@ -1,5 +1,6 @@
 import XMonad
 import XMonad.Actions.CycleWS -- prevWS and nextWS
+import XMonad.Actions.CopyWindow
 import XMonad.Config.Desktop
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
@@ -46,6 +47,8 @@ myConfig = desktopConfig
         , ((mod4Mask .|. controlMask, xK_m), withFocused (sendMessage . MergeAll))
         , ((mod4Mask .|. controlMask, xK_u), withFocused (sendMessage . UnMerge))
 
+        , ((mod4Mask, xK_v), windows copyToAll)
+        , ((mod4Mask .|. shiftMask, xK_v), killAllOtherCopies)
         {-, ((mod4Mask .|. controlMask, xK_period), onGroup W.focusUp')-}
         {-, ((mod4Mask .|. controlMask, xK_comma), onGroup W.focusDown')-}
     ]
