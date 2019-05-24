@@ -40,6 +40,8 @@ conky.config = {
     use_spacer = 'left',
     show_graph_scale = false,
     show_graph_range = false,
+    short_units = true,
+    pad_percents = 2,
 	template0 = [[${if_match ${cpu \1} > ${cpu \2}}${goto 20}$color2${cpubar \1 10,205}${goto 20}$color1${cpubar \2 10,205}${else}${goto 20}$color2${cpubar \2 10,205}${goto 20}$color1${cpubar \1 10,205}${endif}${goto 20}$color6${execbar 10,205}]]}
 
 conky.text = [[
@@ -59,7 +61,6 @@ ${nodename_short}
 $font${voffset 10}
 ${font Oligopoly:size=10}
 ${color2}cpu: $cpu% @ ${freq_g}GHz
-
 ${font Roboto:pixelsize=8}${voffset 6}\
 ${template0 cpu1 cpu2}
 ${template0 cpu3 cpu4}
@@ -75,47 +76,37 @@ ${template0 cpu21 cpu22}
 ${template0 cpu23 cpu24}
 ${template0 cpu25 cpu26}
 ${template0 cpu27 cpu28}\
-#${goto 20}${voffset -70}${color1}${execbar 80,205}\
-#${goto 19}${color6}${execbar 80,207}
+
 #
 # RAM BLOCK
 ${font Oligopoly:size=10}${voffset -136}\
-${goto 235}${color2}ram: ${color1}$memperc%\
-  ${goto 320}${voffset 3}${membar 12,110}\
-  ${goto 320}${color 042851}${execbar 12,111}
-${voffset -3}\
-${goto 235}${color2}alloc:   ${goto 360}$color$mem
-${goto 235}${color2}buffers: ${goto 360}$color$buffers
-${goto 235}${color2}cache:   ${goto 360}$color$cached
-
-${font Oligopoly:size=10}
-$hr
-${color grey}RAM Usage:$color $mem/$memmax - $memperc% ${membar 4}
-${color grey}Swap Usage:$color $swap/$swapmax - $swapperc% ${swapbar 4}
-${color grey}CPU Usage:$color $cpu% ${cpubar 4}
-${color grey}Processes:$color $processes  ${color grey}Running:$color $running_processes
-$hr
-$hr
+${goto 235}${color2}ram: ${goto 345}$memperc%
+${goto 235}${color2}alloc:   ${goto 345}$color$mem
+${goto 235}${color2}buffers: ${goto 345}$color$buffers
+${goto 235}${color2}cache:   ${goto 345}$color$cached
 
 #
 # FILESYSTEM
-${voffset 10}${color2}filesystems $color
-/ ${fs_free /} free, ${fs_used_perc}% full
-bulk ${fs_free /mnt/bulk} free, ${fs_used_perc /mnt/bulk}% full
+${voffset 90}${color2}filesystems: $color
+${voffset 10}${goto 100}free${goto 190}full
+/${goto 92}${fs_free /}${goto 190}${fs_used_perc}%
+bulk${goto 100}${fs_free /mnt/bulk}${goto 190}${fs_used_perc /mnt/bulk}%
 
 #
-# VGA
+# GPU
 ${color2}gpu:\
-${alignr}$color${nvidia gputemp}°C
-${voffset -5}$color1${nvidiabar gpuutil}
+${voffset 10}${alignr}$color${nvidia gputemp}°C
+${voffset -5}$color2${nvidiabar gpuutil}
 ${voffset -14}${nvidiabar membwutil}
-${voffset -23}${goto 20}${color6}${execbar 0,408}
-${voffset -20}${goto 19}${execbar 12,409}
 
+#
+# Network
 ${voffset 10}${color2}network $color
 Up:$color ${upspeedf enp0s31f6} ${color grey} - Down:$color ${downspeedf enp0s31f6}
 ${downspeedgraph enp0s31f6 100,410}
 
+#
+# Music
 $alignc$color3${font Oligopoly:style=Bold:size=14}\
 ${if_mpd_playing}
 $hr
@@ -125,5 +116,4 @@ ${mpd_album}
 ${mpd_title}
 ${mpd_artist}
 ${endif}
-
 ]]

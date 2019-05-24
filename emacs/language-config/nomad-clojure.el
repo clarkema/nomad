@@ -3,8 +3,8 @@
             (fci-mode)
             (show-paren-mode)
             (paredit-mode)
-            (subword-mode)         ; Useful for camel-case tokens, like names of
-                                        ; Java classes
+            (subword-mode) ; Useful for camel-case tokens, like names of
+					; Java classes
             (clj-refactor-mode 1)
             (cljr-add-keybindings-with-prefix "C-c C-m")))
 
@@ -35,6 +35,7 @@
 ;; Wrap when navigating history.
 ;(setq cider-repl-wrap-history t)
 
+(setq cljr-warn-on-eval nil)
 ;; enable paredit in your REPL
 ;(add-hook 'cider-repl-mode-hook 'paredit-mode)
 
@@ -57,5 +58,3 @@
      (define-key clojure-mode-map (kbd "C-M-r") 'cider-refresh)
      (define-key clojure-mode-map (kbd "C-c u") 'cider-user-ns)
      (define-key cider-mode-map (kbd "C-c u") 'cider-user-ns)))
-
-

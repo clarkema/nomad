@@ -16,6 +16,8 @@ path=(
     $HOME/.local/bin
     $HOME/.cabal/bin
     $HOME/.cargo/bin
+    $HOME/.software/rakudo-star-2019.03/install/bin
+    $HOME/.software/rakudo-star-2019.03/install/share/perl6/site/bin
     /usr/local/texlive/2015/bin/x86_64-darwin
     /usr/local/sbin
     /usr/local/bin

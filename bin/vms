@@ -8,3 +8,7 @@ multi MAIN("on") {
 multi MAIN("off") {
     run <systemctl stop libvirtd>;
 }
+
+multi MAIN("ips") {
+    run <sudo virsh net-dhcp-leases default>;
+}

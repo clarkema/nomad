@@ -1,7 +1,7 @@
 (require 'package)
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("marmalade" . "https://marmalade-repo.org/packages/")
-                         ("melpa-stable" . "https://stable.melpa.org/packages/")))
+                         ("melpa" . "https://melpa.org/packages/")))
 
 (package-initialize)
 
@@ -14,11 +14,14 @@
     clojure-mode-extra-font-locking
     cider
     solarized-theme
+    monokai-theme
     win-switch
     helm-rg
     helm-cider
-   ))
-
+    restclient
+    restclient-helm
+    popwin
+    ))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -31,9 +34,19 @@
     (global-display-line-numbers-mode)
   (global-linum-mode 1))
 
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
-(scroll-bar-mode 0)
+(if (display-graphic-p)
+    (progn
+      (if (string-equal system-type "darwin")
+	  (load-theme 'solarized-light t)
+	(load-theme 'solarized-dark t)) 
+      (set-cursor-color "#ff0000")
+      (tool-bar-mode 0)
+      (scroll-bar-mode 0))
+  (progn
+    (menu-bar-mode 0)
+    (xterm-mouse-mode 1)
+    ;(load-theme 'monokai t)
+    ))
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 (desktop-save-mode 1)
@@ -57,34 +70,16 @@
 (column-number-mode 1)
 
 (add-to-list 'load-path "~/.emacs.d/vendor/perl6-mode")
-(load (expand-file-name "~/quicklisp/slime-helper.el"))
-;(add-to-list 'load-path "~/.emacs.d/vendor/sly")
-;(require 'sly-autoloads)
-(require 'slime)
-(setq slime-contribs '(slime-fancy))
-;(add-ho 'sly-mode-hook 'sly-company-mode)
-;(eval-after-load 'company
-;  '(add-to-list
-;    'company-backends '(sly-company)))
-;; Replace "sbcl" with the path to your implementation
-;(setq inferior-lisp-program "/usr/local/bin/sbcl")
-(setq inferior-lisp-program "/Users/clarkema/.nomad/bin/lw-console")
-;(setq sly-contribs '(sly-fancy))
-(add-hook 'lisp-mode-hook #'enable-paredit-mode)
-(add-hook 'lisp-mode-hook #'show-paren-mode)
-(add-hook 'lisp-mode-hook #'fci-mode)
-(add-hook 'lisp-mode-hook #'paredit-mode)
 
 ;; Don't treat the right-hand alt key on a Mac as Meta; this leaves it
 ;; free for use in key combinations such as # (alt-3) and € (alt-2).
 (setq ns-right-alternate-modifier 'none)
 
-(load-theme 'solarized-light t)
-(set-cursor-color "#ff0000")
+
 (add-hook 'after-make-frame-functions
 	  (lambda (frame) (set-frame-parameter frame 'cursor-color "#ff0000")))
 
-(require 'column-marker)
+;(require 'column-marker)
 (require 'flymake)
 (setq ispell-program-name "aspell")
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
@@ -94,8 +89,6 @@
 
 (global-set-key "\C-xo" 'win-switch-dispatch)
 (global-set-key (kbd "C-x g") 'magit-status)
-
-
 
 (setq next-line-add-newlines t)
 
@@ -115,14 +108,6 @@
 (global-set-key (kbd "C-x r b") 'helm-bookmarks)
 (global-set-key (kbd "C-c <SPC>") 'helm-all-mark-rings)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (slamhound clj-refactor rnc-mode evil markdown-mode helm-rg helm-cider magit rainbow-delimiters restclient popwin helm paredit clojure-mode-extra-font-locking win-switch solarized-theme fill-column-indicator company))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -146,8 +131,6 @@
 
 (setq-default indent-tabs-mode nil)
 
-(require 'restclient)
-
 (defun fontify-frame (&optional frame)
   (interactive)
   (if window-system
@@ -164,10 +147,22 @@
       (if (> (/ px-width mm-width) 4)
         (set-frame-parameter frame 'font "Iosevka 16")
         ;(set-frame-parameter frame 'font "Source Code Pro 16")
-        (set-frame-parameter frame 'font "Source Code Pro 12")
+        (set-frame-parameter frame 'font "Source Code Pro 10")
         ;;(set-frame-parameter frame 'font "Menlo 12")
         ))))
 
-(add-hook 'window-configuration-change-hook 'fontify-frame)
+;(add-hook 'window-configuration-change-hook 'fontify-frame)
 
+(load "nomad-lisp")
 (load "nomad-clojure")
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "bd7b7c5df1174796deefce5debc2d976b264585d51852c962362be83932873d9" default)))
+ '(package-selected-packages
+   (quote
+    (win-switch w3m solarized-theme sly restclient-helm popwin monokai-theme markdown-mode+ magit-popup magit macrostep helm-rg helm-cider ghub fill-column-indicator company color-theme-monokai color-theme-molokai clojure-mode-extra-font-locking clj-refactor ace-window))))
