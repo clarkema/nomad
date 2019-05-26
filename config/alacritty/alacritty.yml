@@ -256,7 +256,7 @@ color_schemes:
 
 
 # Colors (Solarized Dark)
-colors: *light
+colors: *dark
 
 # Visual Bell
 #
