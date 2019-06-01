@@ -17,8 +17,8 @@ if [ "$#" -gt 0 ]; then
 else
     fuzzy=$(sane_fuzzy_find)
     tags=$(git tag)
-	branches=$(git branch --all)
+    branches=$(git branch --all)
 
-	branch=$( (echo "$branches" ; echo "$tags") | $fuzzy ) &&
+    branch=$( (echo "$branches" ; echo "$tags") | $fuzzy ) &&
     git checkout "$(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")"
 fi
