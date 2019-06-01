@@ -1,17 +1,24 @@
-#! zsh
+#! /bin/bash
 
-function fbr() {
-	local tags branches branch
-	#tags=$(git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || return
+# kco -- part of Nomad.
+# https://github.com/clarkema/nomad
+# Mike Clarke <clarkema@clarkema.org>
 
-	branches=$(git branch --all) &&
-	branch=$((echo "$branches" ; echo "$tags") | sk --ansi) &&
-	git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+function sane_fuzzy_find() {
+    if type sk &> /dev/null; then
+        echo "sk --ansi"
+    elif type fzf &> /dev/null; then
+        echo "fzf"
+    fi
 }
 
 if [ "$#" -gt 0 ]; then
-    git checkout $@
+   git checkout "$@"
 else
-	fbr
-fi
+    fuzzy=$(sane_fuzzy_find)
+    tags=$(git tag)
+	branches=$(git branch --all)
 
+	branch=$( (echo "$branches" ; echo "$tags") | $fuzzy ) &&
+    git checkout "$(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")"
+fi
