@@ -1,0 +1,17 @@
+#! zsh
+
+function fbr() {
+	local tags branches branch
+	#tags=$(git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || return
+
+	branches=$(git branch --all) &&
+	branch=$((echo "$branches" ; echo "$tags") | sk --ansi) &&
+	git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+if [ "$#" -gt 0 ]; then
+    git checkout $@
+else
+	fbr
+fi
+
