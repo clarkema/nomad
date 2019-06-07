@@ -1,0 +1,3 @@
+#! /usr/bin/env bash
+
+sk --ansi -i -c 'rg -n --color always "{}"' --preview "preview.sh {}" --cmd-query $1 | awk -F: '{print $1}'

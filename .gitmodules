@@ -139,3 +139,6 @@
 [submodule "vim/bundle/vim-endwise"]
 	path = vim/bundle/vim-endwise
 	url = https://github.com/tpope/vim-endwise.git
+[submodule "vim/bundle/coc.nvim"]
+	path = vim/bundle/coc.nvim
+	url = https://github.com/neoclide/coc.nvim.git
