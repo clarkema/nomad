@@ -3,7 +3,7 @@
 UNAME=$(uname)
 case $UNAME in
     Darwin)
-        man -t "$1" | open -a /Applications/Preview.app/ -f 
+        /usr/bin/man -t "$1" | open -a /Applications/Preview.app/ -f
         ;;
     *)
         echo "Don't know how to handle $UNAME"
