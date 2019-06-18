@@ -303,7 +303,7 @@ function source_environment_specific_files ()
         # If we've got here we have only an unqualified hostname in $HOST
         # instead of an FQDN.  This is broken but does happen; in
         # particular on sdf.org's NetBSD machines.
-        if [[ "$(domainname)" == "SDF" && "$(uname -s)" == "NetBSD" ]]; then
+        if [[ "$(uname -s)" == "NetBSD" && "$(domainname)" == "SDF" ]]; then
         domainname="sdf.org"
         fi
     fi
