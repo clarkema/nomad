@@ -1,0 +1,3 @@
+#! /usr/bin/env bash
+
+rg "$@" --heading --line-number --color always | less
