@@ -329,6 +329,16 @@ function tmy ()
     tmux resize-pane -y ${1-25}
 }
 
+function rgc ()
+{
+    local rg_args="${*[1,$# - 1]}" # All but last arg
+    local query="${*[-1]}" # Last arg
+
+    pkd=$(sk --ansi -i -c "rg $rg_args -n --color always '{}'" --preview "preview.sh {}" --cmd-query "$query" | awk -F: '{print $1}')
+    echo $pkd
+}
+alias vp='vim $pkd'
+
 #=====================================================================
 # Pull in secret configuration settings from ~/.secrets
 if [[ -f ~/.secrets ]] then
