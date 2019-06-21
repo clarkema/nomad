@@ -1,0 +1,9 @@
+#! /usr/bin/env bash
+
+for file in "$@"; do
+    first_commit=$(git log --format="%h,[%aN],%cd" --date=short --follow --diff-filter=A -- "$file")
+
+    if [[ -n $first_commit ]]; then
+        printf "%s,%s\n" "$file" "$first_commit"
+    fi
+done | sort -r -t, -k4 | column -t -s,
