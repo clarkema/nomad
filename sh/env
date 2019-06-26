@@ -34,6 +34,8 @@ export CPLUS_INCLUDE_PATH=$stow_prefix/include
 export LDFLAGS="-L$stow_prefix/lib"
 export LD_LIBRARY_PATH=$stow_prefix/lib
 export TEXMFHOME=$HOME/.texmf
+export NPM_PACKAGES=$HOME/.npm-packages
+export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 unset stow_prefix
 
 export HOMEBREW_NO_AUTO_UPDATE=1

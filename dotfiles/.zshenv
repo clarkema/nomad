@@ -20,6 +20,7 @@ path=(
     $HOME/.software/rakudo-star-2019.03/install/share/perl6/site/bin
     $HOME/.nix-profile/bin
     $HOME/.nix-profile/sbin
+    $HOME/.npm-packages/bin
     /usr/local/texlive/2019/bin/x86_64-darwin
     /usr/local/sbin
     /usr/local/bin

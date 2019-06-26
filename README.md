@@ -112,6 +112,11 @@ To get started:
         $ make install prefix=$HOME/.nomad/local/stow/package-X.Y.Z
         $ stow package-X.Y.Z
     
+NPM
+---
+
+NPM 'global' installations are installed in `$HOME/.npm-packages`
+
 Stow and node.js
 ----------------
 
