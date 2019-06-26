@@ -10,5 +10,9 @@ multi MAIN("off") {
 }
 
 multi MAIN("ips") {
-    run <sudo virsh net-dhcp-leases default>;
+    run <virsh -c qemu:///system net-dhcp-leases default>;
+}
+
+multi MAIN("ls") {
+    run <virsh -c qemu:///system list --all>;
 }
