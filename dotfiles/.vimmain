@@ -19,7 +19,7 @@ set formatoptions=tcorqnl2
 set noequalalways     " Don't automatically re-arrange my windows for me
 set scrolloff=3       " Avoid working at screen edges.
 
-set listchars=tab:»·,trail:·,extends:@,precedes:@
+set listchars=tab:Â»Â·,trail:Â·,extends:@,precedes:@
 set backspace=2       " Allow backspacing over overthing.
 set showcmd           " Show partial commands as they are typed
 set number
