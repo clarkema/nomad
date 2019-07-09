@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 
 # kco -- part of Nomad.
 # https://github.com/clarkema/nomad
@@ -17,8 +17,8 @@ if [ "$#" -gt 0 ]; then
 else
     fuzzy=$(sane_fuzzy_find)
     tags=$(git tag)
-    branches=$(git branch --all)
+    branches=$(git branch --all --format='%(refname:lstrip=2)')
 
-    branch=$( (echo "$branches" ; echo "$tags") | $fuzzy ) &&
-    git checkout "$(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")"
+    picked=$( echo "$branches" "$tags" | $fuzzy ) &&
+    git checkout "$picked"
 fi
