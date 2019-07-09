@@ -43,6 +43,9 @@ bindkey '^P'  up-line-or-history
 bindkey '^N'  down-line-or-history
 bindkey -M vicmd "ga" what-cursor-position
 
+test -f "$NOMAD/zsh/git-widgets.zsh" && . "$NOMAD/zsh/git-widgets.zsh"
+bindkey '^x^g' fuzzy-git-branch
+
 function zle-line-init zle-keymap-select {
     RPS1="${${KEYMAP/vicmd/[N]}/(main|viins)/[I]}"
     RPS2=$RPS1
