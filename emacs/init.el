@@ -90,6 +90,21 @@
 (global-set-key "\C-xo" 'win-switch-dispatch)
 (global-set-key (kbd "C-x g") 'magit-status)
 
+;;;
+;;; org mode setup
+;;; See https://blog.aaronbieber.com/2016/09/24/an-agenda-for-life-with-org-mode.html
+(require 'org)
+(add-to-list 'org-modules 'org-habit t)
+(setq org-agenda-files '("~/org/"))
+(setq org-agenda-custom-commands
+      '(("c" "Simple agenda view"
+         ((tags "PRIORITY=\"A\""
+                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                 (org-agenda-overriding-header "High priority unfinished tasks:")))
+          (agenda "")
+          (alltodo "")))))
+
+
 (setq next-line-add-newlines t)
 
 ;(add-to-list 'load-path "~/.emacs.d/vendor/async")
