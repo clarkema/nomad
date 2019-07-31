@@ -20,6 +20,10 @@
     restclient
     restclient-helm
     popwin
+    fill-column-indicator
+    paredit
+    olivetti
+    clj-refactor
     ))
 
 (dolist (p my-packages)
