@@ -37,6 +37,9 @@
     (global-display-line-numbers-mode)
   (global-linum-mode 1))
 
+(menu-bar-mode 0)
+(blink-cursor-mode 0)
+
 (if (display-graphic-p)
     (progn
       (if (string-equal system-type "darwin")
@@ -46,7 +49,6 @@
       (tool-bar-mode 0)
       (scroll-bar-mode 0))
   (progn
-    (menu-bar-mode 0)
     (xterm-mouse-mode 1)
     ;(load-theme 'monokai t)
     ))
