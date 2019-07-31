@@ -93,6 +93,8 @@
 (global-set-key "\C-xo" 'win-switch-dispatch)
 (global-set-key (kbd "C-x g") 'magit-status)
 
+(setq next-line-add-newlines nil)
+
 ;;;
 ;;; org mode setup
 ;;; See https://blog.aaronbieber.com/2016/09/24/an-agenda-for-life-with-org-mode.html
@@ -107,8 +109,29 @@
           (agenda "")
           (alltodo "")))))
 
+;;;
+;;; Add ISO week numbers to calendar display
+;;;
+(copy-face font-lock-constant-face 'calendar-iso-week-face)
+(set-face-attribute 'calendar-iso-week-face nil
+                    :weight 'normal)
 
-(setq next-line-add-newlines t)
+(setq calendar-week-start-day 1
+      calendar-intermonth-text
+      '(propertize
+        (format "%2d"
+                (car
+                 (calendar-iso-from-absolute
+                  (calendar-absolute-from-gregorian (list month day year)))))
+        'font-lock-face 'calendar-iso-week-face))
+
+(add-hook 'calendar-load-hook
+          (lambda ()
+            (calendar-set-date-style 'european)))
+
+;;;
+;;; End calendar
+;;;
 
 ;(add-to-list 'load-path "~/.emacs.d/vendor/async")
 ;(add-to-list 'load-path "~/.emacs.d/vendor/helm")
