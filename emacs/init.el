@@ -8,8 +8,7 @@
   (package-refresh-contents))
 
 (defvar my-packages
-  '(use-package
-    company
+  '(company
     clojure-mode
     clojure-mode-extra-font-locking
     cider
@@ -22,7 +21,6 @@
     restclient-helm
     popwin
     fill-column-indicator
-    paredit
     olivetti
     clj-refactor
     ))
@@ -34,12 +32,20 @@
 (add-to-list 'load-path "~/.emacs.d/packages")
 (add-to-list 'load-path "~/.emacs.d/language-config")
 
+;;;
+;;; Fundamentals
+;;;
+(menu-bar-mode -1)
+(blink-cursor-mode -1)
+(tool-bar-mode -1)
+
+(setq ring-bell-function 'ignore)
+(setq inhibit-startup-screen t)
+(fset 'yes-or-no-p 'y-or-n-p)
+
 (if (version<= "26.0.50" emacs-version)
     (global-display-line-numbers-mode)
   (global-linum-mode 1))
-
-(menu-bar-mode 0)
-(blink-cursor-mode 0)
 
 (if (display-graphic-p)
     (progn
@@ -47,14 +53,13 @@
 	  (load-theme 'solarized-light t)
 	(load-theme 'solarized-dark t)) 
       (set-cursor-color "#ff0000")
-      (tool-bar-mode 0)
       (scroll-bar-mode 0))
   (progn
     (xterm-mouse-mode 1)
     ;(load-theme 'monokai t)
     ))
 
-(defalias 'yes-or-no-p 'y-or-n-p)
+
 (desktop-save-mode 1)
 ;; Stop super-annoying default popup window behaviour
 (require 'popwin)
@@ -97,12 +102,31 @@
 (setq next-line-add-newlines nil)
 
 
+;;;
+;;; use-package setup
+;;;
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
 (require 'use-package)
 (setq use-package-verbose t)
+
+;;; Built-in packages
+
+(use-package dired
+  :config
+
+  ;; Enable extensions like C-x C-j (dired-jump)
+  (require 'dired-x))
+
+;;; Third-party packages
 
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status)))
+
+(use-package paredit
+  :ensure t)
 
 ;;;
 ;;; org mode setup
