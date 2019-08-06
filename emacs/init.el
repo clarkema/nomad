@@ -113,6 +113,26 @@
 
 ;;; Built-in packages
 
+(use-package calendar
+  :config
+  ;; Add ISO week numbers to calendar display
+  (copy-face font-lock-constant-face 'calendar-iso-week-face)
+  (set-face-attribute 'calendar-iso-week-face nil
+                      :weight 'normal)
+
+  (setq calendar-week-start-day 1
+        calendar-intermonth-text
+        '(propertize
+          (format "%2d"
+                  (car
+                   (calendar-iso-from-absolute
+                    (calendar-absolute-from-gregorian (list month day year)))))
+          'font-lock-face 'calendar-iso-week-face))
+
+  (add-hook 'calendar-load-hook
+            (lambda ()
+              (calendar-set-date-style 'european))))
+
 (use-package dired
   :config
 
@@ -141,30 +161,6 @@
                  (org-agenda-overriding-header "High priority unfinished tasks:")))
           (agenda "")
           (alltodo "")))))
-
-;;;
-;;; Add ISO week numbers to calendar display
-;;;
-(copy-face font-lock-constant-face 'calendar-iso-week-face)
-(set-face-attribute 'calendar-iso-week-face nil
-                    :weight 'normal)
-
-(setq calendar-week-start-day 1
-      calendar-intermonth-text
-      '(propertize
-        (format "%2d"
-                (car
-                 (calendar-iso-from-absolute
-                  (calendar-absolute-from-gregorian (list month day year)))))
-        'font-lock-face 'calendar-iso-week-face))
-
-(add-hook 'calendar-load-hook
-          (lambda ()
-            (calendar-set-date-style 'european)))
-
-;;;
-;;; End calendar
-;;;
 
 ;(add-to-list 'load-path "~/.emacs.d/vendor/async")
 ;(add-to-list 'load-path "~/.emacs.d/vendor/helm")
