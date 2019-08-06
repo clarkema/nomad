@@ -8,7 +8,8 @@
   (package-refresh-contents))
 
 (defvar my-packages
-  '(company
+  '(use-package
+    company
     clojure-mode
     clojure-mode-extra-font-locking
     cider
@@ -93,9 +94,15 @@
 (setq visible-bell nil)
 
 (global-set-key "\C-xo" 'win-switch-dispatch)
-(global-set-key (kbd "C-x g") 'magit-status)
-
 (setq next-line-add-newlines nil)
+
+
+(require 'use-package)
+(setq use-package-verbose t)
+
+(use-package magit
+  :ensure t
+  :bind (("C-x g" . magit-status)))
 
 ;;;
 ;;; org mode setup
@@ -209,3 +216,23 @@
  '(package-selected-packages
    (quote
     (win-switch w3m solarized-theme sly restclient-helm popwin monokai-theme markdown-mode+ magit-popup magit macrostep helm-rg helm-cider ghub fill-column-indicator company color-theme-monokai color-theme-molokai clojure-mode-extra-font-locking clj-refactor ace-window))))
+(use-package notmuch
+  :bind (:map notmuch-show-mode-map
+              ("d" . (lambda ()
+                       "toggle deleted tag for message"
+                       (interactive)
+                       (if (member "deleted" (notmuch-show-get-tags))
+                           (notmuch-show-tag (list "-deleted"))
+                         (notmuch-show-tag (list "+deleted")))))
+              :map notmuch-tree-mode-map
+              ("d" . (lambda ()
+                       "toggle deleted tag for message"
+                       (interactive)
+                       (if (member "deleted" (notmuch-tree-get-tags))
+                           (notmuch-tree-tag-thread (list "-deleted"))
+                         (notmuch-tree-tag-thread (list "+deleted")))))
+              ("w" . (lambda ()
+                       "consign to the news pile"
+                       (interactive)
+                       (notmuch-tree-tag-thread (list "-inbox" "+news"))))))
+
