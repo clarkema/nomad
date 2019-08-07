@@ -1,0 +1,60 @@
+* Debian 9.9 (Stretch)
+
+  - perl 5.24.1
+  - python 2.7.13
+  - python3 3.5.3
+  - ruby 2.3.3p222  ZZ
+  - tmux 2.3
+  - zsh 5.3.1
+
+
+* CentOS 7
+
+  - perl 5.16.3  ZZZ
+  - python 2.7.5
+  - python3 XXX
+  - ruby 2.0.0 ZZZ
+  - tmux 1.8
+  - zsh 5.0.2
+
+* OpenBSD 6.5
+
+  - perl 5.28.1
+  - python 2.7.16 ZZZ
+  - python3 3.6.8 ZZZ
+  - ruby 2.4.6 / 2.5.5 / 2.6.2 ZZZ
+  - tmux --
+  - zsh 5.7.1
+
+* FreeBSD 12.0
+
+  - perl 5.28.1 ZZZ
+  - python 2.7.16 ZZZ
+  - python3 3.7.3 ZZZ
+  - ruby 2.4.5 ZZZ
+  - tmux 2.8
+  - zsh 5.7.1
+
+* Arch
+
+  - perl 5.28.2
+  - python2 2.7.16
+  - python3 3.7.3
+  - ruby 2.6.3p62
+  - tmux 2.9a
+  - zsh 5.7.1
+
+* Ubuntu 18.4 desktop
+
+  - perl 5.26.1
+  - python 2.7.15 ZZZ
+  - python3 3.6.7
+  - ruby 2.5.1 ZZZ
+  - tmux 2.6 ZZZ
+  - zsh 5.4.2 ZZZ
+
+* Ubuntu 18.4 server
+
+  - perl 5.26.1
+  - tmux 2.6!
+
