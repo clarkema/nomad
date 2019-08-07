@@ -140,10 +140,13 @@
 
 (use-package magit
   :ensure t
+  :defer t
   :bind (("C-x g" . magit-status)))
 
 (use-package paredit
-  :ensure t)
+  :ensure t
+  :config
+  (add-hook 'emacs-lisp-mode-hook #'paredit-mode))
 
 ;;;
 ;;; org mode setup
@@ -234,6 +237,7 @@
    (quote
     (win-switch w3m solarized-theme sly restclient-helm popwin monokai-theme markdown-mode+ magit-popup magit macrostep helm-rg helm-cider ghub fill-column-indicator company color-theme-monokai color-theme-molokai clojure-mode-extra-font-locking clj-refactor ace-window))))
 (use-package notmuch
+  :defer t
   :bind (:map notmuch-show-mode-map
               ("d" . (lambda ()
                        "toggle deleted tag for message"
