@@ -147,19 +147,6 @@
   :config
   (add-hook 'emacs-lisp-mode-hook #'paredit-mode))
 
-;;;
-;;; org mode setup
-;;; See https://blog.aaronbieber.com/2016/09/24/an-agenda-for-life-with-org-mode.html
-(require 'org)
-(add-to-list 'org-modules 'org-habit t)
-(setq org-agenda-files '("~/org/"))
-(setq org-agenda-custom-commands
-      '(("c" "Simple agenda view"
-         ((tags "PRIORITY=\"A\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-overriding-header "High priority unfinished tasks:")))
-          (agenda "")
-          (alltodo "")))))
 (use-package flymake-shellcheck
   :ensure t
   :commands flymake-shellcheck-load
@@ -265,3 +252,5 @@
 (use-package restclient
   :defer t
   :ensure t)
+
+(load (expand-file-name "init-org" user-emacs-directory))
