@@ -17,7 +17,6 @@
     win-switch
     helm-rg
     helm-cider
-    restclient
     restclient-helm
     popwin
     fill-column-indicator
@@ -256,3 +255,6 @@
                        (interactive)
                        (notmuch-tree-tag-thread (list "-inbox" "+news"))))))
 
+(use-package restclient
+  :defer t
+  :ensure t)
