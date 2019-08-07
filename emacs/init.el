@@ -88,7 +88,6 @@
 	  (lambda (frame) (set-frame-parameter frame 'cursor-color "#ff0000")))
 
 ;(require 'column-marker)
-(require 'flymake)
 (setq ispell-program-name "aspell")
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (add-hook 'LaTeX-mode-hook 'flyspell-buffer)
@@ -161,6 +160,12 @@
                  (org-agenda-overriding-header "High priority unfinished tasks:")))
           (agenda "")
           (alltodo "")))))
+(use-package flymake-shellcheck
+  :ensure t
+  :commands flymake-shellcheck-load
+  :init
+  (add-hook 'sh-mode-hook 'flymake-shellcheck-load)
+  (add-hook 'sh-mode-hook 'flymake-mode))
 
 ;(add-to-list 'load-path "~/.emacs.d/vendor/async")
 ;(add-to-list 'load-path "~/.emacs.d/vendor/helm")
