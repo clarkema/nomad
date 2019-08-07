@@ -142,6 +142,10 @@
   :defer t
   :bind (("C-x g" . magit-status)))
 
+(use-package git-timemachine
+  :ensure t
+  :defer t)
+
 (use-package paredit
   :ensure t
   :config
