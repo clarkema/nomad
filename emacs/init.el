@@ -9,8 +9,6 @@
 
 (defvar my-packages
   '(company
-    clojure-mode
-    clojure-mode-extra-font-locking
     cider
     solarized-theme
     monokai-theme
