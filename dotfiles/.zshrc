@@ -327,9 +327,21 @@ function tmx ()
    tmux resize-pane -x ${1-80}
 }
 
+function tmxh ()
+{
+    local cols=$(tmux list-windows -F "#{window_width}" | head -n 1)
+    tmux resize-pane -x $(( cols / 2 ))
+}
+
 function tmy ()
 {
     tmux resize-pane -y ${1-25}
+}
+
+function tmyh ()
+{
+    local rows=$(tmux list-windows -F "#{window_height}" | head -n 1)
+    tmux resize-pane -y $(( rows / 2 ))
 }
 
 function rgc ()
