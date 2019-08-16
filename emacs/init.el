@@ -123,6 +123,10 @@
   ;; Enable extensions like C-x C-j (dired-jump)
   (require 'dired-x))
 
+(add-hook 'Info-mode-hook
+          (lambda ()
+            (display-line-numbers-mode -1)))
+
 ;;; Third-party packages
 
 (use-package magit
