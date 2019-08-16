@@ -249,6 +249,14 @@
   :defer t
   :ensure t)
 
+(use-package xquery-mode
+  :defer t
+  :ensure t)
+
+(use-package git-timemachine
+  :defer t
+  :ensure t)
+
 (load (expand-file-name "init-org" user-emacs-directory))
 (use-package solarized-theme
   :ensure t
