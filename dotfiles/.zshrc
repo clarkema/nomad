@@ -22,6 +22,7 @@ SAVEHIST=5000
 
 REPORTTIME=5
 
+export NOMAD_PICKER="sk"
 
 #=======================================================================
 # Keybindings                                                        {{{
@@ -45,6 +46,9 @@ bindkey -M vicmd "ga" what-cursor-position
 
 test -f "$NOMAD/zsh/git-widgets.zsh" && . "$NOMAD/zsh/git-widgets.zsh"
 bindkey '^x^g' fuzzy-git-branch
+
+. /usr/share/fzf/key-bindings.zsh
+. /usr/share/fzf/completion.zsh
 
 function zle-line-init zle-keymap-select {
     RPS1="${${KEYMAP/vicmd/[N]}/(main|viins)/[I]}"
@@ -141,7 +145,7 @@ fi # is433
 #
 # Custom function definitions, including custom completions.
 #
-fpath=( ~/.zsh/functions ~/.nomad/local/share/zsh/functions "${fpath[@]}" )
+fpath=( "$NOMAD/zsh/functions" "$NOMAD/local/share/zsh/functions" "${fpath[@]}" )
 autoload -U _tm
 
 # Programmable completion
