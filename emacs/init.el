@@ -10,7 +10,6 @@
 (defvar my-packages
   '(company
     cider
-    solarized-theme
     monokai-theme
     win-switch
     helm-rg
@@ -35,6 +34,8 @@
 (menu-bar-mode -1)
 (blink-cursor-mode -1)
 (tool-bar-mode -1)
+(scroll-bar-mode -1)
+(xterm-mouse-mode)
 
 (setq ring-bell-function 'ignore)
 (setq inhibit-startup-screen t)
@@ -43,19 +44,6 @@
 (if (version<= "26.0.50" emacs-version)
     (global-display-line-numbers-mode)
   (global-linum-mode 1))
-
-(if (display-graphic-p)
-    (progn
-      (if (string-equal system-type "darwin")
-	  (load-theme 'solarized-light t)
-	(load-theme 'solarized-dark t)) 
-      (set-cursor-color "#ff0000")
-      (scroll-bar-mode 0))
-  (progn
-    (xterm-mouse-mode 1)
-    ;(load-theme 'monokai t)
-    ))
-
 
 (desktop-save-mode 1)
 ;; Stop super-annoying default popup window behaviour
@@ -258,3 +246,32 @@
   :ensure t)
 
 (load (expand-file-name "init-org" user-emacs-directory))
+(use-package solarized-theme
+  :ensure t
+  :config
+  (setq solarized-distinct-fringe-background nil
+        solarized-use-less-bold t
+        solarized-high-contrast-mode-line t)
+  (load-theme 'solarized-dark t)
+
+  (if (display-graphic-p)
+      (progn
+        (if (string-equal system-type "darwin")
+            (load-theme 'solarized-light t)
+          (load-theme 'solarized-dark t))
+        (set-cursor-color "#ff0000"))
+    (load-theme 'solarized-dark t)
+    (face-spec-set 'line-number
+                   '((t :background "black"
+                        :foreground "brightblack")))
+    (face-spec-set 'font-lock-constant-face
+                   '((t :weight normal)))
+    (face-spec-set 'default
+                   '((t :background "brightblack")))
+    (face-spec-set 'org-meta-line
+                   '((t :background "brightblack"
+                        :foreground "#839496")))
+    (face-spec-set 'org-checkbox
+                   '((t :background "brightblack"
+                        :foreground "#839496")))))
+
