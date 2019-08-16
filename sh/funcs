@@ -1,0 +1,13 @@
+#! /usr/bin/env bash
+
+function git-peek
+{
+    local newpath=$1
+    local branch
+
+    branch=$(git branch --all | sk | sed 's/.* //') || exit
+
+    git worktree add "$newpath" "$branch"
+    cd "$newpath" || exit
+    git submodule update
+}
