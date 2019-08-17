@@ -1,0 +1,11 @@
+#! /bin/sh
+
+# Create a Postscript calendar for 12 months from the current month, using
+# sensible defaults
+#
+# `pcal` is available from https://pcal.sourceforge.io/; `brew pcal` on mac OS
+
+year=$(date "+%Y")
+month=$(date "+%m")
+
+pcal -e -P a4 -m -F Monday -w "$month" "$year" > "$year.ps"
