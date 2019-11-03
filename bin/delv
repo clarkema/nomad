@@ -1,0 +1,37 @@
+#! /usr/bin/env python3
+
+# Use `sk` to dig down to the S3 obejct you seek, one directory at time.
+# Very rough.
+
+import boto3
+import subprocess
+
+def select(options):
+    options = "\n".join(options)
+    result = subprocess.run("sk", input=options, capture_output=True, text=True)
+    if result.returncode == 0:
+        bucket = result.stdout.strip()
+        return bucket
+    else:
+        return False
+
+def dig(bucket, path=""):
+    client = boto3.client('s3')
+    paginator = client.get_paginator('list_objects_v2')
+    result = paginator.paginate(Bucket=bucket, Prefix=path, Delimiter='/')
+
+    choices = [prefix.get('Prefix') for prefix in result.search('CommonPrefixes') if prefix is not None]
+
+    for page in result:
+        choices += [f['Key'] for f in page.get('Contents', ())]
+
+    choice = select(choices)
+    if choice == False:
+        print(path)
+    else:
+        dig(bucket, choice)
+
+s3 = boto3.resource('s3')
+bucket = select([b.name for b in s3.buckets.all()])
+if bucket:
+    dig(bucket)
