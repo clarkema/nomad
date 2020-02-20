@@ -25,6 +25,9 @@ set showcmd           " Show partial commands as they are typed
 set number
 set history=1000
 
+set mouse=a
+set ttymouse=xterm2   " Required for mouse events inside tmux
+
 set autoread
 set autowrite
 
