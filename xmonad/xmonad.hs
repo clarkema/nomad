@@ -4,6 +4,7 @@ import XMonad.Actions.CopyWindow
 import XMonad.Config.Desktop
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
+import XMonad.Layout.Fullscreen
 import XMonad.Layout.SimpleFloat
 import XMonad.Layout.Spacing
 import XMonad.Layout.Tabbed
@@ -11,6 +12,7 @@ import XMonad.Layout.Grid
 import XMonad.Layout.Named
 import XMonad.Layout.NoBorders -- smartBorders
 import XMonad.Layout.TabBarDecoration
+import XMonad.Layout.ThreeColumns
 import XMonad.Layout.DecorationMadness
 import XMonad.Layout.SubLayouts
 import XMonad.Layout.WindowNavigation
@@ -21,17 +23,19 @@ import XMonad.Util.EZConfig -- additionalKeys
 
 main = do
   r <- getScreenRes ":0" 0
-  xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
+  xmonad =<< statusBar myBar myPP toggleStrutsKey (fullscreenSupport myConfig)
 
 myConfig = desktopConfig
     { terminal = "alacritty"
     , modMask  = mod4Mask
     , layoutHook = desktopLayoutModifiers $ myLayoutHook
-    , borderWidth = 3
+    , borderWidth = 2
+    , normalBorderColor = colorBlack
     }
     `additionalKeys`
     [
         ((0, xK_F12), spawn "firefox")
+        , ((0, xK_F11), spawn "thunar")
         -- keys for conky
         , ((mod4Mask, xK_g), toggleScreenSpacingEnabled >> toggleWindowSpacingEnabled)
         -- navigation
@@ -49,6 +53,7 @@ myConfig = desktopConfig
 
         , ((mod4Mask, xK_v), windows copyToAll)
         , ((mod4Mask .|. shiftMask, xK_v), killAllOtherCopies)
+
         {-, ((mod4Mask .|. controlMask, xK_period), onGroup W.focusUp')-}
         {-, ((mod4Mask .|. controlMask, xK_comma), onGroup W.focusDown')-}
     ]
@@ -73,12 +78,15 @@ tabbedTheme = (theme smallClean)
 
 wrapped l = spacingRaw False (Border 0 10 10 440) True (Border 10 10 10 10) True  $ l
 
-myLayoutHook = tall ||| max ||| simpleFloat ||| mytabbed1
+myLayoutHook = tall ||| max ||| Grid ||| simpleFloat ||| mytabbed1 ||| threecol ||| wide ||| focus
     where
+        threecol = named "3Mid" $ wrapped $ ThreeColMid 1 (3/100) (1/2)
         max = named "Max" $ smartBorders Full
         -- This gives us gaps around Tall, via X.Layout.Spacing
-        tall = wrapped $ smartBorders $ Tall 1 (3/100) (1/2)
+        tall = named "Std Tall" $ fullscreenFull $ wrapped $ smartBorders $ Tall 1 (3/100) (1/2)
+        focus = named "Focus" $ noBorders $ ThreeColMid 1 (3/100) (1/2)
         mytabbed1 = named "Simple Tabs1" $ wrapped $ tabbed shrinkText tabbedTheme
+        wide = named "Wide" $ fullscreenFull $ wrapped $ smartBorders $ Mirror$ Tall 1 (3/100) (1/2)
         {-myTabbed2 = avoidStruts $ windowNavigation $ subTabbed $ Grid-}
 
 myBar = "xmobar" 
@@ -96,162 +104,6 @@ toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 
 data Res = Res { xRes :: Int, yRes :: Int }
 
--- Dzen flags
-data DF = DF
-    { xPosDF       :: Int
-    , yPosDF       :: Int
-    , widthDF      :: Int
-    , heightDF     :: Int
-    , alignementDF :: String
-    , fgColorDF    :: String
-    , bgColorDF    :: String
-    , fontDF       :: String
-    , eventDF      :: String
-    , extrasDF     :: String
-    }
-
--- Create a dzen string with its flags
-dzenFlagsToStr :: DF -> String
-dzenFlagsToStr df =
-    " -dock -x '" ++ show (xPosDF df) ++
-    "' -y '" ++ show (yPosDF df) ++
-    "' -w '" ++ show (widthDF df) ++
-    "' -h '" ++ show (heightDF df) ++
-    "' -ta '" ++ alignementDF df ++
-    "' -fg '" ++ fgColorDF df ++
-    "' -bg '" ++ bgColorDF df ++
-    "' -fn '" ++ fontDF df ++
-    "' -e '" ++ eventDF df ++
-	"' " ++ extrasDF df
-
-dzenTopLeftFlags :: Res -> DF
-dzenTopLeftFlags _ = DF
-    { xPosDF       = 0
-    , yPosDF       = -1 
-    , widthDF      = topPanelSepPos
-    , heightDF     = panelHeight
-    , alignementDF = "l"
-    , fgColorDF    = colorWhiteAlt
-    , bgColorDF    = colorBlack
-    , fontDF       = dzenFont
-    , eventDF      = "onstart=lower"
-    , extrasDF     = "-p"
-}
-
--- Top left bar logHook
-myTopLeftLogHook h hostname = dynamicLogWithPP def
-  { ppOutput          = hPutStrLn h
-  , ppOrder           = \(ws:_:_:x) -> ws : x
-  , ppSep             = " "
-  , ppWsSep           = ""
-  , ppCurrent         = dzenBoxStyle blue2BBoxPP
-  , ppUrgent          = dzenBoxStyle red2BBoxPP
-  , ppVisible         = dzenBoxStyle green2BBoxPP
-  , ppHiddenNoWindows = dzenBoxStyle gray2BBoxPP
-  , ppHidden          = dzenBoxStyle white2BBoxPP
-  {-, ppExtras          = [ myFocusL ]-}
-}
--- Launch dzen through the system shell and return a Handle to its standard input
-dzenSpawnPipe df = spawnPipe $ "dzen2" ++ dzenFlagsToStr df
-
-
--- Dzen box pretty config
-data BoxPP = BoxPP
-    { bgColorBPP   :: String
-    , fgColorBPP   :: String
-    , boxColorBPP  :: String
-    , leftIconBPP  :: String
-    , rightIconBPP :: String
-    , boxHeightBPP :: Int
-}
-
-dzenBoxStyle :: BoxPP -> String -> String
-dzenBoxStyle bpp t =
-    "^fg(" ++ boxColorBPP bpp ++
-    ")^i(" ++ leftIconBPP bpp  ++
-    ")^ib(1)^r(1920x" ++ show (boxHeightBPP bpp) ++
-    ")^p(-1920)^fg(" ++ fgColorBPP bpp ++
-    ")" ++ t ++
-    "^fg(" ++ boxColorBPP bpp ++
-    ")^i(" ++ rightIconBPP bpp ++
-    ")^fg(" ++ bgColorBPP bpp ++
-    ")^r(1920x" ++ show (boxHeightBPP bpp) ++
-	")^p(-1920)^fg()^ib(0)"
-
-
--- Dzen logger box pretty printing themes
-gray2BoxPP :: BoxPP
-gray2BoxPP = BoxPP
-    { bgColorBPP   = colorBlack
-    , fgColorBPP   = colorGray
-    , boxColorBPP  = colorGrayAlt
-    , leftIconBPP  = boxLeftIcon2
-    , rightIconBPP = boxRightIcon
-    , boxHeightBPP = boxHeight
-    }
-
-blue2BoxPP :: BoxPP
-blue2BoxPP = BoxPP
-    { bgColorBPP   = colorBlack
-    , fgColorBPP   = colorBlue
-    , boxColorBPP  = colorGrayAlt
-    , leftIconBPP  = boxLeftIcon2
-    , rightIconBPP = boxRightIcon
-    , boxHeightBPP = boxHeight
-    }
-
-white2BBoxPP :: BoxPP
-white2BBoxPP = BoxPP
-    { bgColorBPP   = colorGrayAlt
-    , fgColorBPP   = colorWhite
-    , boxColorBPP  = colorGrayAlt
-    , leftIconBPP  = boxLeftIcon2
-    , rightIconBPP = boxRightIcon
-    , boxHeightBPP = boxHeight
-    }
-
-red2BBoxPP :: BoxPP
-red2BBoxPP = BoxPP
-    { bgColorBPP   = colorBlack
-    , fgColorBPP   = colorBlack
-    , boxColorBPP  = colorRed
-    , leftIconBPP  = boxLeftIcon2
-    , rightIconBPP = boxRightIcon
-    , boxHeightBPP = boxHeight
-    }
-
-blue2BBoxPP :: BoxPP --current workspace
-blue2BBoxPP = BoxPP
-    { bgColorBPP   = colorBlack
-    , fgColorBPP   = colorBlack
-    , boxColorBPP  = colorBlue
-    , leftIconBPP  = boxLeftIcon2
-    , rightIconBPP = boxRightIcon
-    , boxHeightBPP = boxHeight
-    }
-
-green2BBoxPP :: BoxPP
-green2BBoxPP = BoxPP
-    { bgColorBPP   = colorBlack
-    , fgColorBPP   = colorBlack
-    , boxColorBPP  = colorGreen
-    , leftIconBPP  = boxLeftIcon2
-    , rightIconBPP = boxRightIcon
-    , boxHeightBPP = boxHeight
-    }
-
-gray2BBoxPP :: BoxPP
-gray2BBoxPP = BoxPP
-    { bgColorBPP   = colorBlack
-    , fgColorBPP   = colorBlack
-    , boxColorBPP  = colorGray
-    , leftIconBPP  = boxLeftIcon2
-    , rightIconBPP = boxRightIcon
-    , boxHeightBPP = boxHeight
-}
-
-
-dzenFont       = "xft:Hack:regular:size=14"
 colorBlack     = "#020202"
 colorBlackAlt  = "#1c1c1c"
 colorGray      = "#444444"
