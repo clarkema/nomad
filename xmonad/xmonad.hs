@@ -1,5 +1,6 @@
 import XMonad
 import XMonad.Actions.CycleWS -- prevWS and nextWS
+import XMonad.Actions.NoBorders (toggleBorder)
 import XMonad.Actions.CopyWindow
 import XMonad.Config.Desktop
 import XMonad.Hooks.DynamicLog
@@ -38,6 +39,7 @@ myConfig = desktopConfig
         , ((0, xK_F11), spawn "thunar")
         -- keys for conky
         , ((mod4Mask, xK_g), toggleScreenSpacingEnabled >> toggleWindowSpacingEnabled)
+        , ((mod4Mask .|. shiftMask, xK_b), withFocused toggleBorder)
         -- navigation
         , ((mod4Mask, xK_Left), prevWS)
         , ((mod4Mask, xK_Right), nextWS)
