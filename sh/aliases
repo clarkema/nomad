@@ -31,6 +31,7 @@ alias kcp='git cherry-pick'
 alias kd='git diff'
 alias kdc='git diff --cached'
 alias kf='git fetch'
+alias kka='gitk --all &'
 alias kl='git log'
 alias klg='git log --graph --format="%C(yellow)%h%Creset [%aN]%Cgreen%d%Creset% s" --all'
 alias kp='git push'
@@ -53,6 +54,7 @@ alias vs='vim -S Session.vim'
 alias nv='exec_scmb_expand_args nvim'
 alias nvs='nvim -S Session.vim'
 alias 6='perl6'
+alias md='bat -p --theme ansi-light'
 
 alias pssh="ssh -o ProxyCommand='nc -x localhost:1080 %h %p' "
 
