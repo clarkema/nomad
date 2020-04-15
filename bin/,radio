@@ -1,0 +1,17 @@
+#! /usr/bin/env bash
+
+declare -A stations
+
+stations=(
+    ["BBC Radio 1"]='http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_p'
+    ["BBC Radio 2"]='http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio2_mf_p'
+    ["BBC Radio 3"]='http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio3_mf_p'
+    ["BBC Radio 4 FM"]='http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio4fm_mf_p'
+    ["BBC Radio 4 LW"]='http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio4lw_mf_p'
+    ["BBC World Service UK"]='http://bbcwssc.ic.llnwd.net/stream/bbcwssc_mp1_ws-eieuk'
+    ["BBC World Service News"]='http://bbcwssc.ic.llnwd.net/stream/bbcwssc_mp1_ws-einws'
+)
+
+station=$(for k in "${!stations[@]}"; do echo "$k"; done | sk)
+
+vlc "${stations[$station]}" &
