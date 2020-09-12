@@ -1,0 +1,57 @@
+# https://protesilaos.com/pdfd/basics-my-bspwm
+#
+super + t
+    alacritty
+
+super + Return
+    alacritty
+
+super + b
+    firefox
+
+# Close (or kill) current window
+super + {_,shift + }q
+    bspc node -{c,k}
+
+super + m
+    bspc desktop -l next
+
+# Focus node in the given direction
+super + {h,j,k,l}
+    bspc node -f {west,south,north,east}
+
+super + r
+    bspc node @/ --rotate 90
+
+super + f
+    bspc node -t '~floating'
+
+super + space
+    dmenu_run
+
+#super + f
+#    bspc node -t '~fullscreen'
+    
+# Dynamic desktop behaviour:  this invokes a script of mine that
+# implements dynamic desktops (see dotfiles).  If the given desktop
+# number is missing, it is created on the spot.  Empty desktops are then
+# removed automatically.
+#
+#
+# super + <number> = focus the given desktop
+# super + shift + <number> = send focused window to given desktop
+# super + ctrl + shift + <number> = as above, but send to next monitor
+# super + ctrl + <number> = switches the active (visible) desktop of the
+# unfocused monitor, without focusing it (focus stays on the current
+# desktop/monitor).  It also inserts a receptacle, meaning that the next
+# created window will go there without calling focus to itself (see my
+# bspwm_external_rules).
+#
+#
+# Commands for receptacles are defined in the "advanced operations"
+# section.
+#
+# NOTE the leading `;` runs this command asynchronously.
+super + {_,shift + ,ctrl + shift +,ctrl +}{1-9,0}
+	;bspwm_dynamic_desktops {--df,--ns,--nm,--da} {1-9,0}
+

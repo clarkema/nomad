@@ -1,0 +1,10 @@
+#! /bin/sh
+
+_bc() {
+	bspc config "$@"
+}
+
+_bc focus_follows_pointer true
+
+polybar bspwm &
+sxhkd -c "$HOME"/.config/sxhkd/sxhkd &
