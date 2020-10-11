@@ -258,6 +258,7 @@
   :ensure t)
 
 (load (expand-file-name "init-org" user-emacs-directory))
+(load (expand-file-name "init-zk" user-emacs-directory))
 (use-package solarized-theme
   :ensure t
   :config
