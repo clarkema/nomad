@@ -120,6 +120,8 @@
          "* TODO %?\n"
          :clock-in t
          :clock-keep t)
+        ("p" "Personal inbox" entry (file+headline "~/org/personal/personal.org" "Short term")
+         "* TODO %?\n")
         ("s" "Shopping" entry (file+headline "~/org/personal/personal.org" "Shopping")
          "* TODO %?\n")
         ("q" "Quality of life" entry (file+headline "~/org/lw/lw.org" "Quality of life")
