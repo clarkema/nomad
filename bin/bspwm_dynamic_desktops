@@ -84,7 +84,7 @@ _desk_or_node() {
 			printf "%s\\n" "$line"
 		done < <(bspc query -D -m "${1:-focused}" --names) | \
                     sort -g | \
-                    sed -n '/0/{h;d};$ G;p' | \
+                    sed -e '/0/{h;d};$ G' | \
                     paste -d ' ' -s
 	}
 
