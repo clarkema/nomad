@@ -16,8 +16,11 @@ path=(
     $HOME/.local/bin
     $HOME/.cabal/bin
     $HOME/.cargo/bin
-    $HOME/.software/rakudo-star-2019.03/install/bin
-    $HOME/.software/rakudo-star-2019.03/install/share/perl6/site/bin
+    $HOME/.raku/bin
+    $HOME/.software/rakudo-star-2020.10/bin
+    $HOME/.software/rakudo-star-2020.10/share/perl6/site/bin
+    $HOME/.software/rakudo-star-2020.10/share/perl6/vendor/bin
+    $HOME/.software/rakudo-star-2020.10/share/perl6/core/bin
     $HOME/.nix-profile/bin
     $HOME/.nix-profile/sbin
     $HOME/.npm-packages/bin
