@@ -37,6 +37,20 @@
           (todo "BLOCKED"
                 ((org-agenda-overriding-header "Blocked tasks:"))))
          ((org-agenda-files (list "~/org/lfn"))))
+        ("p" "Personal summary"
+         ((tags "PRIORITY=\"A\""
+                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                 (org-agenda-overriding-header "High priority unfinished tasks:")))
+          (todo "PROJ"
+                ((org-agenda-overriding-header "Active projects")))
+          (agenda "")
+          (alltodo ""
+                   ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("BLOCKED" "WAITING" "PROJ")))))
+          (todo "WAITING"
+                ((org-agenda-overriding-header "Waiting:")))
+          (todo "BLOCKED"
+                ((org-agenda-overriding-header "Blocked tasks:"))))
+         ((org-agenda-files (list "~/org/personal"))))
         ("s" "Shopping"
          ((search "Shopping")))))
 
