@@ -4,6 +4,8 @@
 ;;;
 (require 'org)
 (add-to-list 'org-modules 'org-habit t)
+(setq diary-file "~/org/diary")
+(setq org-agenda-include-diary t)
 (setq org-hide-leading-stars t)
 (setq org-agenda-files '("~/org/lw" "~/org/lfn" "~/org/personal"))
 (setq org-agenda-custom-commands
