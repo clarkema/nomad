@@ -144,7 +144,7 @@
          "* TODO %?\n")
 
         ("w" "Work")
-        ("wd" "Daily" plain (file+datetree "~/org/lw/plan-work.org")
+        ("wd" "Daily" plain (file+datetree "~/org/lfn/plan-work.org")
          (file "~/org/templates/review.org")
          :immediate-finish t
          :jump-to-captured t)))
