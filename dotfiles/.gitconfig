@@ -19,6 +19,8 @@
 [merge]
     tool = vimdiff
     summary = true
+[pull]
+	ff = only
 [push]
     default = upstream
 [rebase]
