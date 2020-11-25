@@ -72,12 +72,20 @@ _desk_or_node() {
 		fi
 	}
 
-	# Reorder desktops on the target monitor (the target is the first
-	# argument passed to this function.  The default is the focused one.
+        # Reorder desktops on the target monitor (the target is the first
+        # argument passed to this function.  The default is the focused one.
+        #
+        # The evil sed trickery means that any desktop named '0' is forced to be
+        # last in the list regardless of sort order.  Not an ideal solution, but
+        # it means that my numeric desktops are ordered following the layout of
+        # keys on the keyboard
 	_desk_order() {
 		while read -r line; do
 			printf "%s\\n" "$line"
-		done < <(bspc query -D -m "${1:-focused}" --names) | sort -g | paste -d ' ' -s
+		done < <(bspc query -D -m "${1:-focused}" --names) | \
+                    sort -g | \
+                    sed -n '/0/{h;d};$ G;p' | \
+                    paste -d ' ' -s
 	}
 
 	# Determines whether the behaviour of this function concerns nodes
