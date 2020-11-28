@@ -209,6 +209,10 @@
         ;;(set-frame-parameter frame 'font "Menlo 12")
         ))))
 
+(defun theme (name)
+  (load-theme name t)
+  (set-cursor-color "#ff0000"))
+
 ;(add-hook 'window-configuration-change-hook 'fontify-frame)
 
 (load "nomad-lisp")
