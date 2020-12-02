@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: handle_info
+# key: info
+# --
+@impl true
+def handle_info($1, socket) do
+  $0
+
+  {:noreply, socket}
+end
