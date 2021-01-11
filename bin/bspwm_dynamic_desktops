@@ -22,6 +22,17 @@
 
 # See the --options below for the available arguments for $1.  $2 must
 # be a number from 0 to 9.
+
+# Key BSPWM concepts:
+#
+# Monitors, desktops, nodes, insertion point, insertion mode
+
+# Default insertion point is the focused window, default insertion mode is
+# automatic.
+
+# You can specify insertion point and mode manually by sending a message to
+# bspwm before creating a new window.
+
 [ "$#" -eq 2 ] || { echo 'Must be run with two arguments.'; exit 1; }
 
 # Capture the arguments.  We need to run tests against them.  Renaming
