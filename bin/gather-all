@@ -1,0 +1,26 @@
+#! /usr/bin/env perl
+
+use warnings;
+
+my @monitors = qx!bspc query -M --names!;
+my $this_mon = qx!bspc query -M -m --names!;
+chomp $this_mon;
+
+foreach my $mon (@monitors) {
+    chomp $mon;
+    next if $mon eq $this_mon;
+
+    my @desktops = qx!bspc query -T -m '$mon' | jq -r '.desktops[] | .name'!;
+    chomp for @desktops;
+
+    if (scalar @desktops == 1) {
+        if ($desktops[0] ne 'empty') {
+            qx!bspc monitor "$mon" -a "empty"!;
+        }
+    }
+
+    for (@desktops) {
+        next if $_ eq 'empty';
+        qx!bspc desktop '$_' --to-monitor focused!;
+    }
+}
