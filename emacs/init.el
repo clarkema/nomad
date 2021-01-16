@@ -157,14 +157,44 @@
 
 ;; If you're seeing errors about helm-autoload, try running make
 ;; in the helm directory
-(helm-mode 1)
+;(helm-mode 1)
 
-(global-set-key (kbd "C-;") 'helm-M-x)
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "C-x b") 'helm-buffers-list)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-x r b") 'helm-bookmarks)
-(global-set-key (kbd "C-c <SPC>") 'helm-all-mark-rings)
+;(global-set-key (kbd "C-;") 'helm-M-x)
+;(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+;(global-set-key (kbd "C-x b") 'helm-buffers-list)
+;(global-set-key (kbd "C-x C-f") 'helm-find-files)
+;(global-set-key (kbd "C-x r b") 'helm-bookmarks)
+;(global-set-key (kbd "C-c <SPC>") 'helm-all-mark-rings)
+
+(use-package selectrum
+  :ensure t
+  :defer t
+  :init
+  (selectrum-mode +1))
+
+(use-package prescient
+  :ensure t
+  :config
+  (prescient-persist-mode +1)
+  (setq prescient-history-length 1000))
+
+(use-package selectrum-prescient
+  :ensure t
+  :after selectrum
+  :config
+  (selectrum-prescient-mode +1))
+
+(use-package marginalia
+  :ensure t
+  :bind (:map minibuffer-local-map
+              ("C-M-a" . marginalia-cycle))
+  :init
+  (marginalia-mode)
+  (advice-add #'marginalia-cycle :after
+              (lambda () (when (bound-and-true-p selectrum-mode) (selectrum-exhibit)))))
+
+(use-package consult
+  :ensure t)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
