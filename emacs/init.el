@@ -28,6 +28,10 @@
 (add-to-list 'load-path "~/.emacs.d/packages")
 (add-to-list 'load-path "~/.emacs.d/language-config")
 
+;; Prevent Custom from modifying this file
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file 'noerror 'nomessage)
+
 ;;;
 ;;; Fundamentals
 ;;;
@@ -195,27 +199,6 @@
 
 (use-package consult
   :ensure t)
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(helm-rg-active-arg-face ((t (:foreground "LightGreen"))))
- '(helm-rg-base-rg-cmd-face ((t (:background "#eee8d5" :foreground "#657b83"))))
- '(helm-rg-colon-separator-ripgrep-output-face ((t (:foreground "#fdf6e3" :background "#fdf6e3"))))
- '(helm-rg-directory-cmd-face ((t (:background "#eee8d5" :foreground "#cb4b16"))))
- '(helm-rg-directory-header-face ((t (:background "#eee8d5" :foreground "#cb4b16"))))
- '(helm-rg-error-message ((t (:background "#eee8d5" :foreground "#dc322f"))))
- '(helm-rg-file-match-face ((t (:foreground "LightGreen" :underline t))))
- '(helm-rg-inactive-arg-face ((t (:background "#eee8d5" :foreground "#657b83"))))
- '(helm-rg-line-number-match-face ((t (:foreground "#eee8d5" :background "#eee8d5"))))
- '(helm-rg-preview-line-highlight ((t (:background "LightGreen" :foreground "black"))))
- '(helm-rg-title-face ((t (:background "red"))))
- '(helm-selection ((t (:foreground "#f00" :background "#000"))))
- '(helm-source-header ((t (:background "green")))))
-
-
 
 (setq-default indent-tabs-mode nil)
 
