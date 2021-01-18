@@ -299,3 +299,6 @@
           (load-theme 'solarized-dark t))
         (set-cursor-color "#ff0000"))))
 
+(defun dired-truncate-files ()
+  (dolist (marked (dired-get-marked-files))
+    (shell-command (concat "echo > " marked))))
