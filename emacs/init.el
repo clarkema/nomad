@@ -125,7 +125,11 @@
   :config
 
   ;; Enable extensions like C-x C-j (dired-jump)
-  (require 'dired-x))
+  (require 'dired-x)
+
+  (add-hook 'dired-mode-hook
+            (lambda ()
+              (local-set-key "u" 'dired-up-directory))))
 
 (add-hook 'Info-mode-hook
           (lambda ()
