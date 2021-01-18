@@ -1,11 +1,21 @@
-(require 'package)
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")))
 
-(package-initialize)
+;; Set up straight.el for package management
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+(straight-use-package 'use-package)
 
-(when (not package-archive-contents)
-  (package-refresh-contents))
 
 (defvar my-packages
   '(company
@@ -20,10 +30,9 @@
     olivetti
     clj-refactor
     ))
-
-(dolist (p my-packages)
-  (when (not (package-installed-p p))
-    (package-install p)))
+(straight-use-package 'popwin)
+(straight-use-package 'fill-column-indicator)
+(straight-use-package 'olivetti)
 
 (add-to-list 'load-path "~/.emacs.d/packages")
 (add-to-list 'load-path "~/.emacs.d/language-config")
@@ -89,11 +98,11 @@
 ;;;
 ;;; use-package setup
 ;;;
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
+;; (unless (package-installed-p 'use-package)
+;;   (package-install 'use-package))
 
-(require 'use-package)
-(setq use-package-verbose t)
+;; (require 'use-package)
+;; (setq use-package-verbose t)
 
 ;;; Built-in packages
 
@@ -118,10 +127,10 @@
               (calendar-set-date-style 'european))))
 
 (use-package dired
-  :config
-
-  ;; Enable extensions like C-x C-j (dired-jump)
-  (require 'dired-x))
+	     :config
+	     
+	     ;; Enable extensions like C-x C-j (dired-jump)
+	     (require 'dired-x))
 
 (add-hook 'Info-mode-hook
           (lambda ()
@@ -130,21 +139,21 @@
 ;;; Third-party packages
 
 (use-package magit
-  :ensure t
+  :straight t
   :defer t
   :bind (("C-x g" . magit-status)))
 
 (use-package git-timemachine
-  :ensure t
+  :straight t
   :defer t)
 
 (use-package paredit
-  :ensure t
+  :straight t
   :config
   (add-hook 'emacs-lisp-mode-hook #'paredit-mode))
 
 (use-package flymake-shellcheck
-  :ensure t
+  :straight t
   :commands flymake-shellcheck-load
   :init
   (add-hook 'sh-mode-hook 'flymake-shellcheck-load)
@@ -152,8 +161,8 @@
 
 ;(add-to-list 'load-path "~/.emacs.d/vendor/async")
 ;(add-to-list 'load-path "~/.emacs.d/vendor/helm")
-(require 'helm)
-(require 'helm-config)
+;(require 'helm)
+;(require 'helm-config)
 
 ;; If you're seeing errors about helm-autoload, try running make
 ;; in the helm directory
@@ -166,35 +175,36 @@
 ;(global-set-key (kbd "C-x r b") 'helm-bookmarks)
 ;(global-set-key (kbd "C-c <SPC>") 'helm-all-mark-rings)
 
+
 (use-package selectrum
-  :ensure t
+  :straight t
   :defer t
   :init
   (selectrum-mode +1))
 
 (use-package prescient
-  :ensure t
+  :straight t
   :config
   (prescient-persist-mode +1)
   (setq prescient-history-length 1000))
 
 (use-package selectrum-prescient
-  :ensure t
+  :straight t
   :after selectrum
   :config
   (selectrum-prescient-mode +1))
 
 (use-package marginalia
-  :ensure t
+  :straight t
   :bind (:map minibuffer-local-map
-              ("C-M-a" . marginalia-cycle))
+ 	      ("C-M-a" . marginalia-cycle))
   :init
   (marginalia-mode)
   (advice-add #'marginalia-cycle :after
-              (lambda () (when (bound-and-true-p selectrum-mode) (selectrum-exhibit)))))
+ 	      (lambda () (when (bound-and-true-p selectrum-mode) (selectrum-exhibit)))))
 
 (use-package consult
-  :ensure t)
+  :straight t)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -239,14 +249,11 @@
         ;;(set-frame-parameter frame 'font "Menlo 12")
         ))))
 
-(defun theme (name)
-  (load-theme name t)
-  (set-cursor-color "#ff0000"))
 
 ;(add-hook 'window-configuration-change-hook 'fontify-frame)
 
-(load "nomad-lisp")
-(load "nomad-clojure")
+;(load "nomad-lisp")
+;(load "nomad-clojure")
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -279,46 +286,58 @@
                        (interactive)
                        (notmuch-tree-tag-thread (list "-inbox" "+news"))))))
 
-(use-package restclient
-  :defer t
-  :ensure t)
+;; (use-package restclient
+;;   :defer t
+;;   :straight t)
 
-(use-package xquery-mode
-  :defer t
-  :ensure t)
+;; (use-package xquery-mode
+;;   :defer t
+;;   :straight t)
 
-(use-package git-timemachine
-  :defer t
-  :ensure t)
+;; (use-package git-timemachine
+;;   :defer t
+;;   :straight t)
 
 (load (expand-file-name "init-org" user-emacs-directory))
 (load (expand-file-name "init-zk" user-emacs-directory))
-(use-package solarized-theme
-  :ensure t
-  :config
-  (setq solarized-distinct-fringe-background nil
-        solarized-use-less-bold t
-        solarized-high-contrast-mode-line t)
-  (load-theme 'solarized-dark t)
+;; (use-package solarized-theme
+;;   :straight t
+;;   :config
+;;   (setq solarized-distinct-fringe-background nil
+;;         solarized-use-less-bold t
+;;         solarized-high-contrast-mode-line t)
+;;   (load-theme 'solarized-dark t)
 
-  (if (display-graphic-p)
-      (progn
-        (if (string-equal system-type "darwin")
-            (load-theme 'solarized-light t)
-          (load-theme 'solarized-dark t))
-        (set-cursor-color "#ff0000"))
-    (load-theme 'solarized-dark t)
-    (face-spec-set 'line-number
-                   '((t :background "black"
-                        :foreground "brightblack")))
-    (face-spec-set 'font-lock-constant-face
-                   '((t :weight normal)))
-    (face-spec-set 'default
-                   '((t :background "brightblack")))
-    (face-spec-set 'org-meta-line
-                   '((t :background "brightblack"
-                        :foreground "#839496")))
-    (face-spec-set 'org-checkbox
-                   '((t :background "brightblack"
-                        :foreground "#839496")))))
+;;   (if (display-graphic-p)
+;;       (progn
+;;         (if (string-equal system-type "darwin")
+;;             (load-theme 'solarized-light t)
+;;           (load-theme 'solarized-dark t))
+;;         (set-cursor-color "#ff0000"))
+;;     (load-theme 'solarized-dark t)
+;;     (face-spec-set 'line-number
+;;                    '((t :background "black"
+;;                         :foreground "brightblack")))
+;;     (face-spec-set 'font-lock-constant-face
+;;                    '((t :weight normal)))
+;;     (face-spec-set 'default
+;;                    '((t :background "brightblack")))
+;;     (face-spec-set 'org-meta-line
+;;                    '((t :background "brightblack"
+;;                         :foreground "#839496")))
+;;     (face-spec-set 'org-checkbox
+;;                    '((t :background "brightblack"
+;;                         :foreground "#839496")))))
 
+;;; Colour themes
+(straight-use-package 'gruvbox-theme)
+(straight-use-package 'solarized-theme)
+
+(defun theme (name)
+  (load-theme name t)
+  (set-cursor-color "#ff0000"))
+
+(if (and (display-graphic-p)
+         (string-equal system-type "darwin"))
+    (theme 'solarized-light)
+  (theme 'gruvbox-dark-medium))

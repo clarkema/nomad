@@ -13,7 +13,7 @@
     (deft)))
 
 (use-package deft
-  :ensure t
+  :straight t
   :bind ("<f7>" . lfn-deft-toggle)
   :commands (lfn-deft-toggle)
   :config

@@ -2,6 +2,7 @@
 ;;; org mode setup
 ;;; See https://blog.aaronbieber.com/2016/09/24/an-agenda-for-life-with-org-mode.html
 ;;;
+(straight-use-package 'org-super-agenda)
 (require 'org)
 (add-to-list 'org-modules 'org-habit t)
 (setq diary-file "~/org/diary")
