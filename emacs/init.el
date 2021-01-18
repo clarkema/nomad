@@ -293,19 +293,5 @@
         (if (string-equal system-type "darwin")
             (load-theme 'solarized-light t)
           (load-theme 'solarized-dark t))
-        (set-cursor-color "#ff0000"))
-    (load-theme 'solarized-dark t)
-    (face-spec-set 'line-number
-                   '((t :background "black"
-                        :foreground "brightblack")))
-    (face-spec-set 'font-lock-constant-face
-                   '((t :weight normal)))
-    (face-spec-set 'default
-                   '((t :background "brightblack")))
-    (face-spec-set 'org-meta-line
-                   '((t :background "brightblack"
-                        :foreground "#839496")))
-    (face-spec-set 'org-checkbox
-                   '((t :background "brightblack"
-                        :foreground "#839496")))))
+        (set-cursor-color "#ff0000"))))
 
