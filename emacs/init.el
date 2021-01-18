@@ -151,6 +151,12 @@
   :ensure t
   :defer t)
 
+(use-package flycheck
+  :ensure t
+  :custom
+  (flycheck-display-errors-delay .3)
+  (flycheck-check-syntax-automatically '(mode-enabled save new-line)))
+
 (use-package paredit
   :ensure t
   :config
