@@ -284,6 +284,13 @@
 
 (load (expand-file-name "init-org" user-emacs-directory))
 (load (expand-file-name "init-zk" user-emacs-directory))
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((ditaa . t)))
+
+(setq org-ditaa-jar-path "/usr/share/java/ditaa/ditaa-0.11.jar")
+
 (use-package solarized-theme
   :ensure t
   :config
