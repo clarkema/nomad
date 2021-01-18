@@ -133,6 +133,15 @@
 
 ;;; Third-party packages
 
+(use-package git-gutter
+  :defer t
+  :init
+  :config
+  (setq git-gutter:disabled-modes '(org-mode asm-mode image-mode)
+        git-gutter:update-interval 1
+        git-gutter:window-width 2
+        git-gutter:ask-p nil))
+
 (use-package magit
   :ensure t
   :defer t
