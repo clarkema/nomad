@@ -11,6 +11,8 @@
   (elixir-mode . lsp)
   :init (add-to-list 'exec-path "/home/clarkema/.software/elixir-lsp"))
 
+(use-package lsp-ui)
+
 (use-package yasnippet
   :ensure t)
 
@@ -20,3 +22,7 @@
   (web-mode-markup-indent-offset 2)
   (web-mode-css-indent-offset 2)
   (web-mode-code-indent-offset 2))
+
+(use-package js
+  :custom
+  (js-indent-level 2))
