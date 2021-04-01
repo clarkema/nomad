@@ -9,7 +9,7 @@
 (setq org-hide-leading-stars t)
 (setq org-agenda-files '("~/org/lw" "~/org/lfn" "~/org/personal"))
 (setq org-agenda-custom-commands
-      '(("c" "LambdaWerk"
+      '(("c" "Syntacog"
          ((tags "PRIORITY=\"A\""
                 ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
                  (org-agenda-overriding-header "High priority unfinished tasks:")))
@@ -22,7 +22,7 @@
                 ((org-agenda-overriding-header "Waiting:")))
           (todo "BLOCKED"
                 ((org-agenda-overriding-header "Blocked tasks:"))))
-         ((org-agenda-files (list "~/org/lw"))))
+         ((org-agenda-files (list "~/org/lfn/stc.org"))))
         ("l" "Lambda summary"
          ((tags "PRIORITY=\"A\""
                 ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
@@ -133,7 +133,7 @@
         ("a" "Ad-hoc" entry (file+olp "~/org/lfn/stc.org" ,(current-week-monday) "Ad-hoc")
          "* TODO %?\n")
         ("n" "Ad-hoc, clock in" entry (file+olp "~/org/lfn/stc.org" ,(current-week-monday) "Ad-hoc")
-         "* TODO %?\n"
+         "* IN-PROGRESS %?\n"
          :clock-in t
          :clock-keep t)
         ("p" "Personal inbox" entry (file+headline "~/org/personal/personal.org" "Short term")
