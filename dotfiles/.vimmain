@@ -252,7 +252,8 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Misc {{{1
 
-colorscheme solarized
+"colorscheme solarized
+autocmd vimenter * ++nested colorscheme gruvbox
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
