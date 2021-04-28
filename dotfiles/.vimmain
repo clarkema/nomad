@@ -224,6 +224,11 @@ au FileType coffee inoremap <buffer> ;; ;
 " Erlang {{{2
 au FileType erlang let g:erlang_folding=1
 
+" Elixir {{{2
+au BufRead,BufNewFile *.ex,*.exs set filetype=elixir
+au BufRead,BufNewFile *.eex,*.leex,*.sface set filetype=eelixir
+au BufRead,BufNewFile mix.lock set filetype=elixir
+
 " C {{{2
 au BufRead *.ino set filetype=c " Treat Arduino source as C
 au FileType c,cpp setl cindent
