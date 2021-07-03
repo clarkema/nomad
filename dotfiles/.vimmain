@@ -26,7 +26,9 @@ set number
 set history=1000
 
 set mouse=a
-set ttymouse=xterm2   " Required for mouse events inside tmux
+if !has('nvim')
+    set ttymouse=xterm2   " Required for mouse events inside tmux
+endif
 
 set autoread
 set autowrite
