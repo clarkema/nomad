@@ -17,6 +17,7 @@ path=(
     $HOME/.cabal/bin
     $HOME/.cargo/bin
     $HOME/.raku/bin
+    $HOME/.mix/escripts
     $HOME/.software/rakudo-star-2020.10/bin
     $HOME/.software/rakudo-star-2020.10/share/perl6/site/bin
     $HOME/.software/rakudo-star-2020.10/share/perl6/vendor/bin
