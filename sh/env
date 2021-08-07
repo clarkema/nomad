@@ -39,3 +39,4 @@ export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 unset stow_prefix
 
 export HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_NO_ANALYTICS=1
