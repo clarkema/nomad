@@ -15,7 +15,7 @@
 [include]
     path = ~/.gitconfig.local
 [interactive]
-    singlekey = true
+    singleKey = true
 [merge]
     tool = vimdiff
     summary = true
@@ -31,3 +31,7 @@
     debt = grep -FI -e TODO -e FIXME -e XXX
 [mergetool]
 	keepBackup = true
+[uploadpack]
+    allowAnySHA1InWant = true
+[init]
+    defaultBranch = master
