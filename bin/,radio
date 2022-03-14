@@ -1,17 +1,19 @@
 #! /usr/bin/env bash
 
+# ffmpeg -y -i STREAM_URL foo.mp3
+
 declare -A stations
 
 stations=(
-    ["BBC Radio 1"]='http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_p'
-    ["BBC Radio 2"]='http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio2_mf_p'
-    ["BBC Radio 3"]='http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio3_mf_p'
-    ["BBC Radio 4 FM"]='http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio4fm_mf_p'
-    ["BBC Radio 4 LW"]='http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio4lw_mf_p'
+    ["BBC Radio 1"]='http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/bbc_radio_one.m3u8'
+    ["BBC Radio 2"]='http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/bbc_radio_two.m3u8'
+    ["BBC Radio 3"]='http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/bbc_radio_three.m3u8'
+    ["BBC Radio 4 FM"]='http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/bbc_radio_fourfm.m3u8'
+    ["BBC Radio 4 LW"]='http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/bbc_radio_fourlw.m3u8'
     ["BBC World Service UK"]='http://bbcwssc.ic.llnwd.net/stream/bbcwssc_mp1_ws-eieuk'
-    ["BBC World Service News"]='http://bbcwssc.ic.llnwd.net/stream/bbcwssc_mp1_ws-einws'
+    ["BBC World Service News"]='http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_low/ak/bbc_world_service.m3u8'
 )
 
 station=$(for k in "${!stations[@]}"; do echo "$k"; done | sk)
 
-vlc "${stations[$station]}" &
+cvlc "${stations[$station]}"

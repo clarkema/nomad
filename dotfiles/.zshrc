@@ -147,7 +147,7 @@ fi # is433
 #
 # Custom function definitions, including custom completions.
 #
-fpath=( "$NOMAD/zsh/functions" "$NOMAD/local/share/zsh/functions" "${fpath[@]}" )
+fpath=( "$NOMAD/zsh/functions" "$NOMAD/local/share/zsh/functions" "$HOME/.nix-profile/share/zsh/functions" "${fpath[@]}" )
 autoload -U _tm
 
 # Programmable completion

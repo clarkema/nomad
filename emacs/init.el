@@ -1,5 +1,6 @@
-(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")))
+;; (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+;;                          ("melpa" . "https://melpa.org/packages/")
+;;                          ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -15,23 +16,27 @@
   (load bootstrap-file nil 'nomessage))
 (straight-use-package 'use-package)
 
+(use-package straight
+  :custom (straight-use-package-by-default t))
+
 (defvar my-packages
   '(company
     cider
-    monokai-theme
-    win-switch
     helm-rg
     helm-cider
     restclient-helm
     popwin
-    fill-column-indicator
-    olivetti
     clj-refactor
     ))
 
 (straight-use-package 'popwin)
+(straight-use-package 'company)
 (straight-use-package 'fill-column-indicator)
 (straight-use-package 'olivetti)
+(straight-use-package 'win-switch)
+(straight-use-package 'deadgrep)
+
+(use-package projectile)
 
 (add-to-list 'load-path "~/.emacs.d/packages")
 (add-to-list 'load-path "~/.emacs.d/language-config")
@@ -40,6 +45,8 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file 'noerror 'nomessage)
 
+(autoload 'qlang-mode "qlang-mode" "" t)
+(add-to-list 'auto-mode-alist '("\\.qkk\\'" . qlang-mode))
 ;;;
 ;;; Fundamentals
 ;;;
@@ -120,6 +127,7 @@
               (calendar-set-date-style 'european))))
 
 (use-package dired
+  :straight nil
   :config
 
   ;; Enable extensions like C-x C-j (dired-jump)
@@ -172,9 +180,8 @@
   (add-hook 'sh-mode-hook 'flymake-mode))
 
 ;(add-to-list 'load-path "~/.emacs.d/vendor/async")
-;(add-to-list 'load-path "~/.emacs.d/vendor/helm")
-
-;(global-set-key (kbd "C-;") 'helm-M-x)
+(use-package helm)
+(global-set-key (kbd "C-;") 'helm-M-x)
 ;(global-set-key (kbd "M-y") 'helm-show-kill-ring)
 ;(global-set-key (kbd "C-x b") 'helm-buffers-list)
 ;(global-set-key (kbd "C-x C-f") 'helm-find-files)
@@ -226,17 +233,22 @@
       ;; The '4' below is a magic number that is the cut-off point between
       ;; the built-in display on my Retina MBP and an external Zenscreen.
       ;; It's likely to need tweaking for other combinations.
-      (if (> (/ px-width mm-width) 4)
-        (set-frame-parameter frame 'font "Iosevka 16")
-        ;(set-frame-parameter frame 'font "Source Code Pro 16")
-        (set-frame-parameter frame 'font "Source Code Pro 10")
-        ;;(set-frame-parameter frame 'font "Menlo 12")
-        ))))
+              (set-frame-parameter frame 'font "Source Code Pro 9")
+      ;; (if nil ;(> (/ px-width mm-width) 4)
+      ;;   (set-frame-parameter frame 'font "Iosevka 16")
+      ;;   ;(set-frame-parameter frame 'font "Source Code Pro 16")
+      ;;   (set-frame-parameter frame 'font "Source Code Pro 10")
+      ;;   ;;(set-frame-parameter frame 'font "Menlo 12")
+      ;;   )
+      )))
 
 ;(add-hook 'window-configuration-change-hook 'fontify-frame)
 
 (load "nomad-lisp")
-(load "nomad-clojure")
+                                        ;(load "nomad-clojure")
+(load "nomad-elixir")
+(load "nomad-raku")
+
 (use-package notmuch
   :defer t
   :bind (:map notmuch-show-mode-map
