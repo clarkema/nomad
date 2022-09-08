@@ -359,6 +359,7 @@ function rgc ()
     echo $pkd
 }
 alias vp='vim $pkd'
+alias nvp='nvim $pkd'
 
 #=====================================================================
 # Pull in secret configuration settings from ~/.secrets
