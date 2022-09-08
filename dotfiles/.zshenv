@@ -29,6 +29,8 @@ path=(
     /usr/local/texlive/2019/bin/x86_64-darwin
     /usr/local/sbin
     /usr/local/bin
+    /opt/homebrew/sbin
+    /opt/homebrew/bin
     $path
     /usr/sbin
     /usr/bin
