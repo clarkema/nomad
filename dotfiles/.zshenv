@@ -25,6 +25,7 @@ path=(
     $HOME/.nix-profile/bin
     $HOME/.nix-profile/sbin
     $HOME/.npm-packages/bin
+    $HOME/.gem/ruby/3.0.0/bin
     /usr/local/texlive/2019/bin/x86_64-darwin
     /usr/local/sbin
     /usr/local/bin
@@ -40,3 +41,4 @@ path=(
 path=($^path(N-/))
 
 source $NOMAD/sh/env
+if [ -e /home/clarkema/.nix-profile/etc/profile.d/nix.sh ]; then . /home/clarkema/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
