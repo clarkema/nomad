@@ -214,7 +214,7 @@ function path_within_git_repo ()
 # Exit value of 0 if the repo is clean, 1 otherwise
 function git_clean_p ()
 {
-    git status 2> /dev/null | fgrep 'working tree clean' > /dev/null
+    git status 2> /dev/null | grep -F 'working tree clean' > /dev/null
 }
 
 # }}}
