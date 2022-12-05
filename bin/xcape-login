@@ -1,0 +1,3 @@
+#! /bin/sh
+
+/usr/bin/xcape -e "Control_L=Escape"
