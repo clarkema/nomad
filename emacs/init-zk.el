@@ -39,6 +39,7 @@
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n f" . org-roam-node-find)
          ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
          :map org-mode-map
          ("C-M-i" . completion-at-point))
   :config
@@ -49,3 +50,16 @@
                  (direction . left)
                  (window-width . 0.33)
                  (window-height . fit-window-to-buffer))))
+
+;;; Test hackery.  Create a buffer listing all 'book' sources known in org-roam
+;;; Unlikely to work well on large databases
+(defun slipper-list-sources ()
+  (interactive)
+  (with-current-buffer (switch-to-buffer-other-window (get-buffer-create "*slipper list*"))
+    (erase-buffer)
+    (insert (propertize "slipper - list of sources:\n" 'face '(:weight bold)))
+    (let ((all-nodes (org-roam-node-list)))
+      (cl-loop for node in all-nodes
+               do (let ((type (cdr (assoc "TYPE" (org-roam-node-properties node)))))
+                    (if (equal type "Book")
+                        (insert (format "- Node: %s \n" (org-roam-node-title node)))))))))
