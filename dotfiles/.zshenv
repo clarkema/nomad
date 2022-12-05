@@ -18,10 +18,10 @@ path=(
     $HOME/.cargo/bin
     $HOME/.raku/bin
     $HOME/.mix/escripts
-    $HOME/.software/rakudo-star-2020.10/bin
-    $HOME/.software/rakudo-star-2020.10/share/perl6/site/bin
-    $HOME/.software/rakudo-star-2020.10/share/perl6/vendor/bin
-    $HOME/.software/rakudo-star-2020.10/share/perl6/core/bin
+    $HOME/.software/rakudo/bin
+    $HOME/.software/rakudo/share/perl6/site/bin
+    $HOME/.software/rakudo/share/perl6/vendor/bin
+    $HOME/.software/rakudo/share/perl6/core/bin
     $HOME/.nix-profile/bin
     $HOME/.nix-profile/sbin
     $HOME/.npm-packages/bin
