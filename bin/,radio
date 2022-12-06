@@ -11,14 +11,6 @@ else
     exit 1
 fi
 
-case $(uname) in
-    Darwin)
-        player=/Applications/VLC.app/Contents/MacOS/VLC
-        ;;
-    *)
-        player=cvlc
-esac
-
 declare -A stations
 
 stations=(
@@ -27,12 +19,30 @@ stations=(
     ["BBC Radio 3"]='http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/bbc_radio_three.m3u8'
     ["BBC Radio 4 FM"]='http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/bbc_radio_fourfm.m3u8'
     ["BBC Radio 4 LW"]='http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/bbc_radio_fourlw.m3u8'
-    ["BBC World Service UK"]='http://bbcwssc.ic.llnwd.net/stream/bbcwssc_mp1_ws-eieuk'
     ["BBC World Service News"]='http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_low/ak/bbc_world_service.m3u8'
 )
+
+function play {
+    url=$1
+
+    case $(uname) in
+        Darwin)
+            if [ -e /Applications/VLC.app/Contents/MacOS/VLC ]; then
+                /Applications/VLC.app/Contents/MacOS/VLC "$url" 2>/dev/null &
+            elif [ -e /Applications/mpv.app/Contents/MacOS/mpv ]; then
+                /Applications/mpv.app/Contents/MacOS/mpv "$url"
+            else
+                open "$url"
+            fi
+            ;;
+        *)
+            cvlc "$url"
+    esac
+
+}
 
 station=$(for k in "${!stations[@]}"; do echo "$k"; done | $search)
 
 if [ -n "$station" ]; then
-    "$player" "${stations[$station]}"
+    play "${stations[$station]}"
 fi
