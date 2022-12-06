@@ -2,6 +2,15 @@
 
 # ffmpeg -y -i STREAM_URL foo.mp3
 
+if command -v sk > /dev/null; then
+    search=sk
+elif command -v fzf > /dev/null; then
+    search=fzf
+else
+    echo "No search command found; please install one of 'skim' or 'fzf'"
+    exit 1
+fi
+
 declare -A stations
 
 stations=(
@@ -14,6 +23,6 @@ stations=(
     ["BBC World Service News"]='http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_low/ak/bbc_world_service.m3u8'
 )
 
-station=$(for k in "${!stations[@]}"; do echo "$k"; done | sk)
+station=$(for k in "${!stations[@]}"; do echo "$k"; done | $search)
 
 cvlc "${stations[$station]}"
