@@ -1,0 +1,19 @@
+#! /usr/bin/env bash
+
+if ! command -v units > /dev/null; then
+    echo "Error: Couldn't find 'units' command."
+    exit 1
+fi
+
+if [ -z "$1" ]; then
+    echo "Usage: $(basename "$0") TEMP"
+    exit 1
+fi
+
+from=$1
+
+degC=$(units --terse -o '% .1f' "tempF($from)" "tempC")
+degF=$(units --terse -o '% .1f' "tempC($from)" "tempF")
+
+echo "$from degF = $degC degC"
+echo "$from degC = $degF degF"
