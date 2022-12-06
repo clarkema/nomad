@@ -1,9 +1,22 @@
 #! /usr/bin/env bash
 
-if ! command -v units > /dev/null; then
-    echo "Error: Couldn't find 'units' command."
-    exit 1
+UNITS=units
+
+if [ "$(uname)" = "Darwin" ]; then
+    if command -v gunits > /dev/null; then
+        UNITS=gunits
+    else
+        echo "The basic macOS 'units' command is not supported."
+        echo "Consider installing 'gnu-units' from Homebrew"
+        exit 1
+    fi
+else
+    if ! command -v units > /dev/null; then
+        echo "Error: Couldn't find 'units' command."
+        exit 1
+    fi
 fi
+
 
 if [ -z "$1" ]; then
     echo "Usage: $(basename "$0") TEMP"
@@ -12,8 +25,8 @@ fi
 
 from=$1
 
-degC=$(units --terse -o '% .1f' "tempF($from)" "tempC")
-degF=$(units --terse -o '% .1f' "tempC($from)" "tempF")
+degC=$("$UNITS" --terse -o '% .1f' "tempF($from)" "tempC")
+degF=$("$UNITS" --terse -o '% .1f' "tempC($from)" "tempF")
 
 echo "$from degF = $degC degC"
 echo "$from degC = $degF degF"
