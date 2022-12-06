@@ -25,4 +25,6 @@ stations=(
 
 station=$(for k in "${!stations[@]}"; do echo "$k"; done | $search)
 
-cvlc "${stations[$station]}"
+if [ -n "$station" ]; then
+    cvlc "${stations[$station]}"
+fi
