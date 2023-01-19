@@ -22,8 +22,6 @@ path=(
     $HOME/.software/rakudo/share/perl6/site/bin
     $HOME/.software/rakudo/share/perl6/vendor/bin
     $HOME/.software/rakudo/share/perl6/core/bin
-    $HOME/.nix-profile/bin
-    $HOME/.nix-profile/sbin
     $HOME/.npm-packages/bin
     $HOME/.gem/ruby/3.0.0/bin
     /usr/local/texlive/2019/bin/x86_64-darwin
