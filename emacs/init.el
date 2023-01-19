@@ -188,11 +188,10 @@
 ;(global-set-key (kbd "C-x r b") 'helm-bookmarks)
 ;(global-set-key (kbd "C-c <SPC>") 'helm-all-mark-rings)
 
-(use-package selectrum
-  :straight t
-  :defer t
+(use-package vertico
+  :straight (:files (:defaults "extensions/*"))
   :init
-  (selectrum-mode +1))
+  (vertico-mode))
 
 (use-package prescient
   :straight t
@@ -200,11 +199,11 @@
   (prescient-persist-mode +1)
   (setq prescient-history-length 1000))
 
-(use-package selectrum-prescient
+(use-package vertico-prescient
   :straight t
-  :after selectrum
+  :after vertico
   :config
-  (selectrum-prescient-mode +1))
+  (vertico-prescient-mode +1))
 
 (use-package marginalia
   :straight t
