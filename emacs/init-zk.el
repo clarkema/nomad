@@ -30,6 +30,19 @@
 
 ;;; org-roam test below here
 
+(use-package helm-bibtex)
+
+(use-package org-ref
+  :defer t
+  :after (org bibtex))
+
+(require 'org-ref-helm)
+
+(setq bibtex-completion-bibliography '("~/zk/references.bib"))
+
+(define-key org-mode-map (kbd "C-c ]") 'org-ref-insert-link)
+
+
 (use-package org-roam
   :init
   (setq org-roam-v2-ack t)
@@ -50,6 +63,14 @@
                  (direction . left)
                  (window-width . 0.33)
                  (window-height . fit-window-to-buffer))))
+
+(use-package org-roam-bibtex
+  :defer t
+  :after (org-roam helm-bibtex)
+  :bind (:map org-mode-map ("C-c n b" . orb-note-actions))
+  :config
+  (org-roam-bibtex-mode +1)
+  (setq orb-insert-interface 'helm-bibtex))
 
 ;;; Test hackery.  Create a buffer listing all 'book' sources known in org-roam
 ;;; Unlikely to work well on large databases
