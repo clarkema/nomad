@@ -30,7 +30,9 @@
 
 ;;; org-roam test below here
 
-(use-package helm-bibtex)
+(use-package helm-bibtex
+  :config
+  (setq bibtex-completion-bibliography '("~/zk/references.bib")))
 
 (use-package org-ref
   :defer t
@@ -38,7 +40,7 @@
 
 (require 'org-ref-helm)
 
-(setq bibtex-completion-bibliography '("~/zk/references.bib"))
+
 
 (define-key org-mode-map (kbd "C-c ]") 'org-ref-insert-link)
 
@@ -62,7 +64,10 @@
                  (display-buffer-in-direction)
                  (direction . left)
                  (window-width . 0.33)
-                 (window-height . fit-window-to-buffer))))
+                 (window-height . fit-window-to-buffer)))
+  (setq org-roam-mode-sections
+        (list #'org-roam-backlinks-section
+              #'org-roam-reflinks-section)))
 
 (use-package org-roam-bibtex
   :defer t
