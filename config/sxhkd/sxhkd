@@ -1,10 +1,10 @@
 # https://protesilaos.com/pdfd/basics-my-bspwm
 #
 super + t
-    alacritty
+    kitty
 
 super + Return
-    alacritty
+    kitty
 
 super + b
     firefox
