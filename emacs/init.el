@@ -219,6 +219,23 @@
 
 (setq-default indent-tabs-mode nil)
 
+;;; Mira ratio: 8
+;;; Framework laptop ratio: 7
+;;; LG 32" & LG DualUp ratio: 5
+
+(defun show-frame-params (&optional frame)
+  (interactive)
+  (if window-system
+      (let* ((frame (or frame (selected-frame)))
+             (displays (display-monitor-attributes-list frame))
+             (display (car (cl-remove-if-not (lambda (d)
+                                               (memq frame (assq 'frames d)))
+                                             displays)))
+             (px-width (nth 3 (assq 'geometry display)))
+             (mm-width (nth 1 (assq 'mm-size display))))
+        (message "px-width: %s / mm-width: %s / ratio: %s"
+                 px-width mm-width (/ px-width mm-width)))))
+
 (defun fontify-frame (&optional frame)
   (interactive)
   (if window-system
