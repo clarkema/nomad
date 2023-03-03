@@ -236,27 +236,26 @@
         (message "px-width: %s / mm-width: %s / ratio: %s"
                  px-width mm-width (/ px-width mm-width)))))
 
+;;; Older font options for reference
+;;;  (set-frame-parameter frame 'font "Iosevka 16")
+;;;  (set-frame-parameter frame 'font "Source Code Pro 16")
+;;;  (set-frame-parameter frame 'font "Source Code Pro 10")
+;;;  (set-frame-parameter frame 'font "Menlo 12")
 (defun fontify-frame (&optional frame)
   (interactive)
   (if window-system
-    (let* ((frame (or frame (selected-frame)))
-           (displays (display-monitor-attributes-list frame))
-           (display (car (cl-remove-if-not (lambda (d)
-                                             (memq frame (assq 'frames d)))
-                                           displays)))
-           (px-width (nth 3 (assq 'geometry display)))
-           (mm-width (nth 1 (assq 'mm-size display))))
-      ;; The '4' below is a magic number that is the cut-off point between
-      ;; the built-in display on my Retina MBP and an external Zenscreen.
-      ;; It's likely to need tweaking for other combinations.
-              (set-frame-parameter frame 'font "Source Code Pro 9")
-      ;; (if nil ;(> (/ px-width mm-width) 4)
-      ;;   (set-frame-parameter frame 'font "Iosevka 16")
-      ;;   ;(set-frame-parameter frame 'font "Source Code Pro 16")
-      ;;   (set-frame-parameter frame 'font "Source Code Pro 10")
-      ;;   ;;(set-frame-parameter frame 'font "Menlo 12")
-      ;;   )
-      )))
+      (let* ((frame (or frame (selected-frame)))
+             (displays (display-monitor-attributes-list frame))
+             (display (car (cl-remove-if-not (lambda (d)
+                                               (memq frame (assq 'frames d)))
+                                             displays)))
+             (px-width (nth 3 (assq 'geometry display)))
+             (mm-width (nth 1 (assq 'mm-size display))))
+        (let ((ratio (/ px-width mm-width)))
+          (cond ((= ratio 5)
+                 (set-frame-parameter frame 'font "Source Code Pro 9"))
+                ((= ratio 8)
+                 (set-frame-parameter frame 'font "Source Code Pro 10")))))))
 
 ;(add-hook 'window-configuration-change-hook 'fontify-frame)
 
