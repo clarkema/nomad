@@ -89,3 +89,17 @@
                do (let ((type (cdr (assoc "TYPE" (org-roam-node-properties node)))))
                     (if (equal type "Book")
                         (insert (format "- Node: %s \n" (org-roam-node-title node)))))))))
+
+(defun slipper-list-nodes ()
+  (interactive)
+  (with-current-buffer (switch-to-buffer-other-window (get-buffer-create "*slipper list*"))
+    (erase-buffer)
+    (insert (propertize "slipper - list of sources:\n" 'face '(:weight bold)))
+    (let ((all-nodes (org-roam-node-list)))
+      (cl-loop for node in all-nodes
+               do (let* ((parts (split-string (org-roam-node-title node) "[/]"))
+                         (category (if (= (length parts) 1)
+                                       "   "
+                                     (car parts)))
+                         (title (if (= (length parts) 1) (car parts) (cadr parts))))
+                    (insert (format "- %s :: %s \n" (upcase category) title)))))))
