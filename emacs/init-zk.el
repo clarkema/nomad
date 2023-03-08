@@ -59,6 +59,7 @@
          ("C-M-i" . completion-at-point))
   :config
   (org-roam-setup)
+  (org-roam-db-autosync-mode)
   (add-to-list 'display-buffer-alist
                '("\\*org-roam\\*"
                  (display-buffer-in-direction)
