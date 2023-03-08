@@ -62,10 +62,12 @@
   (org-roam-db-autosync-mode)
   (add-to-list 'display-buffer-alist
                '("\\*org-roam\\*"
-                 (display-buffer-in-direction)
-                 (direction . left)
-                 (window-width . 0.33)
-                 (window-height . fit-window-to-buffer)))
+                 (display-buffer-in-side-window)
+                 (side . left)
+                 (slot . 0)
+                 (window-width . 0.2)
+                 (window-paramters . ((no-other-window 1)
+                                      (no-delete-other-windows . t)))))
   (setq org-roam-mode-sections
         (list #'org-roam-backlinks-section
               #'org-roam-reflinks-section)))
