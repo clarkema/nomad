@@ -39,7 +39,11 @@
 
    ;; line numbers
    `(line-number ((t (:foreground ,black-1 :background ,white-1))))
-   `(linum ((t (:foreground ,black-1 :background ,white-1))))))
+   `(linum ((t (:foreground ,black-1 :background ,white-1))))
+
+   ;; mode line
+   `(mode-line ((t (:foreground ,white-1 :background ,black-1))))
+   `(mode-line-inactive ((t (:foreground ,white-1 :background ,black-1 :bold nil))))))
 
 
 ;;;###autoload
