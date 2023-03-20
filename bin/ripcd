@@ -1,0 +1,20 @@
+#! /usr/bin/env bash
+
+# Modified from http://www.davisr.me/projects/cd-ripping/rip-linux.sh
+
+CD_DRIVE="/dev/sr0"
+
+function ripcd {
+    cdparanoia \
+        --log-summary="cdparanoia.log" \
+        --stderr-progress \
+        --force-cdrom-big-endian \
+        --output-raw \
+        --output-raw-little-endian \
+        --batch \
+        --never-skip=20 \
+        --force-cdrom-device "$CD_DRIVE" \
+        1-
+}
+
+ripcd
