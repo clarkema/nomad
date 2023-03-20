@@ -1,0 +1,9 @@
+#! /usr/bin/env bash
+
+cat <<EOF | kitty --session=- --detach --config="$HOME/.config/kitty/music.conf"
+launch ncmpcpp
+launch cover-art.py
+launch ncmpcpp -s visualizer -c ~/.config/ncmpcpp/visualizer_bare
+resize_window wider 2
+EOF
+

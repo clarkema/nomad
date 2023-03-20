@@ -1,0 +1,9 @@
+header_visibility = "no"
+statusbar_visibility = "no"
+connected_message_on_startup = "no"
+progressbar_look = "  "
+
+visualizer_type = "spectrum" (spectrum/wave)
+visualizer_spectrum_smooth_look = "no"
+visualizer_look = "●▮"
+visualizer_color = blue, cyan, green, yellow, magenta, red, black

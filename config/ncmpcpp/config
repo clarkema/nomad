@@ -1,0 +1,14 @@
+user_interface = alternative
+alternative_header_first_line_format = "$0$aqqu$/a $b%t$9 $0$atqq$/a$9"
+alternative_header_second_line_format = "{$4%a$9} - {{$7$/b%b$9}{ [$8%y$9]}}|{$4%D$9}"
+display_bitrate =yes
+
+
+visualizer_in_stereo = "yes"
+visualizer_output_name = "Pipe"
+visualizer_data_source = "/tmp/mpd.fifo"
+visualizer_type = spectrum
+visualizer_look = "●▮"
+visualizer_color = blue, cyan, green, yellow, magenta, red, black
+
+header_visibility = "no"
