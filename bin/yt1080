@@ -1,0 +1,6 @@
+#! /usr/bin/env bash
+
+# Tiny yt-dlp wrapper to save me remembering how to quickly download
+# a video capped to 1080p
+
+yt-dlp -S res:1080 "$@"
