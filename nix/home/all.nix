@@ -6,6 +6,8 @@
     zoxide.enable = true;
   };
 
+  fonts.fontconfig.enable = true;
+
   nix = {
     package = lib.mkDefault pkgs.nix;
     settings = {
@@ -21,5 +23,6 @@
     pkgs.fzf
     pkgs.scmpuff
     pkgs.yt-dlp
+    pkgs.source-code-pro
   ];
 }
