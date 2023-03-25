@@ -219,22 +219,27 @@
 
 (setq-default indent-tabs-mode nil)
 
-;;; Mira ratio: 8
-;;; Framework laptop ratio: 7
+;;; Mira DPI: 206
+;;; Framework laptop DPI: 201
 ;;; LG 32" & LG DualUp ratio: 5
+
+(defun frame-params (frame)
+  (if window-system
+      (let* ((displays (display-monitor-attributes-list frame))
+             (display (car (cl-remove-if-not (lambda (d)
+                                               (memq frame (assq 'frames d)))
+                                             displays)))
+             (px-width (nth 3 (assq 'geometry display)))
+             (mm-width (nth 1 (assq 'mm-size display)))
+             (inch-width (/ mm-width 25.4)))
+        (/ px-width inch-width))))
 
 (defun show-frame-params (&optional frame)
   (interactive)
   (if window-system
       (let* ((frame (or frame (selected-frame)))
-             (displays (display-monitor-attributes-list frame))
-             (display (car (cl-remove-if-not (lambda (d)
-                                               (memq frame (assq 'frames d)))
-                                             displays)))
-             (px-width (nth 3 (assq 'geometry display)))
-             (mm-width (nth 1 (assq 'mm-size display))))
-        (message "px-width: %s / mm-width: %s / ratio: %s"
-                 px-width mm-width (/ px-width mm-width)))))
+             (dpi (frame-params frame)))
+        (message "DPI: %s" dpi))))
 
 ;;; Older font options for reference
 ;;;  (set-frame-parameter frame 'font "Iosevka 16")
@@ -249,13 +254,14 @@
              (display (car (cl-remove-if-not (lambda (d)
                                                (memq frame (assq 'frames d)))
                                              displays)))
+             (dpi (frame-params frame))
              (px-width (nth 3 (assq 'geometry display)))
              (mm-width (nth 1 (assq 'mm-size display))))
         (let ((ratio (/ px-width mm-width)))
           (cond ((= ratio 5)
                  (set-frame-parameter frame 'font "Source Code Pro 9"))
-                ((= ratio 8)
-                 (set-frame-parameter frame 'font "Source Code Pro 10")))))))
+                ((> dpi 200)
+                 (set-frame-parameter frame 'font "Source Code Pro 11")))))))
 
 ;(add-hook 'window-configuration-change-hook 'fontify-frame)
 
