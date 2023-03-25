@@ -12,18 +12,24 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Required for kitty in bullseye-plus
+    nixgl.url = "github:guibou/nixGL";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixgl, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [ nixgl.overlay ];
+      };
     in {
       devShells.${system} = import ./shell.nix { inherit pkgs; };
 
       homeConfigurations = {
         "clarkema" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${system};
+          inherit pkgs;
           modules = [
             ./nix/home/all.nix
             {
@@ -36,6 +42,7 @@
                 stateVersion = "22.11";
               };
             }
+            ./nix/home/features/desktop/debian-bullseye-plus.nix
           ];
         };
       };
