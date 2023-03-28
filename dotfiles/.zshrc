@@ -190,7 +190,13 @@ precmd() {
             reset=$reset_color
         fi
 
-        PROMPT="%h $(path_within_git_repo):%{$gitcolor%}$git_branch%{$reset%}%(!.#.>) "
+        if [ -n "$IN_NIX_SHELL" ]; then
+            nix="[nix] "
+        else
+            nix=""
+        fi
+
+        PROMPT="%h ${nix}$(path_within_git_repo):%{$gitcolor%}$git_branch%{$reset%}%(!.#.>) "
     else
         PROMPT=$default_prompt
     fi
