@@ -43,6 +43,7 @@
               };
             }
             ./nix/home/features/desktop/debian-bullseye-plus.nix
+            ./nix/home/features/desktop/hyprland-test.nix
           ];
         };
       };
