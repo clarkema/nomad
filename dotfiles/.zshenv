@@ -41,4 +41,13 @@ path=(
 path=($^path(N-/))
 
 source $NOMAD/sh/env
-if [ -e /home/clarkema/.nix-profile/etc/profile.d/nix.sh ]; then . /home/clarkema/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+    source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+fi
+
+# .zshenv-nix is created by my home-manager configuration on systems where that
+# is in use; this allows us to make nix-specific adjustments to the environment.
+if [ -e "$HOME/.zshenv-nix" ]; then
+    source "$HOME/.zshenv-nix"
+fi
