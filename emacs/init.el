@@ -260,11 +260,11 @@
         (let ((ratio (/ px-width mm-width)))
           (cond ((= ratio 5)
                  (set-frame-parameter frame 'font "Source Code Pro 9"))
-                ((> dpi 110) ; Paul's ultrawide
-                 (set-frame-parameter frame 'font "Source Code Pro 9"))
-                ((> dpi 150)
-                 (set-frame-parameter frame 'font "Source Code Pro 9"))
                 ((> dpi 200)
+                 (set-frame-parameter frame 'font "Source Code Pro 9"))
+                ((> dpi 150)            ; Paul's ultrawide with 1.5 scale
+                 (set-frame-parameter frame 'font "Source Code Pro 10"))
+                ((> dpi 110)            ; Paul's ultrawide without scaling
                  (set-frame-parameter frame 'font "Source Code Pro 9")))))))
 
 ;(add-hook 'window-configuration-change-hook 'fontify-frame)
