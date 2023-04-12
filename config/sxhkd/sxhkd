@@ -32,6 +32,10 @@ super + space
 #super + f
 #    bspc node -t '~fullscreen'
     
+# preselect the direction
+super + ctrl + {h,j,k,l}
+    bspc node -p {west,south,north,east}
+
 # Dynamic desktop behaviour:  this invokes a script of mine that
 # implements dynamic desktops (see dotfiles).  If the given desktop
 # number is missing, it is created on the spot.  Empty desktops are then
