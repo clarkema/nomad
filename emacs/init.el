@@ -351,3 +351,11 @@
          (string-equal system-type "darwin"))
     (theme 'solarized-light)
   (theme 'gruvbox-dark-medium))
+
+(setq world-clock-list
+      '(("Atlantic/Stanley" "Falklands")
+        ("UTC" "UTC")
+        ("Europe/London" "London")
+        ("Indian/Mahe" "Seychelles")
+        ("Australia/Perth" "Perth")
+        ("Australia/Melbourne" "Melbourne")))
