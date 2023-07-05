@@ -362,4 +362,5 @@
         ("Europe/London" "London")
         ("Indian/Mahe" "Seychelles")
         ("Australia/Perth" "Perth")
-        ("Australia/Melbourne" "Melbourne")))
+        ("Australia/Melbourne" "Melbourne")
+        ("Pacific/Auckland" "New Zealand")))
