@@ -106,6 +106,9 @@
 (global-set-key "\C-xo" 'win-switch-dispatch)
 (setq next-line-add-newlines nil)
 
+;;; Re-enable disabled commands
+(put 'narrow-to-region 'disabled nil)
+
 ;;; Built-in packages
 
 (use-package calendar
