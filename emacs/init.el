@@ -50,7 +50,9 @@
 ;;;
 ;;; Fundamentals
 ;;;
-(menu-bar-mode -1)
+(unless (and (display-graphic-p)
+             (string-equal system-type "darwin"))
+  (menu-bar-mode -1))
 (blink-cursor-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
