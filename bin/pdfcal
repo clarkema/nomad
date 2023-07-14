@@ -8,4 +8,9 @@
 year=$(date "+%Y")
 month=$(date "+%m")
 
-pcal -e -P a4 -m -F Monday -w "$month" "$year" > "$year.ps"
+if command -v pcal; then
+    pcal -e -P a4 -m -F Monday -w "$month" "$year" > "$year.ps"
+else
+    nix run git+file:///Users/clarkema/git/nix-pcal -- -e -P a4 -m -F Monday -w "$month" "$year" |
+        nix-shell -p ghostscript --run "ps2pdf - '$year.pdf'"
+fi
