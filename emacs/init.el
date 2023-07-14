@@ -355,7 +355,6 @@
   (theme 'gruvbox-dark-medium))
 
 (setq world-clock-list
-      '(("Atlantic/Stanley" "Falklands")
       '(("America/Los_Angeles" "West Coast")
         ("America/New_York" "East Coast")
         ("Atlantic/Stanley" "Falklands")
