@@ -1,0 +1,95 @@
+#! /usr/bin/env perl
+
+use warnings;
+use strict;
+
+sub desired_theme {
+    # Is an eink monitor connected?
+    `miractl detect`;
+    if ($? == 0) {
+        # There's a Mira e-ink monitor connected to the system; we should use
+        # the eink theme
+        return "eink";
+    } else {
+        # No e-ink monitor found.  If the current theme is e-ink, set to dark;
+        # otherwise toggle dark/light
+
+        my $current;
+        my $file = "$ENV{HOME}/.config/kitty/kitty.conf";
+        our @ARGV = ($file);
+        while (<ARGV>) {
+            if (/Gruvbox (\w+)/)  {
+                $current = lc($1);
+            }
+        }
+        return $current eq "dark" ? "light" : "dark";
+    }
+}
+
+sub set_kitty_theme {
+    my $target = shift;
+    my $file = "$ENV{HOME}/.config/kitty/kitty.conf";
+    return unless -f $file;
+
+    my %themes = (
+        eink => "Eink",
+        dark => "Gruvbox Dark",
+        light => "Gruvbox Light",
+    );
+
+    system("kitty +kitten themes --reload-in=all $themes{$target}");
+}
+
+sub set_nvim_theme {
+    my $target = shift;
+    my $file = "$ENV{HOME}/.config/nvim/init.vim";
+    return unless -f $file;
+
+    our $^I = '*';
+    our @ARGV = ($file);
+    
+    while (<ARGV>){
+       s/^(se bg=).*$/$1$target/;
+       print;
+    }
+    
+    my $current_user = $ENV{USER};
+    
+    while (my $server = glob "/tmp/nvim*") {
+        my $user = getpwuid((lstat($server))[4]);
+        next unless $user eq $current_user;
+
+        system("nvim --server $server/0 --remote-send '<C-\\><C-n>:se bg=$target<CR>'");
+    };
+}
+
+sub set_bat_theme {
+    my $target = shift;
+    my $file = `bat --config-file`;
+    chomp $file;
+    return unless $file && -f $file;
+
+    my %themes = (
+        eink => "gruvbox-light",
+        dark => "gruvbox-dark",
+        light => "gruvbox-light",
+    );
+
+    our $^I = '*';
+    our @ARGV = ($file);
+    
+    while (<ARGV>){
+       s/--theme="[-\w]+"/--theme="$themes{$target}"/;
+       print;
+    }
+}
+
+sub set_theme {
+    my $target = shift;
+    set_kitty_theme($target);
+    set_nvim_theme($target);
+    set_bat_theme($target);
+}
+
+my $target = shift || desired_theme;
+set_theme($target);
