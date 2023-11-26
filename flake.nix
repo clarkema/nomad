@@ -28,7 +28,23 @@
       devShells.${system} = import ./shell.nix { inherit pkgs; };
 
       homeConfigurations = {
-        "clarkema" = home-manager.lib.homeManagerConfiguration {
+        "clarkema@munnin" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./nix/home/system/munnin.nix
+            {
+              home = rec {
+                username = "clarkema";
+                homeDirectory = if pkgs.system == "aarch64-darwin"
+                       then "/Users/${username}"
+                       else "/home/${username}";
+
+                stateVersion = "22.11";
+              };
+            }
+	  ];
+	};
+        "clarkema@generic" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
             ./nix/home/all.nix
