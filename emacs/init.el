@@ -256,22 +256,16 @@
   (interactive)
   (if window-system
       (let* ((frame (or frame (selected-frame)))
-             (displays (display-monitor-attributes-list frame))
-             (display (car (cl-remove-if-not (lambda (d)
-                                               (memq frame (assq 'frames d)))
-                                             displays)))
-             (dpi (frame-params frame))
-             (px-width (nth 3 (assq 'geometry display)))
-             (mm-width (nth 1 (assq 'mm-size display))))
-        (let ((ratio (/ px-width mm-width)))
-          (cond ((= ratio 5)
-                 (set-frame-parameter frame 'font "Source Code Pro 9"))
-                ((> dpi 200)
-                 (set-frame-parameter frame 'font "Source Code Pro 9"))
-                ((> dpi 150)            ; Paul's ultrawide with 1.5 scale
-                 (set-frame-parameter frame 'font "Source Code Pro 10"))
-                ((> dpi 110)            ; Paul's ultrawide without scaling
-                 (set-frame-parameter frame 'font "Source Code Pro 9")))))))
+             (dpi (frame-params frame)))
+        (cond ((> dpi 200)
+               (set-frame-parameter frame 'font "Source Code Pro 9"))
+              ((> dpi 150)              ; Paul's ultrawide with 1.5 scale
+               (set-frame-parameter frame 'font "Source Code Pro 10"))
+              ((> dpi 137)
+               ;; LG Evo under sway
+               (set-frame-parameter frame 'font "Source Code Pro 14"))
+              ((> dpi 110)              ; Paul's ultrawide without scaling
+               (set-frame-parameter frame 'font "Source Code Pro 9"))))))
 
 ;(add-hook 'window-configuration-change-hook 'fontify-frame)
 
