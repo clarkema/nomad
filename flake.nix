@@ -42,8 +42,22 @@
                 stateVersion = "22.11";
               };
             }
-	  ];
-	};
+          ];
+        };
+        "clarkema@vidar" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./nix/home/features/desktop/debian-bookworm-plus.nix
+            ./nix/home/systems/vidar.nix
+            {
+              home = rec {
+                username = "clarkema";
+                homeDirectory = "/home/${username}";
+                stateVersion = "22.11";
+              };
+            }
+          ];
+        };
         "clarkema@generic" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
