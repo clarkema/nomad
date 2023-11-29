@@ -24,6 +24,7 @@
     pkgs.scmpuff
     pkgs.yt-dlp
     pkgs.source-code-pro
+    pkgs.neofetch
   ];
 
   home.file.".zshenv-nix".text =

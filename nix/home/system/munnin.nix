@@ -8,6 +8,7 @@
     aspellDicts.en-science
     aspellDicts.en-computers
     wdisplays # Wayland display manager
+    ripgrep
   ];
 
   wayland.windowManager.sway = {
