@@ -19,9 +19,30 @@
 
       input = {
         "*" = {
-	  "xkb_layout" = "gb";
-	};
+          "xkb_layout" = "gb";
+        };
       };
+
+      colors = {
+        background = "#ffffff";
+      };
+
+      output = {
+        "*" = {
+          bg = "#ffffff solid_color";
+        };
+      };
+
+      bars = [
+        {
+          colors = {
+            background = "#ffffff";
+          };
+        }
+      ];
     };
+    extraConfig = ''
+      bindsym Mod4+Shift+p exec "miractl refresh"
+    '';
   };
 }
