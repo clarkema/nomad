@@ -74,12 +74,26 @@
 
 (push '("*json-path*" :height 5) popwin:special-display-config)
 
-(defun set-exec-path-from-shell-PATH ()
-  (let ((path-from-shell (shell-command-to-string "$SHELL -i -c 'echo $PATH'")))
-    (setenv "PATH" path-from-shell)
-    (setq exec-path (split-string path-from-shell path-separator))))
+;;; Using the exec-path-from-shell package works better in complicated
+;;; situations with Nix, but the non-package version below might be useful
+;;; in bootstrapping situations where we need to get started with straight.el,
+;;; so I'm keeping it around for now.
 
-(when window-system (set-exec-path-from-shell-PATH))
+;;(defun set-exec-path-from-shell-PATH ()
+;;  (let ((path-from-shell (shell-command-to-string "$SHELL -i -c 'echo $PATH'")))
+;;    (setenv "PATH" path-from-shell)
+;;    (setq exec-path (split-string path-from-shell path-separator))))
+;;
+;;(when window-system (set-exec-path-from-shell-PATH))
+
+(use-package exec-path-from-shell
+  :demand
+  :commands exec-path-from-shell-initialize
+  :if (not (memq system-type '(cygwin windows-nt)))
+  :custom
+  (exec-path-from-shell-arguments '("-l"))
+  :config
+  (exec-path-from-shell-initialize))
 
 (add-hook 'after-init-hook 'global-company-mode)
 
