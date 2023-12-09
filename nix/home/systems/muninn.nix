@@ -11,6 +11,8 @@
     ripgrep
   ];
 
+  services.ssh-agent.enable = true;
+
   wayland.windowManager.sway = {
     enable = true;
     config = rec {
