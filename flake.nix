@@ -28,6 +28,19 @@
       devShells.${system} = import ./shell.nix { inherit pkgs; };
 
       homeConfigurations = {
+        "clarkema@niflheim.lfn.io" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./nix/home/systems/niflheim.nix
+            {
+              home = rec {
+                username = "clarkema";
+                homeDirectory = "/home/${username}";
+                stateVersion = "22.11";
+              };
+            }
+          ];
+        };
         "clarkema@muninn" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [

@@ -76,6 +76,18 @@ Vim Plugins
  * Repeat
  * Surround
 
+Nix Home Manager
+================
+
+Fresh installation
+------------------
+
+``` sh
+$ cd $HOME/.nomad
+$ nix-shell
+$ home-manager --flake . switch
+```
+
 GNU Stow
 ========
 
