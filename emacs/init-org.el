@@ -151,4 +151,36 @@
          :immediate-finish t
          :jump-to-captured t)))
 
-(set-face-attribute 'variable-pitch nil :font "Source Code Pro 10")
+;;;
+;;; org-present config adapted from
+;;; https://systemcrafters.net/emacs-tips/presentations-with-org-present/
+;;;
+
+(defun my/org-present-start ()
+  (org-present-read-only)
+  (hide-mode-line-mode +1)
+  (face-remap-add-relative 'default :inherit 'variable-pitch :height 1.5)
+  (face-remap-add-relative 'org-code nil :inherit 'fixed-pitch :height 1.55)
+  (face-remap-add-relative 'org-verbatim nil :inherit 'fixed-pitch :height 1.55)
+  (face-remap-add-relative 'org-block :inherit 'fixed-pitch :height 1.25)
+  (face-remap-add-relative 'org-block-begin-line :inherit 'fixed-pitch :height 0.7)
+  (face-remap-add-relative 'org-block-end-line :inherit 'fixed-pitch :height 0.7)
+  (setq header-line-format " ")
+  (setq org-hide-emphasis-markers t)
+  (org-display-inline-images))
+
+(defun my/org-present-stop ()
+  (org-present-read-write)
+  (hide-mode-line-mode -1)
+  (setq-local face-remapping-alist nil)
+  (setq header-line-format nil)
+  (setq org-hide-emphasis-markers nil)
+  (org-remove-inline-images)
+  (org-present-show-cursor))
+
+(require 'org-faces)
+(use-package org-present
+  :defer t)
+
+(add-hook 'org-present-mode-hook 'my/org-present-start)
+(add-hook 'org-present-mode-quit-hook 'my/org-present-stop)

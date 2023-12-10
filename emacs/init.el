@@ -254,6 +254,10 @@
              (inch-width (/ mm-width 25.4)))
         (/ px-width inch-width))))
 
+(set-face-attribute 'default nil :font "Source Code Pro 10")
+(set-face-attribute 'fixed-pitch nil :font "Source Code Pro 10")
+(set-face-attribute 'variable-pitch nil :font "Iosevka Aile" :weight 'light :height 1.3)
+
 (defun show-frame-params (&optional frame)
   (interactive)
   (if window-system
