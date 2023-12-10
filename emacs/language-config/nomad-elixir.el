@@ -3,17 +3,18 @@
 
 (if (and (version<= "29" emacs-version)
          (string-match-p "TREE_SITTER" system-configuration-features))
-    (use-package elixir-ts-mode
-      :defer t)
+    (progn
+      (use-package elixir-ts-mode
+        :defer t)
+      (unless
+          (treesit-language-available-p 'elixir)
+        (message "Elixir tree-sitter grammar not installed.\nRun M-x elixir-ts-install-grammar.")))
   (use-package elixir-mode
     :defer t
     :hook
     (elixir-mode . yas-minor-mode)
     (elixir-mode . exunit-mode)))
 
-(unless
-    (treesit-language-available-p 'elixir)
-  (message "Elixir tree-sitter grammar not installed.\nRun M-x elixir-ts-install-grammar."))
 
 (use-package which-key)
 (use-package lsp-mode
