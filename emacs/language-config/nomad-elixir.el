@@ -1,7 +1,19 @@
-(use-package elixir-mode
-  :defer t
-  :hook
-  (elixir-mode . yas-minor-mode))
+(use-package exunit)
+
+
+(if (and (version<= "29" emacs-version)
+         (string-match-p "TREE_SITTER" system-configuration-features))
+    (use-package elixir-ts-mode
+      :defer t)
+  (use-package elixir-mode
+    :defer t
+    :hook
+    (elixir-mode . yas-minor-mode)
+    (elixir-mode . exunit-mode)))
+
+(unless
+    (treesit-language-available-p 'elixir)
+  (message "Elixir tree-sitter grammar not installed.\nRun M-x elixir-ts-install-grammar."))
 
 (use-package which-key)
 (use-package lsp-mode
@@ -10,6 +22,7 @@
  ; :diminish lsp-mode
   :hook
   (elixir-mode . lsp-deferred)
+  (elixir-ts-mode . lsp-deferred)
   :init (setq lsp-keymap-prefix "C-c l")
   :config
   (lsp-enable-which-key-integration t)
@@ -17,7 +30,7 @@
 
 (use-package lsp-ui
   :custom
-  (lsp-ui-sideline-show-hover nil))
+  (lsp-ui-sideline-show-hover t))
 
 (use-package lsp-treemacs)
 
