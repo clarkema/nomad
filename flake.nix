@@ -19,17 +19,22 @@
 
   outputs = { self, nixpkgs, home-manager, nixgl, ... }@inputs:
     let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = [ nixgl.overlay ];
-      };
+      forAllSystems = function:
+        nixpkgs.lib.genAttrs [
+          "x86_64-linux"
+          "aarch64-linux"
+          "aarch64-darwin"
+        ] (system: function nixpkgs.legacyPackages.${system});
     in {
-      devShells.${system} = import ./shell.nix { inherit pkgs; };
+      devShell = forAllSystems (pkgs:
+        import ./shell.nix { inherit pkgs; }
+      );
+      #devShells.${system} = import ./shell.nix { inherit pkgs; };
 
       homeConfigurations = {
         "clarkema@niflheim.lfn.io" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+          #inherit pkgs;
+          pkgs = import nixpkgs { system = "x86_64-linux"; };
           modules = [
             ./nix/home/systems/niflheim.nix
             {
@@ -42,7 +47,8 @@
           ];
         };
         "clarkema@muninn" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+          #inherit pkgs;
+          pkgs = import nixpkgs { system = "x86_64-linux"; };
           modules = [
             ./nix/home/systems/muninn.nix
             {
@@ -55,7 +61,8 @@
           ];
         };
         "clarkema@vidar" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+          #inherit pkgs;
+          pkgs = import nixpkgs { system = "x86_64-linux"; };
           modules = [
             ./nix/home/features/desktop/debian-bookworm-plus.nix
             ./nix/home/systems/vidar.nix
@@ -68,23 +75,19 @@
             }
           ];
         };
-        "clarkema@generic" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+        "clarkema@skadi" = home-manager.lib.homeManagerConfiguration {
+          #inherit pkgs;
+          pkgs = import nixpkgs { system = "aarch64-darwin"; };
           modules = [
-            ./nix/home/all.nix
+            ./nix/home/systems/skadi.nix
+
             {
               home = rec {
                 username = "clarkema";
-                homeDirectory = if pkgs.system == "aarch64-darwin"
-                       then "/Users/${username}"
-                       else "/home/${username}";
-
+                homeDirectory = "/Users/${username}";
                 stateVersion = "22.11";
               };
             }
-            ./nix/home/features/desktop/debian-bullseye-plus.nix
-            ./nix/home/features/desktop/debian-bookworm-plus.nix
-            ./nix/home/features/desktop/hyprland-test.nix
           ];
         };
       };
