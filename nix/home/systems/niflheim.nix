@@ -14,6 +14,7 @@ let binDir = "/home/clarkema/.nix-profile/bin"; in
 
     #    ripgrep 
 
+    emacsPackages.treesit-grammars.with-all-grammars
     mullvad-browser
     ungoogled-chromium
   ];

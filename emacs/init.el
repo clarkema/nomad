@@ -67,6 +67,10 @@
     (global-display-line-numbers-mode)
   (global-linum-mode 1))
 
+(if (and (version<= "29" emacs-version)
+         (treesit-available-p))
+    (setf treesit-extra-load-path '("~/.nix-profile/lib")))
+
 (desktop-save-mode 1)
 ;; Stop super-annoying default popup window behaviour
 (require 'popwin)
