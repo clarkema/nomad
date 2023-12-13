@@ -67,9 +67,16 @@
     (global-display-line-numbers-mode)
   (global-linum-mode 1))
 
-(if (and (version<= "29" emacs-version)
-         (treesit-available-p))
-    (setf treesit-extra-load-path '("~/.nix-profile/lib")))
+(when (and (version<= "29" emacs-version)
+           (treesit-available-p))
+  (setf treesit-extra-load-path '("~/.nix-profile/lib"))
+
+  ;; Using aliases means that org-mode source blocks work, which is
+  ;; not the case with a simple mode remap
+  (defalias 'rust-mode 'rust-ts-mode)
+  (defalias 'elixir-mode 'elixir-ts-mode)
+  (setq major-mode-remap-alist
+        '((rust-mode . rust-ts-mode))))
 
 (desktop-save-mode 1)
 ;; Stop super-annoying default popup window behaviour
