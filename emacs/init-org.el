@@ -10,6 +10,7 @@
 (setq org-agenda-include-diary t)
 (setq org-hide-leading-stars nil)
 (setq org-agenda-files '("~/org/lw" "~/org/lfn" "~/org/personal"))
+(setq org-confirm-elisp-link-function nil)
 (setq org-agenda-custom-commands
       '(("c" "Syntacog"
          ((tags "PRIORITY=\"A\""

@@ -80,6 +80,20 @@
   (org-roam-bibtex-mode +1)
   (setq orb-insert-interface 'helm-bibtex))
 
+;;; Allow abbreviated links from any org file to a ZK node in in the format
+;;; [[zk:foo/bar]]
+(autoload 'org-roam-node-from-title-or-alias "org-roam-node")
+
+(add-to-list 'org-link-abbrev-alist
+             '("zk" . "elisp:(slipper-jump \"%s\")"))
+
+(defun slipper-jump (ref)
+  (if-let ((node (org-roam-node-from-title-or-alias ref)))
+      (progn
+        (org-roam-node-open node)
+        t)
+    (user-error (concat "Node not found: " ref))))
+
 ;;; Test hackery.  Create a buffer listing all 'book' sources known in org-roam
 ;;; Unlikely to work well on large databases
 (defun slipper-list-sources ()
