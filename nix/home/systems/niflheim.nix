@@ -13,6 +13,7 @@ let binDir = "/home/clarkema/.nix-profile/bin"; in
     # aspellDicts.en-computers
 
     #    ripgrep 
+    nodejs_21 # for nvim coc
 
     emacsPackages.treesit-grammars.with-all-grammars
     mullvad-browser
