@@ -40,3 +40,9 @@ unset stow_prefix
 
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_NO_ANALYTICS=1
+
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    sock="$XDG_RUNTIME_DIR/ssh-agent.socket"
+    [ -S "$sock" ] && export SSH_AUTH_SOCK="$sock"
+    unset sock
+fi
