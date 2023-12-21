@@ -281,21 +281,6 @@ function ncd ()
     mkdir -p "$1" && cd "$1"
 }
 
-if [[ -f $HOME/.fasd ]]; then
-  # Initialize fasd (https://github.com/clvv/fasd)
-  eval "$(fasd --init auto)"
-
-  # aliases
-
-  # jump to recently used items
-  alias a='fasd -a' # any
-  alias s='fasd -s' # show / search / select
-  alias d='fasd -d' # directory
-  alias f='fasd -f' # file
-  alias z='fasd_cd -d' # cd, same functionality as j in autojump
-  #alias v='f -e vim' # quick opening files with vim
-fi
-
 function source_environment_specific_files ()
 {
     local fqdn components domainname hostname
@@ -390,3 +375,7 @@ function docker () {
 
 # OCaml package configuration
 [[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+if command -v zoxide > /dev/null; then
+    eval "$(zoxide init zsh --cmd j)"
+fi
