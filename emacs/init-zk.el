@@ -2,32 +2,6 @@
 ;;; Zettlekasten setup
 ;;;
 
-;; Temporarily disable cl package deprecation warnings until deft catches
-;; up.  See https://github.com/kiwanami/emacs-epc/issues/35
-(setq byte-compile-warnings '(cl-functions))
-
-(defun lfn-deft-toggle ()
-  (interactive)
-  (if (string= (buffer-name) "*Deft*")
-      (kill-buffer nil)
-    (deft)))
-
-(use-package deft
-  :straight t
-  :bind ("<f7>" . lfn-deft-toggle)
-  :commands (lfn-deft-toggle)
-  :config
-  (setq deft-extensions '("org")
-        deft-default-extension "org"
-        deft-directory "~/zk"
-        deft-auto-save-interval 0
-        deft-use-filter-string-for-filename t
-        deft-file-naming-rules
-        '((noslash . "-")
-          (nospace . "-")
-          (case-fn . downcase))))
-
-
 ;;; org-roam test below here
 
 (use-package helm-bibtex
@@ -94,6 +68,10 @@
         t)
     (user-error (concat "Node not found: " ref))))
 
+;; (use-package consult
+;;   :defer t)
+
+
 ;;; Test hackery.  Create a buffer listing all 'book' sources known in org-roam
 ;;; Unlikely to work well on large databases
 (defun slipper-list-sources ()
@@ -120,3 +98,15 @@
                                      (car parts)))
                          (title (if (= (length parts) 1) (car parts) (cadr parts))))
                     (insert (format "- %s :: %s \n" (upcase category) title)))))))
+
+;; Taken from https://www.reddit.com/r/emacs/comments/yn4hr8/how_to_properly_use_consultripgrep_to_search/
+;; TODO Might be worth checking the other poster's notes package as well
+(defun slipper-search ()
+  "Search org-roam directory using consult-ripgrep. With live-preview."
+  (interactive)
+  (let ((consult-ripgrep-args "rg --null --line-buffered --color=never --max-columns=1000 \
+--path-separator / --smart-case --no-heading --with-filename \
+--line-number --glob=!*~ --glob=!*#"))
+        (consult-ripgrep "~/zk")))
+
+(global-set-key (kbd "<f5>") 'slipper-search)
