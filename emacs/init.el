@@ -292,7 +292,7 @@
                (set-frame-parameter frame 'font "Source Code Pro 10"))
               ((> dpi 137)
                ;; LG Evo under sway
-               (set-frame-parameter frame 'font "Source Code Pro 14"))
+               (set-frame-parameter frame 'font "Source Code Pro 9"))
               ((> dpi 110)              ; Paul's ultrawide without scaling
                (set-frame-parameter frame 'font "Source Code Pro 9"))))))
 

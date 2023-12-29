@@ -3,10 +3,12 @@
 /cider-history
 /eshell
 /elpa
+/games
 /.emacs.desktop*
 /request
 /url
 /network-security.data
 /bookmarks
 /straight
+/tree-sitter
 org-roam.db
