@@ -9,6 +9,7 @@
     aspellDicts.en-computers
     wdisplays # Wayland display manager
     ripgrep
+    mpg123
   ];
 
   services.ssh-agent.enable = true;
