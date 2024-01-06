@@ -377,8 +377,12 @@
 ;(straight-use-package 'solarized-theme)
 
 (defun theme (name)
-  (load-theme name t)
-  (set-cursor-color "#ff0000"))
+  (let ((theme (cl-case name
+                 ('light 'gruvbox-light-medium)
+                 ('dark 'gruvbox-dark-medium)
+                 (t name))))
+    (load-theme theme t)
+    (set-cursor-color "#ff0000")))
 
 (if (and (display-graphic-p)
          (string-equal system-type "darwin"))
