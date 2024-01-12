@@ -142,9 +142,6 @@
 [submodule "vim/bundle/coc.nvim"]
 	path = vim/bundle/coc.nvim
 	url = https://github.com/neoclide/coc.nvim.git
-[submodule "vim/bundle/vim-markdown-composer"]
-	path = vim/bundle/vim-markdown-composer
-	url = https://github.com/euclio/vim-markdown-composer.git
 [submodule "vim/bundle/vim-terraform"]
 	path = vim/bundle/vim-terraform
 	url = https://github.com/hashivim/vim-terraform.git
