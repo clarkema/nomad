@@ -42,7 +42,7 @@ function play {
 
 }
 
-station=$(for k in "${!stations[@]}"; do echo "$k"; done | $search)
+station=$(for k in "${!stations[@]}"; do echo "$k"; done | sort -r | $search)
 
 if [ -n "$station" ]; then
     play "${stations[$station]}"
