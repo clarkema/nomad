@@ -399,3 +399,16 @@
         ("Australia/Perth" "Perth")
         ("Australia/Melbourne" "Melbourne")
         ("Pacific/Auckland" "New Zealand")))
+
+;;; https://hungyi.net/posts/copy-org-mode-url/
+(defun my/copy-url ()
+  (interactive)
+  (let ((plain-url (url-get-url-at-point)))
+    (if plain-url
+        (progn
+          (kill-new plain-url)
+          (message (concat "Copied: " plain-url))))))
+
+(global-set-key (kbd "C-c u") 'my/copy-url)
+
+;;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Key-Binding-Conventions.html
