@@ -64,6 +64,7 @@
             (display-line-numbers-mode -1)))
 
 (global-set-key (kbd "<f6>") 'org-capture)
+(global-set-key (kbd "S-<f6>") 'org-agenda)
 (global-set-key (kbd "C-c l") 'org-store-link)
 
 (org-super-agenda-mode -1)
