@@ -251,6 +251,7 @@
 (setq-default indent-tabs-mode nil)
 
 ;;; Mira DPI: 206
+;;; Mira portrait: 154?
 ;;; Framework laptop DPI: 201
 ;;; LG 32" & LG DualUp ratio: 5
 
@@ -286,15 +287,18 @@
   (if window-system
       (let* ((frame (or frame (selected-frame)))
              (dpi (frame-params frame)))
-        (cond ((> dpi 200)
-               (set-frame-parameter frame 'font "Source Code Pro 9"))
-              ((> dpi 150)              ; Paul's ultrawide with 1.5 scale
-               (set-frame-parameter frame 'font "Source Code Pro 10"))
-              ((> dpi 137)
-               ;; LG Evo under sway
-               (set-frame-parameter frame 'font "Source Code Pro 9"))
-              ((> dpi 110)              ; Paul's ultrawide without scaling
-               (set-frame-parameter frame 'font "Source Code Pro 9"))))))
+        (cond
+         ((> dpi 200)                   ; Framework
+          (set-frame-parameter frame 'font "Source Code Pro 10"))
+         ((> dpi 150)                   ; Paul's ultrawide with 1.5 scale
+          (set-frame-parameter frame 'font "Source Code Pro 10"))
+         ((> dpi 139)
+          (set-frame-parameter frame 'font "Source Code Pro 10"))
+         ((> dpi 137)
+          ;; LG Evo under sway
+          (set-frame-parameter frame 'font "Source Code Pro 14"))
+         ((> dpi 110)                   ; Paul's ultrawide without scaling
+          (set-frame-parameter frame 'font "Source Code Pro 9"))))))
 
 ;(add-hook 'window-configuration-change-hook 'fontify-frame)
 
