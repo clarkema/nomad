@@ -389,6 +389,8 @@
     (theme 'solarized-light)
   (theme 'gruvbox-dark-medium))
 
+(use-package hide-mode-line)
+
 (setq world-clock-list
       '(("America/Los_Angeles" "West Coast")
         ("America/New_York" "East Coast")
