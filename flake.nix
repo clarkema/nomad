@@ -93,6 +93,20 @@
             }
           ];
         };
+        "clarkema" = home-manager.lib.homeManagerConfiguration {
+          #inherit pkgs;
+          pkgs = import nixpkgs { system = "x86_64-linux"; };
+          modules = [
+            ./nix/home/all.nix
+            {
+              home = rec {
+                username = "clarkema";
+                homeDirectory = "/home/${username}";
+                stateVersion = "22.11";
+              };
+            }
+          ];
+        };
       };
     };
 }
