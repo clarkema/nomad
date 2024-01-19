@@ -84,11 +84,32 @@ sub set_bat_theme {
     }
 }
 
+sub set_zathura_theme {
+    my $target = shift;
+    my $file = "$ENV{HOME}/.config/zathura/zathurarc";
+    return unless $file && -f $file;
+
+    my %themes = (
+        eink => "zathura-gruvbox-light",
+        dark => "zathura-gruvbox-dark",
+        light => "zathura-gruvbox-light",
+    );
+
+    our $^I = '*';
+    our @ARGV = ($file);
+
+    while (<ARGV>){
+       s/include zathura-gruvbox-\w+/include $themes{$target}/;
+       print;
+    }
+}
+
 sub set_theme {
     my $target = shift;
     set_kitty_theme($target);
     set_nvim_theme($target);
     set_bat_theme($target);
+    set_zathura_theme($target);
 }
 
 my $target = shift || desired_theme;
