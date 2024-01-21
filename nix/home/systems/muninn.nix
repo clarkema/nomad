@@ -14,6 +14,8 @@
 
   services.ssh-agent.enable = true;
 
+  programs.firefox.enable = true;
+
   wayland.windowManager.sway = {
     enable = true;
     config = rec {
@@ -46,6 +48,7 @@
     };
     extraConfig = ''
       bindsym Mod4+Shift+p exec "miractl refresh"
+      bindsym Mod4+Shift+b exec "firefox"
     '';
   };
 }
