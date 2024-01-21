@@ -42,6 +42,16 @@
         {
           colors = {
             background = "#ffffff";
+            focusedWorkspace = {
+              background = "#222222";
+              border = "#222222";
+              text = "#ffffff";
+            };
+            inactiveWorkspace = {
+              background = "#ffffff";
+              border = "#ffffff";
+              text = "#000000";
+            };
           };
         }
       ];
