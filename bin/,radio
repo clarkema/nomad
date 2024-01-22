@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 die() {
-    printf "%s\n" "$*" >&2
+    printf "%b\n" "$@" >&2
     exit 1
 }
 
@@ -38,7 +38,14 @@ play() {
             fi
             ;;
         *)
-            cvlc "$url"
+            if command -v mpv > /dev/null; then
+                mpv "$url"
+            elif command -v cvlc > /dev/null; then
+                cvlc "$url"
+            else
+                die "No player found; please install one of 'mpv' or 'vlc', or" \
+                    "specify with '--player'"
+            fi
     esac
 }
 
