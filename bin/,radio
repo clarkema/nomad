@@ -1,14 +1,16 @@
 #! /usr/bin/env bash
 
-# ffmpeg -y -i STREAM_URL foo.mp3
+die() {
+    printf "%s\n" "$*" >&2
+    exit 1
+}
 
 if command -v sk > /dev/null; then
     search=sk
 elif command -v fzf > /dev/null; then
     search=fzf
 else
-    echo "No search command found; please install one of 'skim' or 'fzf'"
-    exit 1
+    die "No search command found; please install one of 'skim' or 'fzf'"
 fi
 
 declare -A stations
@@ -22,9 +24,8 @@ stations=(
     ["BBC World Service News"]='http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_low/ak/bbc_world_service.m3u8'
 )
 
-
-function play {
-    url=$1
+play() {
+    local -r url=$1
 
     case $(uname) in
         Darwin)
@@ -39,11 +40,35 @@ function play {
         *)
             cvlc "$url"
     esac
-
 }
 
-station=$(for k in "${!stations[@]}"; do echo "$k"; done | sort -r | $search)
+choose() {
+    local -r station=$(for k in "${!stations[@]}"; do echo "$k"; done | sort -r | $search)
 
-if [ -n "$station" ]; then
-    play "${stations[$station]}"
-fi
+    if [ -n "$station" ]; then
+        echo "${stations[$station]}"
+    else
+        exit 1
+    fi
+}
+
+
+cmd=$1
+
+case "$cmd" in
+    record)
+        file=${2:-recording.mp3}
+        if [ -e "$file" ]; then
+            die "$file exists; refusing to overwrite"
+        else
+            url=$(choose)
+            ffmpeg -y -i "$url" "$file"
+        fi
+        ;;
+    --player)
+        url=$(choose)
+        $2 "$url"
+        ;;
+    *)
+        play "$(choose)"
+esac
