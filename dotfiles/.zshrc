@@ -349,8 +349,9 @@ function rgc ()
     pkd=$(sk --ansi -i -c "rg $rg_args -n --color always '{}'" --preview "preview.sh {}" --cmd-query "$query" | awk -F: '{print $1}')
     echo $pkd
 }
-alias vp='vim $pkd'
-alias nvp='nvim $pkd'
+alias vp='vim "$pkd"'
+alias nvp='nvim "$pkd"'
+alias enp='emacsclient -n "$pkd"'
 
 #=====================================================================
 # Pull in secret configuration settings from ~/.secrets
