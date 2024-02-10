@@ -382,8 +382,8 @@
 
 (defun theme (name)
   (let ((theme (cl-case name
-                 ('light 'gruvbox-light-medium)
-                 ('dark 'gruvbox-dark-medium)
+                 (light 'gruvbox-light-medium)
+                 (dark 'gruvbox-dark-medium)
                  (t name))))
     (load-theme theme t)
     (set-cursor-color "#ff0000")))
