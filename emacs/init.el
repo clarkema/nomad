@@ -340,6 +340,10 @@
   :defer t
   :straight t)
 
+(use-package typo
+  :defer t
+  :straight t)
+
 (use-package terraform-mode
   :defer t
   :straight t)
