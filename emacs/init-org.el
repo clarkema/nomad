@@ -130,13 +130,13 @@
 ;;; and they are 'hard-coded' into the variable after this setq has run.  If the
 ;;; emacs instance lives over a week boundary it will maintain the old date
 (setq org-capture-templates
-      `(("i" "Interrupt" entry (file+olp "~/org/lfn/stc.org" ,(current-week-monday) "Interrupts")
+      `(("i" "Interrupt" entry (file+olp "~/org/lfn/lambda.org" ,(current-week-monday) "Interrupts")
          "* TODO %?\n"
          :clock-in t
          :clock-keep t)
-        ("a" "Ad-hoc" entry (file+olp "~/org/lfn/stc.org" ,(current-week-monday) "Ad-hoc")
+        ("a" "Ad-hoc" entry (file+olp "~/org/lfn/lambda.org" ,(current-week-monday) "Ad-hoc")
          "* TODO %?\n")
-        ("n" "Ad-hoc, clock in" entry (file+olp "~/org/lfn/stc.org" ,(current-week-monday) "Ad-hoc")
+        ("n" "Ad-hoc, clock in" entry (file+olp "~/org/lfn/lambda.org" ,(current-week-monday) "Ad-hoc")
          "* IN-PROGRESS %?\n"
          :clock-in t
          :clock-keep t)
