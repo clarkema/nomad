@@ -11,12 +11,12 @@ niflheim_dwim() {
         centre)
             xrandr --output DisplayPort-0 --auto --output HDMI-A-0 --off --output DisplayPort-1 --off
             hc set_monitors 3840x2160+0+0
-            pkill polybar && polybar hlwm &
+            pkill polybar ; polybar hlwm &
             ;;
         left-centre)
             xrandr --output DisplayPort-0 --auto --output HDMI-A-0 --auto --left-of DisplayPort-0 --output DisplayPort-1 --off
             hc set_monitors 2560x2880+0+0 3840x2160+2560+0
-            pkill polybar && polybar hlwm &
+            pkill polybar ; polybar hlwm &
             ;;
         all)
             ;;
