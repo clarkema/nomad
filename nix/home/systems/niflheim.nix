@@ -21,7 +21,7 @@ let binDir = "/home/clarkema/.nix-profile/bin"; in
     _1password-gui
   ];
 
-  home.file.".local/share/applications/mullvad-browser.desktop".source = "${pkgs.mullvad-browser}/share/applications/mullvadbrowser.desktop";
+  home.file.".local/share/applications/mullvad-browser.desktop".source = "${pkgs.mullvad-browser}/share/applications/mullvad-browser.desktop";
 
   home.file.".local/share/applications/chromium.desktop".source = "${pkgs.ungoogled-chromium}/share/applications/chromium-browser.desktop";
 
