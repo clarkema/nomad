@@ -27,8 +27,8 @@
     pkgs.source-code-pro
 
     # Used by org-present in my Emacs config
-    (pkgs.iosevka-bin.override { variant = "aile"; })
-    (pkgs.iosevka-bin.override { variant = "etoile"; })
+    (pkgs.iosevka-bin.override { variant = "Aile"; })
+    (pkgs.iosevka-bin.override { variant = "Etoile"; })
   ];
 
   home.file.".zshenv-nix".text =
