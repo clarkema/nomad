@@ -17,6 +17,7 @@
   in with pkgs; [
     signal-desktop
     rakudo_env
+    neovim
   ];
 
   home.file.".local/share/applications/signal-desktop.desktop".source = "${pkgs.signal-desktop}/share/applications/signal-desktop.desktop";
