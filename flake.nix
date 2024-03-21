@@ -39,6 +39,7 @@
             config.allowUnfree = true;
           };
           modules = [
+            ./nix/home/features/dev/python.nix
             ./nix/home/systems/niflheim.nix
             {
               home = rec {
@@ -67,6 +68,7 @@
           #inherit pkgs;
           pkgs = import nixpkgs { system = "x86_64-linux"; };
           modules = [
+            ./nix/home/features/dev/python.nix
             ./nix/home/features/desktop/debian-bookworm-plus.nix
             ./nix/home/systems/vidar.nix
             {
