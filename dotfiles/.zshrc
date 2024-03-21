@@ -49,8 +49,10 @@ bindkey -M vicmd "ga" what-cursor-position
 test -f "$NOMAD/zsh/git-widgets.zsh" && . "$NOMAD/zsh/git-widgets.zsh"
 bindkey '^x^g' fuzzy-git-branch
 
-test -f /usr/share/fzf/key-bindings.zsh && . /usr/share/fzf/key-bindings.zsh
-test -f /usr/share/fzf/key-bindings.zsh && . /usr/share/fzf/completion.zsh
+for name in key-bindings.zsh completion.zsh; do
+    file="$HOME/.nix-profile/share/fzf/$name"
+    [ -s $file ] && source $file
+done
 
 function zle-line-init zle-keymap-select {
     RPS1="${${KEYMAP/vicmd/[N]}/(main|viins)/[I]}"
