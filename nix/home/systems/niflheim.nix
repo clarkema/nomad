@@ -15,6 +15,8 @@ let binDir = "/home/clarkema/.nix-profile/bin"; in
     #    ripgrep 
     nodejs_21 # for nvim coc
 
+    emacs-gtk
+    elixir_1_14
     emacsPackages.treesit-grammars.with-all-grammars
     mullvad-browser
     ungoogled-chromium
