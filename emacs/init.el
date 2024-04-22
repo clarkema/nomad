@@ -406,6 +406,7 @@
         ("UTC" "UTC")
         ("Europe/London" "London")
         ("Indian/Mahe" "Seychelles")
+        ("Asia/Singapore" "Singapore")
         ("Australia/Perth" "Perth")
         ("Australia/Melbourne" "Melbourne")
         ("Pacific/Auckland" "New Zealand")))
