@@ -37,6 +37,7 @@
           pkgs = import nixpkgs {
             system = "x86_64-linux";
             config.allowUnfree = true;
+            overlays = [ nixgl.overlay ];
           };
           modules = [
             ./nix/home/features/dev/python.nix
