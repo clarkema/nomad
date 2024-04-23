@@ -100,10 +100,9 @@
 (use-package exec-path-from-shell
   :demand
   :commands exec-path-from-shell-initialize
-  :if (not (memq system-type '(cygwin windows-nt)))
-  :custom
-  (exec-path-from-shell-arguments '("-l"))
+  :if (memq window-system '(mac ns x))
   :config
+  ;(setq exec-path-from-shell-debug 1)
   (exec-path-from-shell-initialize))
 
 (add-hook 'after-init-hook 'global-company-mode)
