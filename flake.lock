@@ -85,11 +85,46 @@
         "type": "github"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1713995372,
+        "narHash": "sha256-fFE3M0vCoiSwCX02z8VF58jXFRj9enYUSTqjyHAjrds=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "dd37924974b9202f8226ed5d74a252a9785aedf8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-23.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nomad": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1714078586,
+        "narHash": "sha256-pWs/v2W7djisQe2848XHZvYsj2Hd8qFX8zJ25PEbKN8=",
+        "owner": "clarkema",
+        "repo": "nix-nomad",
+        "rev": "8d43c5b0ae211f08ac2e084830596f8e6dd76a14",
+        "type": "github"
+      },
+      "original": {
+        "owner": "clarkema",
+        "repo": "nix-nomad",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nixgl": "nixgl",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "nomad": "nomad"
       }
     }
   },

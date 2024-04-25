@@ -13,11 +13,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nomad.url = "github:clarkema/nix-nomad";
+
     # Required for kitty in bullseye-plus
     nixgl.url = "github:guibou/nixGL";
   };
 
-  outputs = { self, nixpkgs, home-manager, nixgl, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixgl, nomad, ... }@inputs:
     let
       forAllSystems = function:
         nixpkgs.lib.genAttrs [
@@ -48,6 +50,7 @@
                 homeDirectory = "/home/${username}";
                 stateVersion = "22.11";
               };
+              _module.args = { nomad = nomad.packages.x86_64-linux; };
             }
           ];
         };
