@@ -394,7 +394,9 @@
 (if (and (display-graphic-p)
          (string-equal system-type "darwin"))
     (theme 'solarized-light)
-  (theme 'gruvbox-dark-medium))
+  (if (string-equal system-name "muninn")
+      (theme 'eink)
+    (theme 'gruvbox-dark-medium)))
 
 (use-package hide-mode-line)
 
