@@ -18,6 +18,7 @@
     signal-desktop
     rakudo_env
     neovim
+    emacsPackages.treesit-grammars.with-all-grammars
   ];
 
   home.file.".local/share/applications/signal-desktop.desktop".source = "${pkgs.signal-desktop}/share/applications/signal-desktop.desktop";
