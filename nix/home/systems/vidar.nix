@@ -20,6 +20,7 @@
     neovim
     emacsPackages.treesit-grammars.with-all-grammars
     vscodium
+    chirp
   ];
 
   home.file.".local/share/applications/signal-desktop.desktop".source = "${pkgs.signal-desktop}/share/applications/signal-desktop.desktop";
