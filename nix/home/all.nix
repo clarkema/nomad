@@ -39,4 +39,13 @@
     # See https://nixos.wiki/wiki/Locales
     export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
     '';
+
+  home.file.".bashenv-nix".text =
+    ''
+    # This file is managed by Nix home-manager; do not edit directly.
+
+    # Fix locale errors with Nix packages.
+    # See https://nixos.wiki/wiki/Locales
+    export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
+    '';
 }
