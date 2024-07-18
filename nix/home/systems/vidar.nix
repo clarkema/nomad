@@ -24,25 +24,26 @@ let binDir = "/home/clarkema/.nix-profile/bin"; in
     emacsPackages.treesit-grammars.with-all-grammars
     vscodium
     chirp
+    #chirp
   ];
 
   home.file.".local/share/applications/signal-desktop.desktop".source = "${pkgs.signal-desktop}/share/applications/signal-desktop.desktop";
 
-  home.file.".local/share/applications/chirp.desktop".text =
-    ''
-    [Desktop Entry]
-    Type=Application
-    Version=1.0
-    Name=CHIRP
-    GenericName=Radio Programming Tool
-    Comment=Program amateur radios
-    Icon=${pkgs.chirp}/lib/python3.11/site-packages/chirp/share/chirp
-    Exec=${binDir}/chirp %F
-    Terminal=false
-    MimeType=x-scheme-handler/chirp
-    Categories=Utility;HamRadio
-    Keywords=Hamradio;Programming;Handheld;Radio;Amateur;Programmer
-    StartupNotify=true
-    }
-    '';
+#  home.file.".local/share/applications/chirp.desktop".text =
+#    ''
+#    [Desktop Entry]
+#    Type=Application
+#    Version=1.0
+#    Name=CHIRP
+#    GenericName=Radio Programming Tool
+#    Comment=Program amateur radios
+#    Icon=${pkgs.chirp}/lib/python3.11/site-packages/chirp/share/chirp
+#    Exec=${binDir}/chirp %F
+#    Terminal=false
+#    MimeType=x-scheme-handler/chirp
+#    Categories=Utility;HamRadio
+#    Keywords=Hamradio;Programming;Handheld;Radio;Amateur;Programmer
+#    StartupNotify=true
+#    }
+#    '';
 }
