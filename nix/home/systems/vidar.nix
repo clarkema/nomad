@@ -45,4 +45,10 @@ let binDir = "/home/clarkema/.nix-profile/bin"; in
     StartupNotify=true
     }
     '';
+
+  home.file.".config/mpv/mpv.conf".text =
+    ''
+    # Managed by home-manager
+    hwdec=auto
+    '';
 }
