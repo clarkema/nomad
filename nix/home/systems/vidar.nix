@@ -51,4 +51,27 @@ let binDir = "/home/clarkema/.nix-profile/bin"; in
     # Managed by home-manager
     hwdec=auto
     '';
+
+  # https://blog.tty8.org/posts/2020-05-18-howto-auto-start-ssh-agent-with-systemd-on-debian-bullseye.html
+  home.file.".config/systemd/user/ssh-agent.service".text =
+    ''
+    # Managed by home-manager
+    [Unit]
+    Description=SSH key agent
+
+    [Service]
+    Type=simple
+    # %t resolves to XDG_RUNTIME_DIR; see SPECIFIERS section in systemd.unit(5)
+    ExecStart=/usr/bin/ssh-agent -D -a "%t/ssh-agent.socket"
+
+    [Install]
+    WantedBy=default.target
+    '';
+
+
+  home.file.".pam_environment".text =
+    ''
+    SSH_AUTH_SOCK DEFAULT="''${XDG_RUNTIME_DIR}/ssh-agent.socket"
+    '';
+
 }
