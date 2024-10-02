@@ -37,7 +37,7 @@ sub set_kitty_theme {
         light => "Gruvbox Light",
     );
 
-    system("kitty +kitten themes --reload-in=all $themes{$target}");
+    system("kitty +kitten themes --reload-in=all --cache-age -1 $themes{$target}");
 }
 
 sub set_nvim_theme {
