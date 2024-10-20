@@ -7,6 +7,16 @@ in
 {
   imports = [ ../all.nix ];
 
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscodium;
+    extensions = with pkgs.vscode-extensions; [
+      github.copilot-chat
+      github.copilot
+      asvetliakov.vscode-neovim
+    ];
+  };
+
   home.packages = with pkgs; [
     # mull
     # kitty
