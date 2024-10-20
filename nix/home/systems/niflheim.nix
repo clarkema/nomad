@@ -42,6 +42,8 @@ in
   ]
   ++ myPkgs;
 
+  home.file.".local/share/applications/codium.desktop".source = "${pkgs.vscodium}/share/applications/codium.desktop";
+
   home.file.".local/share/applications/chromium.desktop".source = "${pkgs.ungoogled-chromium}/share/applications/chromium-browser.desktop";
 
   home.file.".local/share/applications/1password.desktop".source = "${pkgs._1password-gui}/share/applications/1password.desktop";
