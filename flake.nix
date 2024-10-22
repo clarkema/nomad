@@ -73,7 +73,11 @@
         };
         "clarkema@vidar" = home-manager.lib.homeManagerConfiguration {
           #inherit pkgs;
-          pkgs = import nixpkgs { system = "x86_64-linux"; };
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            config.allowUnfree = true;
+            overlays = [ nixgl.overlay ];
+          };
           modules = [
             ./nix/home/features/dev/python.nix
             ./nix/home/features/desktop/debian-bookworm-plus.nix

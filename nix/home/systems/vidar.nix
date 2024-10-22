@@ -4,6 +4,15 @@ let binDir = "/home/clarkema/.nix-profile/bin"; in
 {
   imports = [ ../all.nix ];
 
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscodium;
+    extensions = with pkgs.vscode-extensions; [
+      github.copilot-chat
+      github.copilot
+    ];
+  };
+
   home.packages =
   let
     rakudo_env = pkgs.buildEnv {
@@ -22,9 +31,30 @@ let binDir = "/home/clarkema/.nix-profile/bin"; in
     rakudo_env
     neovim
     emacsPackages.treesit-grammars.with-all-grammars
-    vscodium
     chirp
   ];
+
+  home.file.".local/share/applications/codium.desktop".text =
+    ''
+    [Desktop Entry]
+    Actions=new-empty-window
+    Categories=Utility;TextEditor;Development;IDE
+    Comment=Code Editing. Redefined.
+    Exec=${pkgs.vscodium}/bin/codium %F
+    GenericName=Text Editor
+    Icon=${pkgs.vscodium}/share/pixmaps/vscodium
+    Keywords=vscode
+    Name=VSCodium
+    StartupNotify=true
+    StartupWMClass=vscodium
+    Type=Application
+    Version=1.4
+
+    [Desktop Action new-empty-window]
+    Exec=${pkgs.vscodium}/bin/codium --new-window %F
+    Icon=${pkgs.vscodium}/share/pixmaps/vscodium
+    Name=New Empty Window
+    '';
 
   home.file.".local/share/applications/signal-desktop.desktop".source = "${pkgs.signal-desktop}/share/applications/signal-desktop.desktop";
 
