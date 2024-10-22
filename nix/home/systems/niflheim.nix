@@ -42,8 +42,27 @@ in
   ]
   ++ myPkgs;
 
-  home.file.".local/share/applications/codium.desktop".source = "${pkgs.vscodium}/share/applications/codium.desktop";
+  home.file.".local/share/applications/codium.desktop".text =
+    ''
+    [Desktop Entry]
+    Actions=new-empty-window
+    Categories=Utility;TextEditor;Development;IDE
+    Comment=Code Editing. Redefined.
+    Exec=${pkgs.vscodium}/bin/codium %F
+    GenericName=Text Editor
+    Icon=${pkgs.vscodium}/share/pixmaps/vscodium
+    Keywords=vscode
+    Name=VSCodium
+    StartupNotify=true
+    StartupWMClass=vscodium
+    Type=Application
+    Version=1.4
 
+    [Desktop Action new-empty-window]
+    Exec=${pkgs.vscodium}/bin/codium --new-window %F
+    Icon=${pkgs.vscodium}/share/pixmaps/vscodium
+    Name=New Empty Window
+    '';
   home.file.".local/share/applications/chromium.desktop".source = "${pkgs.ungoogled-chromium}/share/applications/chromium-browser.desktop";
 
   home.file.".local/share/applications/1password.desktop".source = "${pkgs._1password-gui}/share/applications/1password.desktop";
