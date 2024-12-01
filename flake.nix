@@ -93,7 +93,10 @@
         };
         "clarkema@skadi" = home-manager.lib.homeManagerConfiguration {
           #inherit pkgs;
-          pkgs = import nixpkgs { system = "aarch64-darwin"; };
+          pkgs = import nixpkgs {
+            system = "aarch64-darwin";
+            config.allowUnfree = true;
+          };
           modules = [
             ./nix/home/systems/skadi.nix
 
