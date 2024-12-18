@@ -18,12 +18,25 @@
 
 (define-key org-mode-map (kbd "C-c ]") 'org-ref-insert-link)
 
+;;; Force org-roam to use the slightly older default emacs-sqlite library.
+;;; When emacs 29 (with built-in sqlite support) is released this can be
+;;; revisited
+;;; See discussion at https://github.com/org-roam/org-roam/issues/2485
+(if (version< emacs-version "29")
+    (progn
+      (use-package sqlite3)
+      (setq org-roam-database-connector 'sqlite-module))
+  (setq org-roam-database-connector 'sqlite-builtin))
 
 (use-package org-roam
   :init
   (setq org-roam-v2-ack t)
   :custom
   (org-roam-directory "~/zk")
+  ;; This is the default db location, but expanded here to prevent
+  ;; sqlite choking on a ~.
+  ;; See https://github.com/org-roam/org-roam/issues/2488
+  (org-roam-db-location (expand-file-name (locate-user-emacs-file "org-roam.db")))
   (org-roam-completion-everywhere t)
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n f" . org-roam-node-find)
