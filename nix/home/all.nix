@@ -22,7 +22,6 @@
     pkgs.fd
     pkgs.fzf
     pkgs.scmpuff
-    pkgs.yt-dlp
     pkgs.neofetch
     pkgs.source-code-pro
 
