@@ -32,6 +32,7 @@ let binDir = "/home/clarkema/.nix-profile/bin"; in
     neovim
     emacsPackages.treesit-grammars.with-all-grammars
     chirp
+    ghostty
   ];
 
   home.file.".local/share/applications/codium.desktop".text =
@@ -54,6 +55,22 @@ let binDir = "/home/clarkema/.nix-profile/bin"; in
     Exec=${pkgs.vscodium}/bin/codium --new-window %F
     Icon=${pkgs.vscodium}/share/pixmaps/vscodium
     Name=New Empty Window
+    '';
+
+  home.file.".local/share/applications/ghostty.desktop".text =
+    ''
+    [Desktop Entry]
+    Name=Ghostty
+    Type=Application
+    Comment=A terminal emulator
+    Exec=${pkgs.nixgl.nixGLIntel}/bin/nixGLIntel ${pkgs.ghostty}/bin/ghostty
+    Icon=com.mitchellh.ghostty
+    Categories=System;TerminalEmulator;
+    Keywords=terminal;tty;pty;
+    StartupNotify=true
+    Terminal=false
+    Actions=new-window;
+    X-GNOME-UsesNotifications=true
     '';
 
   home.file.".local/share/applications/signal-desktop.desktop".source = "${pkgs.signal-desktop}/share/applications/signal-desktop.desktop";

@@ -4,6 +4,7 @@ let binDir = "/home/clarkema/.nix-profile/bin"; in
 {
   home.packages = [
     pkgs.mullvad-browser
+    pkgs.nixgl.nixGLIntel
   ];
 
   home.file.".local/share/applications/mullvad-browser.desktop".text =
