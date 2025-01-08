@@ -35,6 +35,15 @@ let binDir = "/home/clarkema/.nix-profile/bin"; in
     ghostty
   ];
 
+  # Add the home-manager bin directory to KDE's PATH so things like .desktop
+  # files can find executables
+  home.file.".config/plasma-workspace/env/path.sh" = {
+    executable = true;
+    text = ''
+    export PATH=$HOME/.nix-profile/bin:$PATH
+    '';
+  };
+
   home.file.".local/share/applications/codium.desktop".text =
     ''
     [Desktop Entry]
