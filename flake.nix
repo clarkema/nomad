@@ -91,7 +91,7 @@
             }
           ];
         };
-        "clarkema@skadi" = home-manager.lib.homeManagerConfiguration {
+        "clarkema@skadi.local" = home-manager.lib.homeManagerConfiguration {
           #inherit pkgs;
           pkgs = import nixpkgs {
             system = "aarch64-darwin";
