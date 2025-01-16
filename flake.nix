@@ -17,6 +17,10 @@
 
     # Required for kitty in bullseye-plus
     nixgl.url = "github:guibou/nixGL";
+
+    # Old version of VSCodium for ESP-IDF
+    nixesp.url = "github:clarkema/nixpkgs/929116e316068c7318c54eb4d827f7d9756d5e9c";
+    mynixpkgs.url = "github:clarkema/nixpkgs";
   };
 
   outputs = { self, nixpkgs, home-manager, nixgl, nomad, ... }@inputs:
@@ -78,6 +82,7 @@
             config.allowUnfree = true;
             overlays = [ nixgl.overlay ];
           };
+          extraSpecialArgs = { inherit inputs; };
           modules = [
             ./nix/home/features/dev/python.nix
             ./nix/home/features/desktop/debian-bookworm-plus.nix

@@ -1,15 +1,27 @@
 { inputs, pkgs, ... }:
 
-let binDir = "/home/clarkema/.nix-profile/bin"; in
+let
+  binDir = "/home/clarkema/.nix-profile/bin";
+  oldpkgs = import inputs.nixesp {
+    system = "x86_64-linux";
+    config.allowUnfree = true;
+  };
+  mypkgs = import inputs.mynixpkgs {
+    system = "x86_64-linux";
+    config.allowUnfree = true;
+  };
+in
 {
   imports = [ ../all.nix ];
 
   programs.vscode = {
     enable = true;
-    package = pkgs.vscodium;
+    package = oldpkgs.vscodium;
     extensions = with pkgs.vscode-extensions; [
-      github.copilot-chat
-      github.copilot
+      oldpkgs.vscode-extensions.github.copilot-chat
+      oldpkgs.vscode-extensions.github.copilot
+      mypkgs.vscode-extensions.espressif.vscode-esp-idf-extension
+      ms-vscode.cpptools
     ];
   };
 

@@ -35,6 +35,37 @@
         "type": "github"
       }
     },
+    "mynixpkgs": {
+      "locked": {
+        "lastModified": 1736611678,
+        "narHash": "sha256-PORjv0JCLbVH5ZWJUbm7kRKBNBfY81wTy2fcG5Gc7r8=",
+        "owner": "clarkema",
+        "repo": "nixpkgs",
+        "rev": "d9dbc5685e77b72d4343f78d7d0c2095512fa96f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "clarkema",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixesp": {
+      "locked": {
+        "lastModified": 1733376361,
+        "narHash": "sha256-aLJxoTDDSqB+/3orsulE6/qdlX6MzDLIITLZqdgMpqo=",
+        "owner": "clarkema",
+        "repo": "nixpkgs",
+        "rev": "929116e316068c7318c54eb4d827f7d9756d5e9c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "clarkema",
+        "repo": "nixpkgs",
+        "rev": "929116e316068c7318c54eb4d827f7d9756d5e9c",
+        "type": "github"
+      }
+    },
     "nixgl": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -122,6 +153,8 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "mynixpkgs": "mynixpkgs",
+        "nixesp": "nixesp",
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs_2",
         "nomad": "nomad"
