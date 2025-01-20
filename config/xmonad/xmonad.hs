@@ -1,5 +1,6 @@
 import XMonad
 
+import XMonad.StackSet as W
 import XMonad.Util.EZConfig
 import XMonad.Util.Ungrab -- Not required for 0.18 and up
 
@@ -38,6 +39,7 @@ myConfig = def
     , layoutHook = myLayout -- Use custom layouts
     , logHook = masterHistoryHook
     , focusedBorderColor = "#00FF00"
+    , XMonad.workspaces = myWorkspaces
     }
     `additionalKeysP`
     [ ("M-S-l", spawn "xscreensaver-command -lock")
@@ -48,6 +50,9 @@ myConfig = def
     -- swapping of the current with the most recent master
     -- 'True' ignores non-focused floating windows
     , ("M-<Return>", whenX (swapHybrid True) dwmpromote)
+    -- Add missing keybindings for workspace 0
+    , ("M-0", (windows $ W.greedyView "0"))
+    , ("M-S-0", (windows $ W.shift "0"))
     ]
 
 
@@ -63,6 +68,8 @@ myLayout = tiled ||| Mirror tiled ||| noBorders Full ||| threeCol
     nmaster = 1
     ratio = 1/2
     delta = 3/100
+
+myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 
 myXmobarPP :: PP
 myXmobarPP = def
