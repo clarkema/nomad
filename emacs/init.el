@@ -306,7 +306,7 @@
 ;(add-hook 'window-configuration-change-hook 'fontify-frame)
 
 (load "nomad-lisp")
-                                        ;(load "nomad-clojure")
+(load "nomad-clojure")
 (load "nomad-elixir")
 (load "nomad-raku")
 
