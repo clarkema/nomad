@@ -21,6 +21,13 @@
     # Old version of VSCodium for ESP-IDF
     nixesp.url = "github:clarkema/nixpkgs/929116e316068c7318c54eb4d827f7d9756d5e9c";
     mynixpkgs.url = "github:clarkema/nixpkgs";
+
+    hyprland = {
+      #type = "git";
+      url = "git+https://github.com/hyprwm/hyprland?submodules=1";
+      #submodules = true;
+      inputs.nixpkgs.follows = "nixesp";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, nixgl, nomad, ... }@inputs:
