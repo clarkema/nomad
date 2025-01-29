@@ -8,13 +8,10 @@
 
   fonts.fontconfig.enable = true;
 
-  nix = {
-    package = pkgs.nixFlakes;
-    settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      warn-dirty = false;
-    };
-  };
+  home.file.".config/nix/nix.conf".text = ''
+    # Enable flakes and new command-line interface
+    experimental-features = nix-command flakes
+  '';
 
   home.packages = [
     pkgs.bat
