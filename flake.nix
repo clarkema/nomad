@@ -16,7 +16,7 @@
     nomad.url = "github:clarkema/nix-nomad";
 
     # Required for kitty in bullseye-plus
-    nixgl.url = "github:guibou/nixGL";
+    nixgl.url = "github:nix-community/nixGL";
 
     # Old version of VSCodium for ESP-IDF
     nixesp.url = "github:clarkema/nixpkgs/929116e316068c7318c54eb4d827f7d9756d5e9c";
