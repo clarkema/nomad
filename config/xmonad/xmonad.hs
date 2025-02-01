@@ -137,6 +137,7 @@ dbusHook dbus = def
     { ppOutput = D.send dbus
     , ppSep             = pbarColour colourBlue " • "
     , ppCurrent         = (pbarColour colourWhite) . wrap "%{o#44aacc}%{+o} " " %{-o}"
+    , ppVisible         = (pbarColour colourWhite) . wrap "%{o#bbbbbb}%{+o} " " %{-o}"
     , ppHidden          = (pbarColour colourWhite) . wrap " " " "
     , ppHiddenNoWindows = (pbarColour colourLowWhite) . wrap " " " "
     , ppOrder           = \[ws, l, _, wins] -> [ws, l, wins]
