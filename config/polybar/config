@@ -1,10 +1,19 @@
 ; https://gitlab.com/dwt1/dotfiles/blob/master/.config/polybar/config
 ; https://github.com/polybar/polybar/issues/763 
+[bar/xmonad]
+height = 40
+background = ${colors.background}
+foreground = ${colors.foreground}
+modules-left = xmonad
+modules-right = mpd pulseaudio battery date
+line-size = 3 
+tray-position = right
+
 [bar/bspwm]
 height = 40
 background = ${colors.background}
 foreground = ${colors.foreground}
-modules-right = networkspeeddown networkspeedup cpu1 date
+modules-right = networkspeeddown networkspeedup cpu1 battery date
 modules-left = bspwm
 ;modules-left = workspaces-xmonad layout-xmonad title-xmonad
 tray-position = right
@@ -48,6 +57,8 @@ kindared   = #ff0000
 type = internal/date
 date = " %a %d/%m %H:%M "
 
+[module/tray]
+type = internal/tray
 
 [module/cpu1]
 ;https://github.com/jaagr/polybar/wiki/Module:-cpu
@@ -132,6 +143,12 @@ format = <label>
 label = Cpu %percentage-cores:3%
 
 
+[module/pulseaudio]
+type = internal/pulseaudio
+label-muted = muted
+label-muted-foreground = #666
+click-right = pavucontrol
+
 [module/mpd]
 ;https://github.com/jaagr/polybar/wiki/Module:-mpd
 type = internal/mpd
@@ -159,7 +176,7 @@ format-online-background = ${colors.background}
 [module/networkspeeddown]
 ;https://github.com/jaagr/polybar/wiki/Module:-network
 type = internal/network
-interface = eno1
+interface = wlp166s0
 label-connected = "%downspeed%"
 format-connected = <label-connected>
 format-connected-prefix = "  "
@@ -181,7 +198,7 @@ type = internal/network
 ;interface = wlp3s0
 ;interface = enp14s0
 ;interface = enp0s31f6
-interface = eno1
+interface = wlp166s0
 label-connected = "%upspeed:7%"
 format-connected = <label-connected>
 format-connected-prefix = "  "
@@ -189,26 +206,18 @@ format-connected-prefix = "  "
 ;format-connected-foreground = #fefefe
 ;format-connected-background = #A77AC4
 
-[module/workspaces-xmonad]
+[module/xmonad]
 type = custom/script
-exec = tail -F /tmp/.xmonad-workspace-log
-exec-if = [ -p /tmp/.xmonad-workspace-log ]
+exec = ~/.cabal/bin/xmonad-dbus
 tail = true
-
-[module/title-xmonad]
-type = custom/script
-exec = tail -F /tmp/.xmonad-title-log
-exec-if = [ -p /tmp/.xmonad-title-log ]
-tail = true
-format-padding = 1
-
-[module/layout-xmonad]
-type = custom/script
-exec = tail -F /tmp/.xmonad-layout-log
-exec-if = [ -p /tmp/.xmonad-layout-log ]
-tail = true
-format-padding = 1
+interval= 0 
 
 [module/bspwm]
 type = internal/bspwm
 label-focused-underline = #0892d0
+label-occupied-underline = #eeeeee
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = ACAD
