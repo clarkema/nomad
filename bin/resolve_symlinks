@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# Check if argument is provided
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <file_path>"
+    exit 1
+fi
+
+file="$1"
+visited=()
+
+# Follow symlinks until we find a non-symlink or detect a loop
+while [ -L "$file" ]; do
+    # Get the target of the symlink
+    link=$(readlink "$file")
+
+    # If link is relative, make it absolute based on the directory of the current symlink
+    if [[ ! "$link" = /* ]]; then
+        link="$(dirname "$file")/$link"
+    fi
+
+    # Normalize the path
+    link=$(realpath -s "$link")
+
+    # Print the current link
+    echo "$file -> $link"
+
+    # Check for loops
+    for visited_file in "${visited[@]}"; do
+        if [ "$visited_file" = "$link" ]; then
+            echo "Error: Symlink loop detected"
+            exit 1
+        fi
+    done
+
+    # Add current file to visited array
+    visited+=("$file")
+
+    # Move to next file
+    file="$link"
+done
+
+# Print final destination if it exists
+if [ -e "$file" ]; then
+    echo "Final destination: $file"
+else
+    echo "Error: Final path does not exist: $file"
+fi
+
