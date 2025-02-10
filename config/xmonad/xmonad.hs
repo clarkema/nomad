@@ -94,6 +94,8 @@ myConfig dbus = def
     , ("<XF86AudioPlay>", spawn "playerctl --player=mpd play-pause")
     , ("<XF86AudioPrev>", spawn "playerctl previous")
     , ("<XF86AudioNext>", spawn "playerctl next")
+    , ("<XF86MonBrightnessUp>", spawn "brightnessctl s '+10%'")
+    , ("<XF86MonBrightnessDown>", spawn "brightnessctl s '10%-'")
     ]
 
 
