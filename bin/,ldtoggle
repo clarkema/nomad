@@ -54,13 +54,19 @@ sub set_nvim_theme {
     }
     
     my $current_user = $ENV{USER};
+    my $uid = $<;
     
-    while (my $server = glob "/tmp/nvim*") {
+    while (my $server = glob "/run/user/$uid/nvim*") {
         my $user = getpwuid((lstat($server))[4]);
         next unless $user eq $current_user;
 
-        system("nvim --server $server/0 --remote-send '<C-\\><C-n>:se bg=$target<CR>'");
+        system("nvim --server $server --remote-send '<C-\\><C-n>:se bg=$target<CR>'");
     };
+}
+
+sub set_emacs_theme {
+    my $target = shift;
+    system(qq{emacsclient -e "(theme '$target)" 2> /dev/null});
 }
 
 sub set_bat_theme {
@@ -108,6 +114,7 @@ sub set_theme {
     my $target = shift;
     set_kitty_theme($target);
     set_nvim_theme($target);
+    set_emacs_theme($target);
     set_bat_theme($target);
     set_zathura_theme($target);
 }
