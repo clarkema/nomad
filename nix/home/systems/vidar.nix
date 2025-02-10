@@ -45,6 +45,8 @@ in
     emacsPackages.treesit-grammars.with-all-grammars
     chirp
     ghostty
+    clojure
+    clj-kondo
   ];
 
   # Add the home-manager bin directory to KDE's PATH so things like .desktop
