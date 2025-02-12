@@ -104,6 +104,7 @@ myLayout = centerTiled ||| Mirror tiled ||| noBorders Full ||| threeMax ||| grid
   where
     threeMax = renamed [Replace "ThreeMax"]
              $ centeredIfSingle 0.55 1.0
+             $ minimize
              $ toggleLayouts Full threeCol
 
     threeCol = renamed [Replace "ThreeCol"]
