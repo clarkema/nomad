@@ -118,11 +118,11 @@ myLayout = centerTiled ||| Mirror tiled ||| noBorders Full ||| threeMax ||| grid
           $ smartBorders -- Don't show borders on fullscreen floating windows
                          -- such as vlc / mpv
           $ spacing 3
-          $ mouseResizableTile { draggerType = BordersDragger } -- Tall nmaster delta ratio
+          $ toggleLayouts (noBorders Full) (mouseResizableTile { draggerType = BordersDragger }) -- Tall nmaster delta ratio
 
     centerTiled = renamed [Replace "Center Tiled"]
                 $ centeredIfSingle 0.55 1.0
-                $ toggleLayouts (noBorders Full) tiled
+                $ tiled
 
     grid = maximize Grid
 
