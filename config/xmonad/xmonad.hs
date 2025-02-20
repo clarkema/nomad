@@ -134,6 +134,7 @@ myStartupHook = do
   -- e.g., virt-manager.
   spawnOnce "systemctl start --user plasma-polkit-agent"
   spawnOnce "picom --backend glx --vsync --config /dev/null"
+  spawnOnce "nm-applet"
   spawnOnce "gammastep -P -O 3500"
 
 myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
