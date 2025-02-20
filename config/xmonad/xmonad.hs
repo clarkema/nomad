@@ -81,9 +81,10 @@ myConfig dbus = def
     , ("M-m", withFocused minimizeWindow)
     , ("M-S-m", withLastMinimized maximizeWindowAndFocus)
 
-    -- Add missing keybindings for workspace 0
+    -- Add missing keybindings for additional workspaces
     , ("M-0", (windows $ W.greedyView "0"))
     , ("M-S-0", (windows $ W.shift "0"))
+    , ("M-<Underscore>", (windows $ W.shift "scratch"))
     -- Toggles
     , ("M-z", sendMessage ToggleLayout)
     , ("M-n", withFocused $ sendMessage . maximizeRestore)
@@ -137,7 +138,7 @@ myStartupHook = do
   spawnOnce "nm-applet"
   spawnOnce "gammastep -P -O 3500"
 
-myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "scratch"]
 
 --dbusHook :: DC.Client -> PP
 dbusHook dbus = def
