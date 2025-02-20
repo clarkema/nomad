@@ -106,7 +106,7 @@ myLayout = centerTiled ||| Mirror tiled ||| noBorders Full ||| threeMax ||| grid
     threeMax = renamed [Replace "ThreeMax"]
              $ centeredIfSingle 0.55 1.0
              $ minimize
-             $ toggleLayouts Full threeCol
+             $ toggleLayouts (noBorders Full) threeCol
 
     threeCol = renamed [Replace "ThreeCol"]
              $ smartBorders
