@@ -130,6 +130,9 @@ myLayout = centerTiled ||| Mirror tiled ||| noBorders Full ||| threeMax ||| grid
     delta = 3/100
 
 myStartupHook = do
+  -- Start a polkit agent to handle authentication requests. Required by, for
+  -- e.g., virt-manager.
+  spawnOnce "systemctl start --user plasma-polkit-agent"
   spawnOnce "picom --backend glx --vsync --config /dev/null"
   spawnOnce "gammastep -P -O 3500"
 
