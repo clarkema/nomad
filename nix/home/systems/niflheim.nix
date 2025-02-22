@@ -5,7 +5,10 @@ let
   myPkgs = [ nomad.tm ];
 in
 {
-  imports = [ ../all.nix ];
+  imports = [
+    ../all.nix
+    ../features/dev/elixir.nix
+  ];
 
   programs.vscode = {
     enable = true;
