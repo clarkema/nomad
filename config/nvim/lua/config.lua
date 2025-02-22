@@ -27,6 +27,10 @@ require('lspconfig').pyright.setup {
   }
 }
 
+require('lspconfig').elixirls.setup {
+  cmd = { "/home/clarkema/.nix-profile/bin/elixir-ls" }
+}
+
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
@@ -39,7 +43,7 @@ telescope.setup({
 })
 
 require('nvim-treesitter.configs').setup {
-    ensure_installed = { "lua", "vim", "vimdoc", "python", "query", "rust", "haskell" },
+    ensure_installed = { "lua", "vim", "vimdoc", "python", "query", "rust", "haskell", "elixir", "eex", "heex" },
 
     auto_install = false,
 
