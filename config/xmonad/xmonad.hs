@@ -81,9 +81,10 @@ myConfig dbus = def
     , ("M-m", withFocused minimizeWindow)
     , ("M-S-m", withLastMinimized maximizeWindowAndFocus)
 
-    -- Add missing keybindings for workspace 0
+    -- Add missing keybindings for additional workspaces
     , ("M-0", (windows $ W.greedyView "0"))
     , ("M-S-0", (windows $ W.shift "0"))
+    , ("M-<Underscore>", (windows $ W.shift "scratch"))
     -- Toggles
     , ("M-z", sendMessage ToggleLayout)
     , ("M-n", withFocused $ sendMessage . maximizeRestore)
@@ -94,6 +95,8 @@ myConfig dbus = def
     , ("<XF86AudioPlay>", spawn "playerctl --player=mpd play-pause")
     , ("<XF86AudioPrev>", spawn "playerctl previous")
     , ("<XF86AudioNext>", spawn "playerctl next")
+    , ("<XF86MonBrightnessUp>", spawn "brightnessctl s '+10%'")
+    , ("<XF86MonBrightnessDown>", spawn "brightnessctl s '10%-'")
     ]
 
 
@@ -102,7 +105,8 @@ myLayout = centerTiled ||| Mirror tiled ||| noBorders Full ||| threeMax ||| grid
   where
     threeMax = renamed [Replace "ThreeMax"]
              $ centeredIfSingle 0.55 1.0
-             $ toggleLayouts Full threeCol
+             $ minimize
+             $ toggleLayouts (noBorders Full) threeCol
 
     threeCol = renamed [Replace "ThreeCol"]
              $ smartBorders
@@ -114,11 +118,11 @@ myLayout = centerTiled ||| Mirror tiled ||| noBorders Full ||| threeMax ||| grid
           $ smartBorders -- Don't show borders on fullscreen floating windows
                          -- such as vlc / mpv
           $ spacing 3
-          $ mouseResizableTile { draggerType = BordersDragger } -- Tall nmaster delta ratio
+          $ toggleLayouts (noBorders Full) (mouseResizableTile { draggerType = BordersDragger }) -- Tall nmaster delta ratio
 
     centerTiled = renamed [Replace "Center Tiled"]
                 $ centeredIfSingle 0.55 1.0
-                $ toggleLayouts (noBorders Full) tiled
+                $ tiled
 
     grid = maximize Grid
 
@@ -127,10 +131,14 @@ myLayout = centerTiled ||| Mirror tiled ||| noBorders Full ||| threeMax ||| grid
     delta = 3/100
 
 myStartupHook = do
+  -- Start a polkit agent to handle authentication requests. Required by, for
+  -- e.g., virt-manager.
+  spawnOnce "systemctl start --user plasma-polkit-agent"
   spawnOnce "picom --backend glx --vsync --config /dev/null"
+  spawnOnce "nm-applet"
   spawnOnce "gammastep -P -O 3500"
 
-myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "scratch"]
 
 --dbusHook :: DC.Client -> PP
 dbusHook dbus = def
