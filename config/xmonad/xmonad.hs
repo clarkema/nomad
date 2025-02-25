@@ -68,6 +68,7 @@ myConfig dbus = def
     , ("M-S-b", spawn "kitty")
     , ("M-C-<Return>", spawn "kitty")
     , ("M-p", spawn "rofi -show combi -combi-modi 'drun,run'")
+    , ("M-S-p", spawn "miractl refresh")
     , ("M-<Return>", toggleFocus)
     -- See https://xmonad.github.io/xmonad-docs/xmonad-contrib/XMonad-Actions-SwapPromote.html
     -- 'DWIM' promotion of the current window into the master position, or
