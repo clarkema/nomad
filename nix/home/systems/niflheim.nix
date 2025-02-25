@@ -8,6 +8,7 @@ in
   imports = [
     ../all.nix
     ../features/dev/elixir.nix
+    ../features/desktop/chromium.nix
   ];
 
   programs.vscode = {
@@ -35,7 +36,6 @@ in
     elixir_1_14
     emacsPackages.treesit-grammars.with-all-grammars
     mullvad-browser
-    ungoogled-chromium
     _1password-gui
     signal-desktop
     welle-io
@@ -65,37 +65,6 @@ in
     Exec=${pkgs.vscodium}/bin/codium --new-window %F
     Icon=${pkgs.vscodium}/share/pixmaps/vscodium
     Name=New Empty Window
-    '';
-
-  home.file.".local/share/applications/chromium.desktop".text =
-    ''
-    [Desktop Entry]
-    StartupWMClass=chromium-browser
-    Version=1.0
-    Name=Chromium
-    # Only KDE 4 seems to use GenericName, so we reuse the KDE strings.
-    # From Ubuntu's language-pack-kde-XX-base packages, version 9.04-20090413.
-    GenericName=Web Browser
-    GenericName[en_GB]=Web Browser
-    Comment=Access the Internet
-    Exec=${pkgs.nixgl.nixGLIntel}/bin/nixGLIntel chromium %U
-    StartupNotify=true
-    Terminal=false
-    Icon=chromium
-    Type=Application
-    Categories=Network;WebBrowser;
-    MimeType=application/pdf;application/rdf+xml;application/rss+xml;application/xhtml+xml;application/xhtml_xml;application/xml;image/gif;image/jpeg;image/png;image/webp;text/html;text/xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/webcal;x-scheme-handler/mailto;x-scheme-handler/about;x-scheme-handler/unknown
-    Actions=new-window;new-private-window;
-
-    [Desktop Action new-window]
-    Name=New Window
-    Name[en_GB]=New Window
-    Exec=${pkgs.nixgl.nixGLIntel}/bin/nixGLIntel chromium
-
-    [Desktop Action new-private-window]
-    Name=New Incognito Window
-    Name[en_GB]=New Incognito window
-    Exec=${pkgs.nixgl.nixGLIntel}/bin/nixGLIntel chromium --incognito
     '';
 
   home.file.".local/share/applications/1password.desktop".source = "${pkgs._1password-gui}/share/applications/1password.desktop";
