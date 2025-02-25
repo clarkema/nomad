@@ -102,10 +102,10 @@ myConfig dbus = def
 
 
 
-myLayout = centerTiled ||| Mirror tiled ||| noBorders Full ||| threeMax ||| grid
+myLayout = threeMax ||| centerTiled ||| Mirror tiled ||| noBorders Full ||| grid
   where
     threeMax = renamed [Replace "ThreeMax"]
-             $ centeredIfSingle 0.55 1.0
+             -- $ centeredIfSingle 0.55 1.0
              $ minimize
              $ toggleLayouts (noBorders Full) threeCol
 
