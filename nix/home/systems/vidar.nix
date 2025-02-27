@@ -20,7 +20,7 @@ in
   programs.vscode = {
     enable = true;
     package = oldpkgs.vscodium;
-    extensions = with pkgs.vscode-extensions; [
+    profiles.default.extensions = with pkgs.vscode-extensions; [
       oldpkgs.vscode-extensions.github.copilot-chat
       oldpkgs.vscode-extensions.github.copilot
       mypkgs.vscode-extensions.espressif.vscode-esp-idf-extension
