@@ -11,5 +11,5 @@ keybind = ctrl+shift+f10=toggle_window_decorations
 keybind = ctrl+shift+f11=toggle_fullscreen
 window-height = 50
 window-width = 150
-gtk-titlebar = false
-gtk-adwaita = false
+# Give me KDE decorations
+window-decoration = server
