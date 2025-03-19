@@ -6,4 +6,9 @@ let binDir = "/Users/clarkema/.nix-profile/bin"; in
     tmux
     neovim
   ];
+
+  programs.emacs = {
+    enable = true;
+    package = pkgs.emacs30-pgtk;
+  };
 }
