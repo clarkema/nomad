@@ -42,8 +42,14 @@ path=($^path(N-/))
 
 source $NOMAD/sh/env
 
-if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
-    source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+# Generally /etc/profile.d/nix.sh should exist and source in turn either
+# /nix.../nix-daemon.sh or /nix.../nix.sh depending on how it was installed.
+# The fallback case of sourcing nix-daemon.sh directly is mostly useful on
+# macOS
+if [ -e "/etc/profile.d/nix.sh" ]; then
+    source "/etc/profile.d/nix.sh" ];
+elif [ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]; then
+    source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
 fi
 
 # .zshenv-nix is created by my home-manager configuration on systems where that
