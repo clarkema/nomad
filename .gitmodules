@@ -34,9 +34,6 @@
 [submodule "vim/bundle/vim-lusty"]
 	path = vim/bundle/vim-lusty
 	url = https://github.com/sjbach/lusty.git
-[submodule "vim/bundle/command-t"]
-	path = vim/bundle/command-t
-	url = https://git.wincent.com/command-t.git
 [submodule "vim/bundle/vim-pathogen"]
 	path = vim/bundle/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen.git
