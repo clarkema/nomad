@@ -57,6 +57,10 @@
       ];
     };
     extraConfig = ''
+      # Power off connected displays after 10 minutes or on Mod4+F7
+      exec ${pkgs.swayidle}/bin/swayidle timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+      bindsym Mod4+F7 exec "bash -c 'sleep 1; ${pkgs.killall}/bin/killall -USR1 swayidle'"
+
       bindsym Mod4+Shift+p exec "miractl refresh"
       bindsym Mod4+Shift+b exec "firefox"
     '';
