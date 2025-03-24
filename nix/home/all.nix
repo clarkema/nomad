@@ -18,6 +18,7 @@
     pkgs.btop
     pkgs.fd
     pkgs.fzf
+    pkgs.htop
     pkgs.scmpuff
     pkgs.neofetch
     pkgs.source-code-pro
