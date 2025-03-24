@@ -33,6 +33,7 @@ return {
                 "python",
                 "query",
                 "rust",
+                "scss",
                 "vim",
                 "vimdoc",
                 "yaml",

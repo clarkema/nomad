@@ -25,7 +25,24 @@ return {
 
                 opts.desc = "Go to declaration"
                 keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+
+                opts.desc = "Go to declaration"
+                keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
             end
         })
+
+        local capabilities = cmp_nvim_lsp.default_capabilities()
+
+        lspconfig["elixirls"].setup {
+            capabilities = capabilities,
+            cmd = { "elixir-ls" }
+        }
+
+        lspconfig["emmet_ls"].setup {
+            capabilities = capabilities,
+            filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" }
+        }
+
+        lspconfig["perlnavigator"].setup { }
     end
 }
