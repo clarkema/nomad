@@ -23,3 +23,7 @@ fi
 if command -v fzf >/dev/null 2>&1; then
     eval "$(fzf --bash)"
 fi
+
+if [ -s $NOMAD/breeze/scm_breeze.sh ]; then
+    source "$NOMAD/breeze/scm_breeze.sh"
+fi
