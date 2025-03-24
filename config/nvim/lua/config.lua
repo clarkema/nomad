@@ -65,3 +65,12 @@ vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 -- }
 
 -- require('my-luasnip')
+
+-- Treat '-' as a word character in CSS and friends, to ensure '*',
+-- '<leader>fc' etc. all work as expected
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "css", "scss", "sass" },
+  callback = function()
+    vim.opt_local.iskeyword:append("-")
+  end
+})
