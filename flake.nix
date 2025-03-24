@@ -126,12 +126,14 @@
           modules = [
             ./nix/home/all.nix
             ./nix/home/features/desktop/wsl.nix
+            ./nix/home/features/desktop/elc.nix
             {
               home = rec {
                 username = "clarkema";
                 homeDirectory = "/home/${username}";
                 stateVersion = "22.11";
               };
+              _module.args = { nomad = nomad.packages.x86_64-linux; };
             }
           ];
         };
