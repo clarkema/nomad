@@ -10,6 +10,7 @@
     gh
     unzip
     yarn
+    ijq
     perlnavigator # language server for Perl
     emmet-ls # language server for HTML etc
   ];
