@@ -30,4 +30,14 @@
     window-height = 50
     window-width = 150
     '';
+
+
+  home.file.".nomad/bin/chrome" = {
+    text = ''
+    #! /usr/bin/env bash
+
+    exec '/mnt/c/Program Files/Google/Chrome/Application/chrome.exe' "$@"
+    '';
+    executable = true;
+  };
 }
