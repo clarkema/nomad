@@ -6,6 +6,7 @@
   };
 
   home.packages = with pkgs; [
+    jq
     tmux
     skim
     neovim
