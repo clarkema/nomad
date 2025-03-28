@@ -74,8 +74,10 @@ let g:UltiSnipsNoPythonWarning = 1
 let g:UltiSnipsJumpBackwardTrigger = "<c-s-j>"
 
 " GUI options {{{1
-set guioptions=aciegr " Text-only GUI with scrollbars and icons
-set guicursor=a:block-blinkwait0-Cursor/lCursor " Xterm-style block cursor
+if !has('nvim')
+    set guioptions=aciegr " Text-only GUI with scrollbars and icons
+    set guicursor=a:block-blinkwait0-Cursor/lCursor " Xterm-style block cursor
+end
 
 let g:tex_fold_enabled              = 1 " Syntax folding
 
