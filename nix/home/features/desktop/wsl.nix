@@ -37,7 +37,18 @@
     text = ''
     #! /usr/bin/env bash
 
-    exec '/mnt/c/Program Files/Google/Chrome/Application/chrome.exe' "$@"
+    for arg in "$@"; do
+        # Check if the argument is a URL (starts with http:// or https://)
+        if [[ "$arg" =~ ^https?:// ]]; then
+            # It's a URL, pass it directly
+            windows_args+=("$arg")
+        else
+            # It's a file path, convert it to a Windows path using wslpath
+            windows_args+=("$(wslpath -w "$arg")")
+        fi
+    done
+
+    exec '/mnt/c/Program Files/Google/Chrome/Application/chrome.exe' "''${windows_args[@]}"
     '';
     executable = true;
   };
