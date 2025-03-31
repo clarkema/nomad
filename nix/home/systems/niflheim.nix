@@ -30,7 +30,6 @@ in
     # aspellDicts.en-computers
 
     #    ripgrep 
-    nodejs_21 # for nvim coc
 
     emacs-gtk
     elixir_1_14
