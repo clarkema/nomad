@@ -14,7 +14,7 @@ in
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
-    extensions = with pkgs.vscode-extensions; [
+    profiles.default.extensions = with pkgs.vscode-extensions; [
       github.copilot-chat
       github.copilot
       asvetliakov.vscode-neovim
