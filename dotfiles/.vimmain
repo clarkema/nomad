@@ -57,7 +57,9 @@ filetype plugin indent on
 "set statusline=%\n\ %f\ %m%r\ \ %y%=\ L%-5.5l\ C%-3.3v\ %3.3p%%\ \ 
 set laststatus=2      " Always show the status line defined below
 set statusline=%n\ %f\ %m%r\ \ 
-set statusline+=%{tagbar#currenttag('[%s]\ ','','s')}
+if !has( "nvim" )
+    set statusline+=%{tagbar#currenttag('[%s]\ ','','s')}
+end
 
 " Completion {{{1
 set wildmenu

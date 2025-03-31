@@ -43,6 +43,7 @@ in
     nixgl.nixGLIntel
     python312
     distrobox
+    universal-ctags
   ]
   ++ myPkgs;
 
