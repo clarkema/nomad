@@ -42,14 +42,19 @@ path=($^path(N-/))
 
 source $NOMAD/sh/env
 
-# Generally /etc/profile.d/nix.sh should exist and source in turn either
-# /nix.../nix-daemon.sh or /nix.../nix.sh depending on how it was installed.
-# The fallback case of sourcing nix-daemon.sh directly is mostly useful on
-# macOS
-if [ -e "/etc/profile.d/nix.sh" ]; then
-    source "/etc/profile.d/nix.sh" ];
-elif [ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]; then
-    source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+# Set up nix if it's installed.  We have to deal with three cases.
+if [ -s "/etc/profile.d/nix.sh" ]; then
+    # Multi-user Linux.  In this case the profile should already have been
+    # sourced, so we don't need to do anything.
+    :
+elif [ -s "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+    # Single-user Linux.  Our system-level profile doen't know anything about
+    # this so we need to source it.
+    source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+elif [ -s "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]; then
+    # Multi-user macOS.  Again, the nix installer should have added this to
+    # /etc/zshrc, so manual sourcing should be required.
+    :
 fi
 
 # .zshenv-nix is created by my home-manager configuration on systems where that
