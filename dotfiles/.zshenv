@@ -14,6 +14,7 @@ path=(
     $HOME/.nomad/bin
     $HOME/.nomad/local/bin
     $HOME/.local/bin
+    $HOME/.asdf/shims
     $HOME/.cabal/bin
     $HOME/.cargo/bin
     $HOME/.raku/bin
