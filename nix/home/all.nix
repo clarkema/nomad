@@ -23,6 +23,9 @@
     pkgs.neofetch
     pkgs.source-code-pro
 
+    # Used by nvim config
+    pkgs.nerd-fonts.sauce-code-pro
+
     # Used by org-present in my Emacs config
     (pkgs.iosevka-bin.override { variant = "Aile"; })
     (pkgs.iosevka-bin.override { variant = "Etoile"; })

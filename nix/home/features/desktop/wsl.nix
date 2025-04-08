@@ -1,19 +1,8 @@
 { pkgs, nomad, ... }:
 
 {
-  programs = {
-    ripgrep.enable = true;
-  };
-
   home.packages = with pkgs; [
-    jq
     tmux
-    skim
-    neovim
-    emacs
-    tree-sitter
-    nomad.tm
-    eza
   ];
 
   home.file.".config/ghostty/config".text =

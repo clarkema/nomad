@@ -137,6 +137,22 @@
             }
           ];
         };
+        "clarkema@elcdev" = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs { system = "x86_64-linux"; };
+          modules = [
+            ./nix/home/all.nix
+#            ./nix/home/features/desktop/ubuntu-24_04-plus.nix
+            ./nix/home/features/desktop/elc.nix
+            {
+              home = rec {
+                username = "clarkema";
+                homeDirectory = "/home/${username}";
+                stateVersion = "22.11";
+              };
+              _module.args = { nomad = nomad.packages.x86_64-linux; };
+            }
+          ];
+        };
         "clarkema" = home-manager.lib.homeManagerConfiguration {
           #inherit pkgs;
           pkgs = import nixpkgs { system = "x86_64-linux"; };
