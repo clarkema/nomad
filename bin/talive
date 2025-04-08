@@ -1,0 +1,58 @@
+#! /usr/bin/env bash
+
+#
+# Moderately evil SSH keep-alive via tmux
+#
+# Some servers are configured to close shells after a period of no commands
+# being run.  They want input?  They can have input!
+#
+# This script is intended to be run within a tmux pane.  It assumes all other
+# panes in the same window are ssh connections to various servers, and will
+# send a string to each of them every 60 seconds.  Use in conjunction with
+# ControlMaster; make an initial connection to each server in a window shared
+# with this script, and do your real work via second connection elsewhere
+# sharing the same ControlPath.
+#
+
+DELAY_SECONDS=60
+
+if [ -z "$TMUX" ]; then
+    echo "Error: This script must be run within a tmux session."
+    echo "Please start or attach to a tmux session first."
+    exit 1
+fi
+
+get_current_pane() {
+    tmux display-message -p "#{pane_id}"
+}
+
+get_current_window() {
+    tmux display-message -p "#{window_id}"
+}
+
+get_panes_in_window() {
+    local window_id=$1
+    tmux list-panes -t "$window_id" -F "#{pane_id}"
+}
+
+send_input() {
+    tmux send-keys -t "$1" "date" Enter
+}
+
+echo "Sending 'date' to other panes every $DELAY_SECONDS seconds..."
+echo "Press Ctrl+C to stop."
+
+current_pane=$(get_current_pane)
+current_window=$(get_current_window)
+
+while true; do
+    panes_in_window=$(get_panes_in_window "$current_window")
+
+    for pane in $panes_in_window; do
+        if [ "$pane" != "$current_pane" ]; then
+            send_input "$pane"
+        fi
+    done
+
+    sleep $DELAY_SECONDS
+done
