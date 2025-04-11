@@ -11,3 +11,53 @@ function git-peek
     cd "$newpath" || exit
     git submodule update
 }
+
+# A combination of cd / fd / fzf as a single function.  fd is used for its
+# ability to ignore files that are usually uninteresting in order to speed up
+# the scan.
+#
+# We can do without warnings about potentially unsafe `cd` commands here
+# shellcheck disable=SC2164
+td() {
+    local args="$*" # combine all args into a single query string
+    local selected
+
+    selected=$(fd | fzf -q "$args")
+
+    if [ -z "$selected" ]; then
+        # User cancelled the selection
+        return 1
+    elif [ -d "$selected" ]; then
+        # If selection is a directory, cd to it
+        cd "$selected"
+    else
+        # If selection is a file, cd to its parent directory
+        cd "$(dirname "$selected")"
+    fi
+}
+
+# Just like 'td' above, but always start the scan from $HOME
+#
+# shellcheck disable=SC2164
+tdh() {
+    local old_pwd="$PWD"
+    local args="$*" # combine all args into a single query string
+    local selected
+
+    # Change to home directory temporarily
+    cd "$HOME"
+
+    selected=$(fd | fzf -q "$args")
+
+    if [ -z "$selected" ]; then
+        # User cancelled the selection, go back to original directory
+        cd "$old_pwd"
+        return 1
+    elif [ -d "$selected" ]; then
+        # If selection is a directory, cd to it
+        cd "$selected"
+    else
+        # If selection is a file, cd to its parent directory
+        cd "$(dirname "$selected")"
+    fi
+}
