@@ -24,6 +24,12 @@ REPORTTIME=5
 
 export NOMAD_PICKER="sk"
 
+function source_if_exists {
+  if [[ -s "$1" ]]; then
+    source "$1"
+  fi
+}
+
 #=======================================================================
 # Keybindings                                                        {{{
 #=======================================================================
@@ -50,8 +56,7 @@ test -f "$NOMAD/zsh/git-widgets.zsh" && . "$NOMAD/zsh/git-widgets.zsh"
 bindkey '^x^g' fuzzy-git-branch
 
 for name in key-bindings.zsh completion.zsh; do
-    file="$HOME/.nix-profile/share/fzf/$name"
-    [ -s $file ] && source $file
+    source_if_exists "$HOME/.nix-profile/share/fzf/$name"
 done
 
 function zle-line-init zle-keymap-select {
@@ -160,7 +165,7 @@ if ! (is-at-least 4.3.9); then
     colors
 fi
 
-[[ -f $HOME/.nomad/sh/shared ]] && . $HOME/.nomad/sh/shared
+source_if_exists "$HOME/.nomad/sh/shared"
 
 #=======================================================================
 # Git-ified prompt                                                   {{{
@@ -231,7 +236,7 @@ function git_clean_p ()
 # Source shared aliases                                              {{{
 #=======================================================================
 
-[ -f $NOMAD/sh/aliases ] && . $NOMAD/sh/aliases
+source_if_exists "$NOMAD/sh/aliases"
 
 # }}} END source shared aliases
 
@@ -321,6 +326,8 @@ function source_environment_specific_files ()
 }
 source_environment_specific_files
 
+source_if_exists "$NOMAD/sh/funcs"
+
 function tmx ()
 {
    tmux resize-pane -x ${1-80}
@@ -357,13 +364,11 @@ alias enp='emacsclient -n "$pkd"'
 
 #=====================================================================
 # Pull in secret configuration settings from ~/.secrets
-if [[ -f ~/.secrets ]] then
-    source ~/.secrets
-fi
+source_if_exists ~/.secrets
 
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
 
-[ -s $NOMAD/breeze/scm_breeze.sh ] && source $NOMAD/breeze/scm_breeze.sh
+source_if_exists "$NOMAD/breeze/scm_breeze.sh"
 
 # OCaml package configuration
 [[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
