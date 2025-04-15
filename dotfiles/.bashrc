@@ -21,8 +21,7 @@ source_if_exists "$NOMAD/sh/funcs"
 # environment.
 source_if_exists "$HOME/.bashenv-nix"
 
-if [ -s "$NOMAD/bash/git-widgets.bash" ]; then
-    source "$NOMAD/bash/git-widgets.bash"
+if source_if_exists "$NOMAD/bash/git-widgets.bash"; then
     bind -x '"\C-x\C-g": fuzzy-git-branch'
 fi
 
@@ -31,3 +30,5 @@ if command -v fzf >/dev/null 2>&1; then
 fi
 
 source_if_exists "$NOMAD/breeze/scm_breeze.sh"
+
+unset -f source_if_exists

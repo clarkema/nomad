@@ -24,10 +24,8 @@ REPORTTIME=5
 
 export NOMAD_PICKER="sk"
 
-function source_if_exists {
-  if [[ -s "$1" ]]; then
-    source "$1"
-  fi
+source_if_exists() {
+  [[ -s "$1" ]] && source "$1"
 }
 
 #=======================================================================
@@ -354,3 +352,5 @@ source_if_exists "$NOMAD/breeze/scm_breeze.sh"
 if command -v zoxide > /dev/null; then
     eval "$(zoxide init zsh --cmd j)"
 fi
+
+unset -f source_if_exists
