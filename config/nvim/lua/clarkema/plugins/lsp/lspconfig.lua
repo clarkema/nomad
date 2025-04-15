@@ -43,6 +43,10 @@ return {
             filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" }
         }
 
+        lspconfig["bashls"].setup {
+            capabilities = capabilities
+        }
+
         lspconfig["perlnavigator"].setup { }
     end
 }

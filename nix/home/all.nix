@@ -23,6 +23,9 @@
     pkgs.neofetch
     pkgs.source-code-pro
 
+    pkgs.shellcheck
+    pkgs.bash-language-server
+
     # Used by nvim config
     pkgs.nerd-fonts.sauce-code-pro
 
