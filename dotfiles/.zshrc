@@ -281,11 +281,6 @@ export OOO_FORCE_DESKTOP=gnome
 
 export START_PATH=$PATH
 
-function ncd ()
-{
-    mkdir -p "$1" && cd "$1"
-}
-
 function source_environment_specific_files ()
 {
     local fqdn components domainname hostname
@@ -354,3 +349,5 @@ if command -v zoxide > /dev/null; then
 fi
 
 unset -f source_if_exists
+
+# vim: foldmethod=marker

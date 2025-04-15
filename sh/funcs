@@ -12,6 +12,17 @@ function git-peek
     git submodule update
 }
 
+#=======================================================================
+# Utility functions                                                  {{{
+#=======================================================================
+
+# shellcheck disable=SC2164
+ncd() {
+    mkdir -p "$1" && cd "$1"
+}
+
+# }}} END utility functions
+
 # A combination of cd / fd / fzf as a single function.  fd is used for its
 # ability to ignore files that are usually uninteresting in order to speed up
 # the scan.
