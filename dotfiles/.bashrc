@@ -1,19 +1,25 @@
 # shellcheck shell=bash
 
-PS1="\u@\h \w> "
+# Bail out if we're not interactive
+[[ $- != *i* ]] && return
 
-source "$HOME/.nomad/sh/aliases"
+PS1="\u@\h:\w > "
 
 export EDITOR=vim
 export NOMAD="$HOME/.nomad"
 export NOMAD_PICKER=sk
 
+source_if_exists() {
+  [[ -s "$1" ]] && source "$1"
+}
+
+source_if_exists "$NOMAD/sh/aliases"
+source_if_exists "$NOMAD/sh/funcs"
+
 # .bashenv-nix is created by my home-manager configuration on systems where
 # that is in use; this allows us to make nix-specific adjustments to the
 # environment.
-if [ -s "$HOME/.bashenv-nix" ]; then
-    source "$HOME/.bashenv-nix"
-fi
+source_if_exists "$HOME/.bashenv-nix"
 
 if [ -s "$NOMAD/bash/git-widgets.bash" ]; then
     source "$NOMAD/bash/git-widgets.bash"
@@ -24,6 +30,4 @@ if command -v fzf >/dev/null 2>&1; then
     eval "$(fzf --bash)"
 fi
 
-if [ -s $NOMAD/breeze/scm_breeze.sh ]; then
-    source "$NOMAD/breeze/scm_breeze.sh"
-fi
+source_if_exists "$NOMAD/breeze/scm_breeze.sh"
