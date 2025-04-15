@@ -61,3 +61,33 @@ tdh() {
         cd "$(dirname "$selected")"
     fi
 }
+
+#=======================================================================
+# tmux functions                                                     {{{
+#=======================================================================
+
+tmx() {
+   tmux resize-pane -x "${1-80}"
+}
+
+tmxh() {
+    local cols
+    cols=$(tmux list-windows -F "#{window_width}" | head -n 1)
+
+    tmux resize-pane -x $(( cols / 2 ))
+}
+
+tmy() {
+    tmux resize-pane -y "${1-25}"
+}
+
+tmyh() {
+    local rows
+    rows=$(tmux list-windows -F "#{window_height}" | head -n 1)
+
+    tmux resize-pane -y $(( rows / 2 ))
+}
+
+# }}} END tmux functions
+
+# vim: foldmethod=marker
