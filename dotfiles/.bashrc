@@ -29,6 +29,10 @@ if command -v fzf >/dev/null 2>&1; then
     eval "$(fzf --bash)"
 fi
 
+if command -v zoxide > /dev/null; then
+    eval "$(zoxide init bash --cmd j)"
+fi
+
 source_if_exists "$NOMAD/breeze/scm_breeze.sh"
 
 unset -f source_if_exists
