@@ -27,6 +27,8 @@
   :init (setq lsp-keymap-prefix "C-c l")
   :config
   (lsp-enable-which-key-integration t)
+  :custom
+  (lsp-elixir-local-server-command (executable-find "elixir-ls"))
   )
 
 (use-package lsp-ui

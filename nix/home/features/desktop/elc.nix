@@ -21,6 +21,7 @@
     skim
     neovim
     emacs-gtk
+    emacsPackages.treesit-grammars.with-all-grammars
     tree-sitter
     nomad.tm
     eza
