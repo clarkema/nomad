@@ -12,7 +12,9 @@ return {
 
         telescope.setup({
             defaults = {
-                path_display = { "smart" },
+                path_display = { "filename_first" },
+                -- show full filename in preview title
+                dynamic_preview_title = true,
                 mappings = {
                     i = {
                         ["<C-k>"] = actions.move_selection_previous,
