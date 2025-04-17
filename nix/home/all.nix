@@ -13,14 +13,15 @@
     experimental-features = nix-command flakes
   '';
 
-  home.packages = [
+  home.packages = with pkgs; [
     pkgs.bat
     pkgs.btop
     pkgs.fd
     pkgs.fzf
     pkgs.htop
-    pkgs.scmpuff
     pkgs.neofetch
+    pkgs.scmpuff
+    skim
     pkgs.source-code-pro
 
     pkgs.shellcheck

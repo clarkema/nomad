@@ -18,7 +18,6 @@
     perlnavigator # language server for Perl
     emmet-ls # language server for HTML etc
     jq
-    skim
     neovim
     emacs-gtk
     emacsPackages.treesit-grammars.with-all-grammars
