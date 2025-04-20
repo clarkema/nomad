@@ -33,6 +33,10 @@ if command -v zoxide > /dev/null; then
     eval "$(zoxide init bash --cmd j)"
 fi
 
+if [ $(hostname) == "muninn" ]; then
+    alias nv='NVIM_APPNAME=nvim_eink nvim'
+fi
+
 source_if_exists "$NOMAD/breeze/scm_breeze.sh"
 
 unset -f source_if_exists

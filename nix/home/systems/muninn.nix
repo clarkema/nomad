@@ -10,6 +10,7 @@
     wdisplays # Wayland display manager
     ripgrep
     mpg123
+    neovim
   ];
 
   services.ssh-agent.enable = true;
