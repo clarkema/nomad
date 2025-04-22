@@ -1,0 +1,17 @@
+#! /usr/bin/env perl
+
+use Data::Dumper;
+
+# Configure Data::Dumper for pretty output
+$Data::Dumper::Indent = 1;
+$Data::Dumper::Sortkeys = 1;
+$Data::Dumper::Terse = 0;
+$Data::Dumper::Deepcopy = 1;
+$Data::Dumper::Purity = 1;
+
+# Read input from file or stdin
+my $input = do { local $/; <> };
+
+eval $input;  # This evaluates the Dumper output back into $VAR1
+
+print Dumper($VAR1);
