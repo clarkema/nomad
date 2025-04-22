@@ -253,6 +253,10 @@
 
 (setq-default indent-tabs-mode nil)
 
+;;; Ensure that tramp respects the SSH ControlMaster in ~/.ssh/config rather
+;;; than trying to configure its own
+(customize-set-variable 'tramp-use-ssh-controlmaster-options nil)
+
 ;;; Mira DPI: 206
 ;;; Mira portrait: 154?
 ;;; Framework laptop DPI: 201
