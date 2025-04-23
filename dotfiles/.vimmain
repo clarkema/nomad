@@ -212,6 +212,8 @@ au FileType html,xml map <F7> A<br>j
 
 " Perl {{{2
 au BufRead *.cgi set filetype=perl
+" ELC PG
+au BufRead *.logic,*.tmpl set filetype=perl
 
 au FileType perl let perl_extended_vars=1
 au FileType perl let perl_fold=1

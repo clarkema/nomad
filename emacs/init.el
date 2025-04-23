@@ -314,6 +314,10 @@
 (load "nomad-elixir")
 (load "nomad-raku")
 
+;; ELC PG
+(add-to-list 'auto-mode-alist '("\\.logic\\'" . perl-mode))
+(add-to-list 'auto-mode-alist '("\\.tmpl\\'" . perl-mode))
+
 (use-package notmuch
   :defer t
   :bind (:map notmuch-show-mode-map

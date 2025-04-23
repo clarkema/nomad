@@ -1,0 +1,3 @@
+# ELC PG special files
+--map-syntax '*.tmpl:Perl'
+--map-syntax '*.logic:Perl'
