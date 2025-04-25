@@ -10,6 +10,9 @@ export NOMAD="$HOME/.nomad"
 export NOMAD_PICKER=sk
 
 source_if_exists() {
+  # Stop shellcheck complaining about a non-constant source -- that's the whole
+  # point of this function
+  # shellcheck source=/dev/null
   [[ -s "$1" ]] && source "$1"
 }
 
@@ -33,7 +36,7 @@ if command -v zoxide > /dev/null; then
     eval "$(zoxide init bash --cmd j)"
 fi
 
-if [ $(hostname) == "muninn" ]; then
+if [ "$(hostname)" == "muninn" ]; then
     alias nv='NVIM_APPNAME=nvim_eink nvim'
 fi
 
