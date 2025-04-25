@@ -20,6 +20,7 @@
     pkgs.fzf
     pkgs.htop
     pkgs.neofetch
+    pkgs.fastfetch
     pkgs.scmpuff
     skim
     pkgs.source-code-pro
