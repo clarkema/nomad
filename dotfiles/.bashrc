@@ -28,6 +28,9 @@ if source_if_exists "$NOMAD/bash/git-widgets.bash"; then
     bind -x '"\C-x\C-g": fuzzy-git-branch'
 fi
 
+# For symmetry with my ZSH config
+bind '"\C-g": "exit\n"'
+
 if command -v fzf >/dev/null 2>&1; then
     eval "$(fzf --bash)"
 fi
