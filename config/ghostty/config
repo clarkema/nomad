@@ -7,9 +7,16 @@ theme = GruvboxDark
 font-family = Source Code Pro
 font-size = 10
 font-feature = -calt
+
+# Bind ctrl+backspace to send ctrl+w to work with my
+# keyboard layout
+keybind = ctrl+backspace=text:\x17
+
 keybind = ctrl+shift+f10=toggle_window_decorations
 keybind = ctrl+shift+f11=toggle_fullscreen
 window-height = 50
 window-width = 150
 # Give me KDE decorations
 window-decoration = server
+window-padding-x = 10
+window-padding-y = 10
