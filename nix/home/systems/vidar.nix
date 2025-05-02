@@ -101,6 +101,18 @@ in
 
   home.file.".local/share/applications/signal-desktop.desktop".source = "${pkgs.signal-desktop}/share/applications/signal-desktop.desktop";
 
+  home.file.".local/share/applications/kagi-asssitant.desktop".text =
+    ''
+    [Desktop Entry]
+    Name=Kagi Assistant
+    Comment=Open LibreWolf with Kagi Assistant
+    Exec=librewolf "https://kagi.com/assistant"
+    Icon=/home/clarkema/.local/share/icons/kagi/kagi.svg
+    Type=Application
+    Categories=Network;WebBrowser;
+    X-KDE-Shortcuts=Ctrl+Meta+K
+    '';
+
   home.file.".local/share/applications/chirp.desktop".text =
     ''
     [Desktop Entry]
