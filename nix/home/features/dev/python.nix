@@ -1,6 +1,8 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+
+{
   home.packages = with pkgs; [
-    ruff-lsp
+    ruff
     pyright
   ];
 }
