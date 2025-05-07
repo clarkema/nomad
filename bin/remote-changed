@@ -1,0 +1,51 @@
+#!/usr/bin/env perl
+
+#
+# remote-changed - list changed files in a remote git repository
+# formatted as scp:// URLs
+#
+# This is useful when editing on remote servers via vim's netrw
+# support.  To resume an editing session, run something like
+#
+#  $ vim $(remote-changed foo:bar)
+#
+# where 'foo' is an SSH-able server name, and 'bar' a directory
+# on that server.
+#
+
+use strict;
+use warnings;
+
+use File::Basename;
+
+if (@ARGV != 1) {
+    die "Usage: @{[basename($0)]} SERVER:DIRECTORY\n";
+}
+
+# Parse target
+my ($server, $dir) = split /:/, $ARGV[0], 2;
+
+unless ($server && $dir) {
+    die "Error: Target must be in the form 'SERVER:DIRECTORY'\n";
+}
+
+# Run git status on server
+my @git_status = `ssh $server "cd '$dir' && git status --porcelain"`;
+if ($? != 0) {
+    die "Error: Failed to run git status on $server:$dir\n";
+}
+
+foreach my $line (@git_status) {
+    chomp $line;
+    next if $line eq '';
+
+    # Extract the file path (skip the first 3 characters which contain status)
+    my $file_path = substr($line, 3);
+
+    # Handle renamed files (format: "R  old-name -> new-name")
+    if ($line =~ /^R/) {
+        $file_path =~ s/^.* -> //;
+    }
+
+    print "scp://$server/$dir/$file_path\n";
+}
