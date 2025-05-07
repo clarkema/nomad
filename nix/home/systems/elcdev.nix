@@ -8,6 +8,8 @@
   home.packages = with pkgs; [
     signal-desktop
     ghostty
+    shellcheck
+    mitmproxy
   ];
 
   # Add the home-manager bin directory to KDE's PATH so things like .desktop
