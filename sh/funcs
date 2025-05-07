@@ -50,7 +50,7 @@ td() {
 # Just like 'td' above, but always start the scan from $HOME
 #
 # shellcheck disable=SC2164
-tdh() {
+ttd() {
     local old_pwd="$PWD"
     local args="$*" # combine all args into a single query string
     local selected
