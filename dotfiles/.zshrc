@@ -48,6 +48,9 @@ bindkey '^P'  up-line-or-history
 bindkey '^N'  down-line-or-history
 bindkey '^B'  backward-char
 bindkey '^F'  forward-char
+# backward-kill-word differs from vi-backward-kill-word (which we'd have by
+# default in vi mode) in that it respects $WORDCHARS
+bindkey '^W'  backward-kill-word
 bindkey -M vicmd "ga" what-cursor-position
 
 test -f "$NOMAD/zsh/git-widgets.zsh" && . "$NOMAD/zsh/git-widgets.zsh"
