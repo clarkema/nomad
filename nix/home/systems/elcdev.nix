@@ -2,6 +2,7 @@
   imports = [
     ../all.nix
     ../features/dev/elixir.nix
+    ../features/desktop/common/kagi.nix
   ];
 
   home.packages = with pkgs; [
