@@ -101,4 +101,14 @@ tmyh() {
 
 # }}} END tmux functions
 
+#=======================================================================
+# Editor functions                                                   {{{
+#=======================================================================
+
+nvc() {
+    nvim --server ~/.cache/nvim/server.pipe --remote "$(realpath "$1")"
+}
+
+# }}} END Editor functions
+
 # vim: foldmethod=marker
