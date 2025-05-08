@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    ./librewolf.nix
+  ];
+
   home.file.".local/share/applications/kagi-asssitant.desktop".text =
     ''
     [Desktop Entry]
