@@ -30,3 +30,4 @@ let binDir = "/home/clarkema/.nix-profile/bin"; in
     MimeType=application/pdf;application/rdf+xml;application/rss+xml;application/xhtml+xml;application/xhtml_xml;application/xml;image/gif;image/jpeg;image/png;image/webp;text/html;text/xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/webcal;x-scheme-handler/mailto;x-scheme-handler/about;x-scheme-handler/unknown
     Actions=new-window;new-private-window;
     '';
+}
