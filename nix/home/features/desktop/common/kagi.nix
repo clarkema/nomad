@@ -1,10 +1,7 @@
 { pkgs, ... }:
 
+# See librewolf-wrapper.nix to use this with librewolf from flatpak
 {
-  imports = [
-    ./librewolf.nix
-  ];
-
   home.file.".local/share/applications/kagi-asssitant.desktop".text =
     ''
     [Desktop Entry]
