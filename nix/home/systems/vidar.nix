@@ -16,6 +16,7 @@ in
     ../all.nix
     ../features/dev/elixir.nix
     ../features/desktop/common/kagi.nix
+    ../features/desktop/common/librewolf-wrapper.nix
   ];
 
   programs.vscode = {

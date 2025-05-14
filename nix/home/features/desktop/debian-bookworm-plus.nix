@@ -4,7 +4,6 @@ let binDir = "/home/clarkema/.nix-profile/bin"; in
 {
   imports = [
     ./chromium.nix
-    ./common/librewolf.nix
   ];
 
   home.packages = with pkgs; [
