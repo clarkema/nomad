@@ -255,6 +255,8 @@ alias ez='exec zsh'
 alias -g L='| less'
 alias -g G='| grep'
 
+alias -g F='| fzf'
+
 # }}}
 
 function rtm ()
