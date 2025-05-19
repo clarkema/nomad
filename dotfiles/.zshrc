@@ -34,6 +34,8 @@ source_if_exists() {
 
 autoload -U edit-command-line
 
+export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
 bindkey -v
 bindkey '^R'  history-incremental-search-backward
 bindkey '^A'  beginning-of-line
