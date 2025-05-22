@@ -15,6 +15,7 @@ in
   imports = [
     ../all.nix
     ../features/dev/elixir.nix
+    ../features/dev/perl.nix
     ../features/desktop/common/kagi.nix
     ../features/desktop/common/librewolf-wrapper.nix
   ];
