@@ -37,7 +37,14 @@ sub set_kitty_theme {
         light => "Gruvbox Light",
     );
 
-    system("kitty +kitten themes --reload-in=all --cache-age -1 $themes{$target}");
+    # Kitty's built-in theme switcher causes problems when offline; even
+    # when caching is disabled it requires a connection the first time it's run.
+    # Instead we'll just juggle symlinks manually.
+    my $current_link = "$ENV{HOME}/.config/kitty/current-theme.conf";
+    unlink($current_link);
+    symlink("$ENV{HOME}/.config/kitty/themes/$themes{$target}.conf",
+            $current_link);
+    qx'kill -USR1 $(pgrep kitty)';
 }
 
 sub set_nvim_theme {
