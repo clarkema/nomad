@@ -39,7 +39,6 @@ in
     mullvad-browser
     _1password-gui
     signal-desktop
-    welle-io
     nixgl.nixGLIntel
     python312
     distrobox
