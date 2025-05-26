@@ -129,6 +129,13 @@ NPM
 
 NPM 'global' installations are installed in `$HOME/.npm-packages`
 
+Python
+------
+
+```
+python3 -m venv ~/.local --system-site-packages
+```
+
 Stow and node.js
 ----------------
 
