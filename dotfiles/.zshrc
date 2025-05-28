@@ -256,6 +256,8 @@ alias -g L='| less'
 alias -g G='| grep'
 
 alias -g F='| fzf'
+alias -g Fm='| fzf --multi'
+alias -g N="| fzf --multi | xargs -d '\n' nvim"
 
 # }}}
 
