@@ -111,4 +111,35 @@ nvc() {
 
 # }}} END Editor functions
 
+#=======================================================================
+# git functions                                                      {{{
+#=======================================================================
+
+ct() {
+    local selected_dir
+
+    if [[ $# -gt 0 ]]; then
+        ttd "$*"
+    fi
+
+    if ! git rev-parse --git-dir >/dev/null 2>&1; then
+        echo "Error: Not in a git repository" >&2
+        return 1
+    fi
+
+    # shellcheck disable=SC2016
+    selected_dir=$(
+        git worktree list --porcelain | \
+            grep '^worktree ' | \
+            cut -d' ' -f2- | \
+            fzf --height=40% --reverse --prompt="Select worktree: " \
+                --preview 'echo "Branch: $(git -C {} branch --show-current 2>/dev/null || echo "unknown")" && echo && git -C {} status --short 2>/dev/null || echo "No status available"')
+
+    if [[ -n "$selected_dir" ]]; then
+        cd "$selected_dir" || return 1
+    fi
+}
+
+# }}} END git functions
+
 # vim: foldmethod=marker
