@@ -43,7 +43,6 @@ alias ksm='git submodule'
 alias ksp='git stash pop'
 alias kst='git stash'
 alias kv='git show'
-alias kvf='git_show_affected_files'
 
 #=======================================================================
 # Misc.

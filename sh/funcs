@@ -140,6 +140,10 @@ ct() {
     fi
 }
 
+kvf() {
+    git show --name-only --pretty=format: "${1:-HEAD}" | grep -v '^$'
+}
+
 # }}} END git functions
 
 # vim: foldmethod=marker
