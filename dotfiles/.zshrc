@@ -171,6 +171,35 @@ fi
 source_if_exists "$HOME/.nomad/sh/shared"
 
 #=======================================================================
+# Shared colour state                                                {{{
+#=======================================================================
+export NOMAD_COLOUR_STATE_FILE="/tmp/colour_state_$(id -u)"
+
+update_colour_state() {
+    local state="dark"
+    if [[ -f "$NOMAD_COLOUR_STATE_FILE" ]]; then
+        state=$(cat "$NOMAD_COLOUR_STATE_FILE" 2>/dev/null || echo "dark")
+    fi
+
+    case "$state" in
+        "light")
+            unset NO_COLOR
+            export NOMAD_THEME="light"
+            ;;
+        "eink")
+            export NO_COLOR=1
+            export NOMAD_THEME="eink"
+            ;;
+        "dark"|*)
+            unset NO_COLOR
+            export NOMAD_THEME="dark"
+            ;;
+    esac
+}
+
+# }}}
+
+#=======================================================================
 # Git-ified prompt                                                   {{{
 #=======================================================================
 
@@ -210,6 +239,8 @@ precmd() {
     else
         PROMPT=$default_prompt
     fi
+
+    update_colour_state
 }
 
 function parse_git_branch ()
