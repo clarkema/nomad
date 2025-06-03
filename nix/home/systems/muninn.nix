@@ -16,6 +16,7 @@
   services.ssh-agent.enable = true;
 
   programs.firefox.enable = true;
+  programs.librewolf.enable = true;
 
   wayland.windowManager.sway = {
     enable = true;

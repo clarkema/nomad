@@ -117,6 +117,21 @@ sub set_zathura_theme {
     }
 }
 
+sub set_shell_theme {
+    my $target = shift;
+    umask 0077;
+
+    my $state_file = $ENV{NOMAD_COLOUR_STATE_FILE};
+    unless ($state_file) {
+        warn "NOMAD_COLOUR_STATE_FILE environment variable not set; skipping shell configuration\n";
+        return;
+    }
+
+    open my $fh, '>', $state_file or die "Cannot write to $state_file: $!\n";
+    print $fh "$target\n";
+    close $fh;
+}
+
 sub set_theme {
     my $target = shift;
     set_kitty_theme($target);
@@ -124,6 +139,7 @@ sub set_theme {
     set_emacs_theme($target);
     set_bat_theme($target);
     set_zathura_theme($target);
+    set_shell_theme($target);
 }
 
 my $target = shift || desired_theme;
