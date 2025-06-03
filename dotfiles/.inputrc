@@ -1,0 +1,13 @@
+# This should not generally be required, but occassionally I come
+# across a server with broken readline config.
+
+set echo-control-characters off
+
+"\C-a": beginning-of-line
+"\C-e": end-of-line
+"\C-l": clear-screen
+"\C-p": previous-history
+"\C-n": next-history
+"\C-w": backward-kill-word
+"\C-x\C-e": edit-and-execute-command
+"\e.": insert-last-argument
