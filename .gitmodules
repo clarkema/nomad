@@ -151,3 +151,6 @@
 [submodule "vim/bundle/vim-rescript"]
 	path = vim/bundle/vim-rescript
 	url = https://github.com/rescript-lang/vim-rescript.git
+[submodule "vim/bundle/mustache"]
+	path = vim/bundle/mustache
+	url = https://github.com/mustache/vim-mustache-handlebars.git
