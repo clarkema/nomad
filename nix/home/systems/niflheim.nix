@@ -35,7 +35,7 @@ in
     elixir_1_14
     tree-sitter
     perlnavigator
-    emacsPackages.treesit-grammars.with-all-grammars
+    emacs.pkgs.treesit-grammars.with-all-grammars
     mullvad-browser
     _1password-gui
     signal-desktop
