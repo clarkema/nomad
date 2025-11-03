@@ -48,7 +48,7 @@ in
     signal-desktop
     rakudo_env
     neovim
-    emacsPackages.treesit-grammars.with-all-grammars
+    emacs.pkgs.treesit-grammars.with-all-grammars
     chirp
     ghostty
     clojure
