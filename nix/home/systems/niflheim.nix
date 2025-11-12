@@ -47,11 +47,12 @@ in
 
     #    ripgrep 
 
-    emacs-gtk
     elixir_1_14
     tree-sitter
     perlnavigator
+    emacs-gtk
     emacs.pkgs.treesit-grammars.with-all-grammars
+    emacs.pkgs.vterm
     mullvad-browser
     _1password-gui
     signal-desktop
