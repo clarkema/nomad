@@ -239,6 +239,11 @@
   :config
   (vertico-prescient-mode +1))
 
+;; use vterm if it's available, but don't try and install it if not
+(use-package vterm
+  :straight nil
+  :if (require 'vterm nil 'noerror))
+
 (use-package marginalia
   :straight t
   :bind (:map minibuffer-local-map
