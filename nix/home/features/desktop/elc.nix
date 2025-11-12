@@ -11,6 +11,7 @@
 
   home.packages = with pkgs; [
     asdf-vm
+    fx # json viewer, can search by field name
     gh
     unzip
     yarn
