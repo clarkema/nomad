@@ -18,6 +18,7 @@ in
     ../features/dev/perl.nix
     ../features/desktop/common/kagi.nix
     ../features/desktop/common/librewolf-wrapper.nix
+    #../features/emacs
   ];
 
   programs.vscode = {
