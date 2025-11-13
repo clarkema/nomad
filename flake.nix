@@ -103,6 +103,24 @@
             }
           ];
         };
+        "clarkema@rat" = home-manager.lib.homeManagerConfiguration {
+          #inherit pkgs;
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            config.allowUnfree = true;
+          };
+          extraSpecialArgs = { inherit inputs; };
+          modules = [
+            ./nix/home/systems/rat.nix
+            {
+              home = rec {
+                username = "clarkema";
+                homeDirectory = "/home/${username}";
+                stateVersion = "22.11";
+              };
+            }
+          ];
+        };
         "clarkema@skadi.local" = home-manager.lib.homeManagerConfiguration {
           #inherit pkgs;
           pkgs = import nixpkgs {
