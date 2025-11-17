@@ -13,6 +13,7 @@
     mitmproxy
     newsboat
     ruby
+    wmctrl # for experimental emacs windows shortcut
   ];
 
   # Add the home-manager bin directory to KDE's PATH so things like .desktop
