@@ -9,6 +9,7 @@ in
     ../all.nix
     ../features/dev/elixir.nix
     ../features/desktop/chromium.nix
+    ../features/emacs
   ];
 
   programs.vscode = {
@@ -19,22 +20,6 @@ in
       github.copilot
       asvetliakov.vscode-neovim
     ];
-  };
-
-  # GTK and pointerCursor theming is required to make the pointer in Emacs
-  # match the system pointer and be visible. By default it has a black pointer
-  # with a black border, which doesn't show up well.  Probably just a quirk of
-  # the Arch setup; this isn't required when running Emacs from Nix on Ubuntu
-  gtk = {
-    enable = true;
-  };
-
-  home.pointerCursor = {
-    #x11.enable = true;
-    gtk.enable = true;
-    package = pkgs.kdePackages.breeze;
-    size = 24;
-    name = "breeze_cursors";
   };
 
   home.packages = with pkgs; [
@@ -50,9 +35,7 @@ in
     elixir_1_14
     tree-sitter
     perlnavigator
-    emacs-gtk
     emacs.pkgs.treesit-grammars.with-all-grammars
-    emacs.pkgs.vterm
     mullvad-browser
     _1password-gui
     signal-desktop

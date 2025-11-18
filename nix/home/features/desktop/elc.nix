@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../dev/elixir.nix
+    ../emacs
   ];
 
   programs = {
@@ -20,9 +20,7 @@
     emmet-ls # language server for HTML etc
     jq
     neovim
-    emacs-gtk
     emacs.pkgs.treesit-grammars.with-all-grammars
-    emacs.pkgs.vterm
     tree-sitter
     nomad.tm
     eza
