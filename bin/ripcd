@@ -18,3 +18,6 @@ function ripcd {
 }
 
 ripcd
+
+echo "Want FLAC?"
+echo '# for f in *.raw;  ffmpeg -f s32le -i $f -c:a flac ${f/.cdda.raw/.flac}'
