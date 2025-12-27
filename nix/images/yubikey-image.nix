@@ -19,8 +19,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "drduh";
       repo = "YubiKey-Guide";
-      rev = "ece9752967e8b01bb3e70919a8ccdbc252eb9387";
-      sha256 = "sha256-iqeUkEK2yrMi6dTpStEYZ3H7PoI5RoK3i90BRKZNlq8=";
+      rev = "7513db34cc7196a8b83e18b78264511c5aed4c71";
+      sha256 = "sha256-Ne7BKmEJJKnJR1qngIqBGFFbKDA2Cn3pgqGX7jteRx8=";
     };
     buildInputs = [ pkgs.pandoc ];
     installPhase = "pandoc --highlight-style pygments -s --toc README.md -o $out";
@@ -52,7 +52,7 @@ in {
     ctmg
   ];
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 
   services.udev.packages = with pkgs; [ yubikey-personalization ];
   services.pcscd.enable = true;
