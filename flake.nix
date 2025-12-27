@@ -103,6 +103,26 @@
             }
           ];
         };
+        "clarkema@njord" = home-manager.lib.homeManagerConfiguration {
+          #inherit pkgs;
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            config.allowUnfree = true;
+            overlays = [ nixgl.overlay ];
+          };
+          extraSpecialArgs = { inherit inputs; };
+          modules = [
+            ./nix/home/all.nix
+            ./nix/home/systems/njord.nix
+            {
+              home = rec {
+                username = "clarkema";
+                homeDirectory = "/home/${username}";
+                stateVersion = "22.11";
+              };
+            }
+          ];
+        };
         "clarkema@rat" = home-manager.lib.homeManagerConfiguration {
           #inherit pkgs;
           pkgs = import nixpkgs {
