@@ -4,7 +4,7 @@
 height = 40
 background = ${colors.background}
 foreground = ${colors.foreground}
-modules-left = xmonad
+modules-left = xworkspaces sep xmonad
 modules-right = mpd pulseaudio battery date
 line-size = 3 
 tray-position = right
@@ -211,6 +211,37 @@ type = custom/script
 exec = ~/.cabal/bin/xmonad-dbus
 tail = true
 interval= 0 
+
+[module/sep]
+type = custom/text
+; NB: There is an invisible Unicode EN-space (U+2002) after the dot below for
+; spacing
+content = • 
+content-foreground = #44aacc
+content-padding = 1
+
+[module/xworkspaces]
+type = internal/xworkspaces
+
+label-active = %name%
+label-active-padding = 2
+label-active-background = #555555
+label-active-overline = #44aacc
+
+label-occupied = %name%
+label-occupied-padding = 2
+
+label-urgent = %name%
+label-urgent-background = #ff0000
+label-urgent-padding = 2
+
+label-empty = %name%
+label-empty-padding = 2
+pin-workspaces = true
+enable-click = true
+enable-scroll = true
+scroll-up = xmonad-wsnext
+scroll-down = xmonad-wsprev
 
 [module/bspwm]
 type = internal/bspwm

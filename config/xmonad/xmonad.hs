@@ -144,12 +144,13 @@ myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "scratch"]
 --dbusHook :: DC.Client -> PP
 dbusHook dbus = def
     { ppOutput = D.send dbus
-    , ppSep             = pbarColour colourBlue " • "
+    -- NB: Unicode EN-spaces U+2002 around dot below for better spacing
+    , ppSep             = pbarColour colourBlue " • "
     , ppCurrent         = (pbarColour colourWhite) . wrap "%{o#44aacc}%{+o} " " %{-o}"
     , ppVisible         = (pbarColour colourWhite) . wrap "%{o#bbbbbb}%{+o} " " %{-o}"
     , ppHidden          = (pbarColour colourWhite) . wrap " " " "
     , ppHiddenNoWindows = (pbarColour colourLowWhite) . wrap " " " "
-    , ppOrder           = \[ws, l, _, wins] -> [ws, l, wins]
+    , ppOrder           = \[ws, l, _, wins] -> [l, wins]
     , ppExtras          = [logTitles formatFocused formatUnfocused]
     }
   where
