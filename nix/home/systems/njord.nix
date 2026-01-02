@@ -19,6 +19,8 @@
     polybarFull
     rofi
     picom
+
+    nixfmt-rfc-style
   ];
 
   programs.neovim = {
