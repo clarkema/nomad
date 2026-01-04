@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, nomad, ... }:
 
 {
   home.packages = with pkgs; [
@@ -21,6 +21,8 @@
     picom
 
     nixfmt-rfc-style
+
+    nomad.tm
   ];
 
   programs.neovim = {
