@@ -10,7 +10,7 @@
     gnumake
 
     _1password-gui
-    xfce.thunar
+    thunar
     vlc
 
     nerd-fonts.ubuntu-mono
@@ -31,7 +31,7 @@
 
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs-pgtk;
+    package = pkgs.emacs-gtk;
     extraPackages =
       epkgs: with epkgs; [
         vterm
