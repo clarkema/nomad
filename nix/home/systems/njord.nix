@@ -1,4 +1,9 @@
-{ inputs, pkgs, nomad, ... }:
+{
+  inputs,
+  pkgs,
+  nomad,
+  ...
+}:
 
 {
   home.packages = with pkgs; [
