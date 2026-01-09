@@ -6,6 +6,10 @@
 }:
 
 {
+  imports = [
+    ../features/ham
+  ];
+
   home.packages = with pkgs; [
     librewolf
     mpv
