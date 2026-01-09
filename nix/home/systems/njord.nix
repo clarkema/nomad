@@ -32,6 +32,7 @@
     nixfmt-rfc-style
 
     nomad.tm
+    gammastep
   ];
 
   programs.neovim = {

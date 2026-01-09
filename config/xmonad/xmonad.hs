@@ -137,7 +137,7 @@ myStartupHook = do
   spawnOnce "systemctl start --user plasma-polkit-agent"
   spawnOnce "picom --backend glx --vsync --config /dev/null"
   spawnOnce "nm-applet"
-  spawnOnce "gammastep -P -O 3500"
+  spawnOnce "gammastep-indicator -l 51.5:-0.11 -b 1.0:0.8 -l manual -t 6500:3500"
 
 myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "scratch"]
 
