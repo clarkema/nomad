@@ -8,6 +8,8 @@ modules-left = xworkspaces sep xmonad
 modules-right = mpd pulseaudio battery date
 line-size = 3 
 tray-position = right
+wm-restack = generic
+lower-on-start = true
 
 [bar/bspwm]
 height = 40
