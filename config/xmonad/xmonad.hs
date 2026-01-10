@@ -82,6 +82,7 @@ myConfig dbus = def
     , ("M-m", withFocused minimizeWindow)
     , ("M-S-m", withLastMinimized maximizeWindowAndFocus)
 
+    , ("M-x", toggleWindowSpacingEnabled)
     -- Add missing keybindings for additional workspaces
     , ("M-0", (windows $ W.greedyView "0"))
     , ("M-S-0", (windows $ W.shift "0"))
@@ -111,7 +112,7 @@ myLayout = threeMax ||| centerTiled ||| Mirror tiled ||| noBorders Full ||| grid
 
     threeCol = renamed [Replace "ThreeCol"]
              $ smartBorders
-             $ spacing 3
+             $ smartSpacing 3
              -- $ magnifiercz' 1.3
              $ ThreeColMid nmaster delta ratio
     tiled = renamed [Replace "Tiled"]
