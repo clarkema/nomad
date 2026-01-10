@@ -11,6 +11,14 @@ tray-position = right
 wm-restack = generic
 lower-on-start = true
 
+;https://github.com/jaagr/polybar/wiki/Fonts
+font-0 = "UbuntuMono Nerd Font:size=18;3"
+font-1 = "UbuntuMono Nerd Font:size=16;3"
+font-2 = "Font Awesome 5 Free Regular:style=Regular:pixelsize=18;1"
+font-3 = "Font Awesome 5 Free Solid:style=Solid:pixelsize=18;1"
+font-4 = "Font Awesome 5 Brands:pixelsize=8;1"
+font-5 = "Source Code Pro:size=18;1"
+
 [bar/bspwm]
 height = 40
 background = ${colors.background}
