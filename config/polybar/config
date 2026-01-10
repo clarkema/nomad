@@ -234,19 +234,19 @@ content-padding = 1
 type = internal/xworkspaces
 
 label-active = %name%
-label-active-padding = 2
+label-active-padding = 1
 label-active-background = #555555
 label-active-overline = #44aacc
 
 label-occupied = %name%
-label-occupied-padding = 2
+label-occupied-padding = 1
 
 label-urgent = %name%
 label-urgent-background = #ff0000
-label-urgent-padding = 2
+label-urgent-padding = 1
 
 label-empty = %name%
-label-empty-padding = 2
+label-empty-padding = 1
 pin-workspaces = true
 enable-click = true
 enable-scroll = true
