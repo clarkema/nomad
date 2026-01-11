@@ -34,6 +34,7 @@
     nomad.tm
     nomad.pcal
     gammastep
+    signal-desktop
   ];
 
   programs.neovim = {
