@@ -1,0 +1,54 @@
+local wezterm = require ('wezterm')
+local config = wezterm.config_builder()
+
+-- Font settings
+config.font = wezterm.font("SauceCodePro NFM")
+config.font_size = 16
+
+config.colors = {
+    cursor_bg = "red",
+    cursor_border = "red",
+}
+config.color_scheme = 'Gruvbox Dark (Gogh)'
+
+-- Tab bar
+config.hide_tab_bar_if_only_one_tab = true
+config.use_fancy_tab_bar = false
+config.tab_bar_at_bottom = true
+
+-- Muxing
+config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 2000 }
+config.keys = {
+    {
+        mods = "SHIFT|CTRL",
+        key = "Enter",
+        action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" },
+    },
+    {
+        mods = "LEADER",
+        key = "c",
+        action = wezterm.action.SpawnTab "CurrentPaneDomain",
+    },
+    {
+        mods = "LEADER",
+        key = "v",
+        action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" },
+    },
+    {
+        mods = "LEADER|SHIFT",
+        key = '"',
+        action = wezterm.action.SplitVertical { domain = "CurrentPaneDomain" },
+    },
+    {
+        mods = "LEADER",
+        key = 'q',
+        action = wezterm.action.PaneSelect,
+    },
+    {
+        mods = "LEADER | SHIFT",
+        key = 'q',
+        action = wezterm.action.PaneSelect { mode = "SwapWithActive" },
+    },
+}
+
+return config
