@@ -32,6 +32,7 @@
     nixfmt-rfc-style
 
     nomad.tm
+    nomad.pcal
     gammastep
   ];
 
