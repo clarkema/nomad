@@ -76,6 +76,16 @@ config.keys = {
         mods = 'SHIFT|CTRL',
         action = act.ToggleFullScreen,
     },
+    {
+        key="F3",
+        mods="SHIFT|CTRL",
+        action=wezterm.action{EmitEvent="trigger-vim-with-scrollback"}
+    },
+    {
+        key = 'K',
+        mods = 'CTRL|SHIFT',
+        action = act.ClearScrollback 'ScrollbackAndViewport',
+  },
 }
 
 return config
