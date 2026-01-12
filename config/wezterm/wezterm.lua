@@ -18,6 +18,7 @@ config.tab_bar_at_bottom = true
 
 -- Muxing
 config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 2000 }
+local act = wezterm.action
 config.keys = {
     {
         mods = "SHIFT|CTRL",
@@ -49,6 +50,21 @@ config.keys = {
         key = 'q',
         action = wezterm.action.PaneSelect { mode = "SwapWithActive" },
     },
+    {
+        mods = 'CTRL|SHIFT|ALT',
+        key = 'T',
+        action = act.PromptInputLine {
+        description = 'Enter new name for tab',
+        action = wezterm.action_callback(function(window, pane, line)
+            -- line will be `nil` if they hit escape without entering anything
+            -- An empty string if they just hit enter
+            -- Or the actual line of text they wrote
+            if line then
+                window:active_tab():set_title(line)
+            end
+        end),
+    },
+  },
 }
 
 return config
