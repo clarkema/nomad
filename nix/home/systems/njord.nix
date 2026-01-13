@@ -29,7 +29,7 @@
     rofi
     picom
 
-    nixfmt-rfc-style
+    nixfmt
 
     nomad.tm
     nomad.pcal
