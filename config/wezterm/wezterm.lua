@@ -23,6 +23,13 @@ config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 2000 }
 local act = wezterm.action
 config.keys = {
     {
+        -- Bind ctrl+backspace to send ctrl+w to work with my MoErgo keyboard
+        -- layout
+        mods = 'CTRL',
+        key = 'Backspace',
+        action = wezterm.action.SendString('\x17'),
+    },
+    {
         mods = "SHIFT|CTRL",
         key = "Enter",
         action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" },
