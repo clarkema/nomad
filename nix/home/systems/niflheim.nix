@@ -9,6 +9,7 @@ in
     ../all.nix
     ../features/dev/elixir.nix
     ../features/desktop/chromium.nix
+    ../features/desktop/common/wezterm-nonnix.nix
     ../features/emacs
   ];
 

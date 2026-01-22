@@ -19,6 +19,7 @@ in
     ../features/desktop/common/kagi.nix
     ../features/desktop/common/librewolf-wrapper.nix
     #../features/emacs
+    ../features/desktop/common/wezterm-nonnix.nix
   ];
 
   programs.vscode = {
