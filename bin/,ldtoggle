@@ -5,7 +5,7 @@ use strict;
 
 sub desired_theme {
     # Is an eink monitor connected?
-    `miractl detect`;
+    `command -v miractl && miractl detect`;
     if ($? == 0) {
         # There's a Mira e-ink monitor connected to the system; we should use
         # the eink theme
@@ -13,6 +13,7 @@ sub desired_theme {
     } else {
         # No e-ink monitor found.  If the current theme is e-ink, set to dark;
         # otherwise toggle dark/light
+        print "hi";
 
         my $current;
         my $file = "$ENV{HOME}/.config/kitty/kitty.conf";
@@ -22,7 +23,7 @@ sub desired_theme {
                 $current = lc($1);
             }
         }
-        return $current eq "dark" ? "light" : "dark";
+        return $current eq "Dark" ? "light" : "dark";
     }
 }
 
@@ -49,6 +50,8 @@ sub set_kitty_theme {
 
 sub set_nvim_theme {
     my $target = shift;
+
+    $target = 'light' if $target eq 'eink';
     my $file = "$ENV{HOME}/.config/nvim/init.vim";
     return unless -f $file;
 
