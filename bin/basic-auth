@@ -1,0 +1,41 @@
+#! /usr/bin/env bash
+
+function print_usage {
+    echo "Usage:"
+    echo "  $0 <username> <password>       # Generate basic auth header"
+    echo "  $0 --reverse <auth_string>     # Decode basic auth header"
+    exit 1
+}
+
+# Check if we're in reverse mode
+if [ "$1" = "--reverse" ]; then
+    if [ $# -ne 2 ]; then
+        print_usage
+    fi
+
+    auth_string="$2"
+
+    # Remove "Basic " prefix if present
+    auth_string="${auth_string#Basic }"
+
+    # Decode the base64 string
+    decoded=$(echo -n "$auth_string" | base64 -d)
+
+    # Extract username and password
+    username=$(echo "$decoded" | cut -d':' -f1)
+    password=$(echo "$decoded" | cut -d':' -f2-)
+
+    echo "Username: $username"
+    echo "Password: $password"
+else
+    # Original functionality - generate auth header
+    if [ $# -ne 2 ]; then
+        print_usage
+    fi
+
+    username="$1"
+    password="$2"
+
+    echo "Basic $(echo -n "$username:$password" | base64)"
+fi
+
