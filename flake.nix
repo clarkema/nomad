@@ -177,11 +177,16 @@
           ];
         };
         "clarkema@elcdev" = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { system = "x86_64-linux"; };
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            config.allowUnfree = true;
+            overlays = [ nixgl.overlay ];
+          };
           modules = [
             ./nix/home/all.nix
 #            ./nix/home/features/desktop/ubuntu-24_04-plus.nix
             ./nix/home/features/desktop/elc.nix
+            ./nix/home/systems/elcdev.nix
             {
               home = rec {
                 username = "clarkema";
