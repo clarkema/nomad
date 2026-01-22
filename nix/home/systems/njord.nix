@@ -8,6 +8,7 @@
 {
   imports = [
     ../features/ham
+    ../features/emacs/nixos.nix
   ];
 
   home.packages = with pkgs; [
@@ -41,12 +42,4 @@
     enable = true;
   };
 
-  programs.emacs = {
-    enable = true;
-    package = pkgs.emacs-gtk;
-    extraPackages =
-      epkgs: with epkgs; [
-        vterm
-      ];
-  };
 }
