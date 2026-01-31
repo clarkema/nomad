@@ -290,6 +290,17 @@ alias -g F='| fzf'
 alias -g Fm='| fzf --multi'
 alias -g N="| fzf --multi | xargs -d '\n' nvim"
 
+# function and alias pair to allow running most simple numbat calculations
+# with just `=`.  For e.g.:
+#   $ = 24 * 10
+#   $ = 25mm to ft
+#   $ = from_fahrenheit(212) to celsius
+function ___numbat {
+    numbat -e "$*"
+}
+
+aliases[=]='noglob ___numbat'
+
 # }}}
 
 function rtm ()
