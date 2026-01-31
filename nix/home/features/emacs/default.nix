@@ -10,8 +10,7 @@
       ];
   };
 
-  home.file.".local/share/applications/emacs.desktop".text =
-    ''
+  home.file.".local/share/applications/emacs.desktop".text = ''
     [Desktop Entry]
     Name=Emacs
     GenericName=Text Editor
@@ -24,7 +23,7 @@
     Categories=Development;TextEditor;
     StartupNotify=true
     StartupWMClass=Emacs
-    '';
+  '';
 
   # GTK and pointerCursor theming is required to make the pointer in Emacs
   # match the system pointer and be visible. By default it has a black pointer
