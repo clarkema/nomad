@@ -290,6 +290,9 @@ alias -g F='| fzf'
 alias -g Fm='| fzf --multi'
 alias -g N="| fzf --multi | xargs -d '\n' nvim"
 
+alias yt720='noglob yt-dlp -S res:720 "$@"'
+alias yt1080='noglob yt-dlp -S res:1080 "$@"'
+
 # function and alias pair to allow running most simple numbat calculations
 # with just `=`.  For e.g.:
 #   $ = 24 * 10
