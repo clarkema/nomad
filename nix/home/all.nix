@@ -35,6 +35,7 @@
     # Used by org-present in my Emacs config
     (pkgs.iosevka-bin.override { variant = "Aile"; })
     (pkgs.iosevka-bin.override { variant = "Etoile"; })
+    nodejs # for vim CoC
   ];
 
   home.file.".zshenv-nix".text =
