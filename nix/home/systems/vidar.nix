@@ -1,4 +1,9 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  nomad,
+  ...
+}:
 
 let
   binDir = "/home/clarkema/.nix-profile/bin";
@@ -56,6 +61,7 @@ in
     clojure
     clj-kondo
     nixfmt-rfc-style
+    nomad.pcal
   ];
 
   # Add the home-manager bin directory to KDE's PATH so things like .desktop

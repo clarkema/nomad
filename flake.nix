@@ -100,6 +100,7 @@
                 homeDirectory = "/home/${username}";
                 stateVersion = "22.11";
               };
+              _module.args = { nomad = nomad.packages.x86_64-linux; };
             }
           ];
         };
