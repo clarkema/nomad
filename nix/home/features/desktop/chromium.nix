@@ -12,7 +12,7 @@ let binDir = "/home/clarkema/.nix-profile/bin"; in
     [Desktop Entry]
     StartupWMClass=chromium-browser
     Version=1.0
-    Name=Chromium
+    Name=Chromium (GL)
     # Only KDE 4 seems to use GenericName, so we reuse the KDE strings.
     # From Ubuntu's language-pack-kde-XX-base packages, version 9.04-20090413.
     GenericName=Web Browser
