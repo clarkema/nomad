@@ -36,6 +36,8 @@
     nomad.pcal
     gammastep
     signal-desktop
+
+    obsidian
   ];
 
   programs.neovim = {
