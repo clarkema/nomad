@@ -38,6 +38,7 @@
     signal-desktop
 
     obsidian
+    bruno
   ];
 
   programs.neovim = {
