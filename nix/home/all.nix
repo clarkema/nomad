@@ -19,7 +19,6 @@
     pkgs.fd
     pkgs.fzf
     pkgs.htop
-    pkgs.neofetch
     numbat
     pkgs.fastfetch
     pkgs.scmpuff
