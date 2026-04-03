@@ -44,6 +44,10 @@
       );
       #devShells.${system} = import ./shell.nix { inherit pkgs; };
 
+      homeManagerModules = {
+        tmux = import ./nix/home/features/tmux;
+      };
+
       homeConfigurations = {
         "clarkema@niflheim.lfn.io" = home-manager.lib.homeManagerConfiguration {
           #inherit pkgs;
