@@ -1,7 +1,7 @@
 {
   inputs,
   pkgs,
-  nomad,
+  nomad-pkgs,
   ...
 }:
 
@@ -9,6 +9,7 @@
   imports = [
     ../features/ham
     ../features/emacs/nixos.nix
+    ../features/tmux
   ];
 
   home.packages = with pkgs; [
@@ -32,8 +33,7 @@
 
     nixfmt
 
-    nomad.tm
-    nomad.pcal
+    nomad-pkgs.pcal
     gammastep
     signal-desktop
 
