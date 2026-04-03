@@ -380,7 +380,7 @@ function rgc ()
     local rg_args="${*[1,$# - 1]}" # All but last arg
     local query="${*[-1]}" # Last arg
 
-    pkd=$(sk --ansi -i -c "rg $rg_args -n --color always '{}'" --preview "preview.sh {}" --cmd-query "$query" | awk -F: '{print $1}')
+    pkd=$(sk --ansi -i -c "rg $rg_args -n --color always '{q}'" --preview "preview.sh {}" --cmd-query "$query" | awk -F: '{print $1}')
     echo $pkd
 }
 alias vp='vim "$pkd"'
