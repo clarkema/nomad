@@ -54,19 +54,20 @@ main = do
 
 myConfig dbus = def
     { modMask = mod4Mask    -- Rebind Mod to Super
-    , terminal = "kitty"
+    , terminal = "wezterm"
     , layoutHook = myLayout -- Use custom layouts
     --, logHook = masterHistoryHook <> refocusLastLogHook <> dbusHook
     , logHook = dynamicLogWithPP (dbusHook dbus)
     , startupHook = myStartupHook
     , borderWidth = 2
     , focusedBorderColor = colourBlue
+    , normalBorderColor = "#000000"
     , workspaces = myWorkspaces
     }
     `additionalKeysP`
     [ ("M-S-l", spawn "xscreensaver-command -lock")
-    , ("M-S-b", spawn "kitty")
-    , ("M-C-<Return>", spawn "kitty")
+    , ("M-S-b", spawn "wezterm")
+    , ("M-C-<Return>", spawn "wezterm")
     , ("M-p", spawn "rofi -show combi -combi-modi 'drun,run'")
     , ("M-S-p", spawn "miractl refresh")
     , ("M-<Return>", toggleFocus)
