@@ -7,6 +7,7 @@
 
 {
   imports = [
+    ../features/desktop/common/clipboard.nix
     ../features/ham
     ../features/emacs/nixos.nix
     ../features/tmux
