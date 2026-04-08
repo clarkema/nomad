@@ -96,5 +96,20 @@ config.keys = {
         action = act.ClearScrollback 'ScrollbackAndViewport',
   },
 }
+    -- ----
+    -- Tabs
+    -- ----
+    {
+        key = "}",
+        mods = "SHIFT|CTRL",
+        action = act.ActivateTabRelative(1)
+    },
+    {
+        key = "{",
+        mods = "SHIFT|CTRL",
+        action = act.ActivateTabRelative(-1)
+    },
+  }
+
 
 return config
