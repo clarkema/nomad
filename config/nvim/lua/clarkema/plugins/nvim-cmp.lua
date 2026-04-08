@@ -18,6 +18,7 @@ return {
         local lspkind = require("lspkind")
 
         cmp.setup({
+            autocomplete = false,
             completion = {
                 completeopt = "menu,menuone,preview,noselect",
             },

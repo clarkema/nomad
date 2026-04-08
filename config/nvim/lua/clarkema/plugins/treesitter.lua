@@ -1,53 +1,25 @@
+local ok, nix = pcall(require, "nix-plugins")
+if not ok then nix = nil end
+
 return {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPre", "BufNewFile" },
+    --branch = 'master',
+    --event = { "BufReadPre", "BufNewFile" },
+    lazy = false,
     build = ":TSUpdate",
-    dependencies = {
-        "windwp/nvim-ts-autotag",
-    },
+--    dependencies = {
+--        "windwp/nvim-ts-autotag",
+--    },
     config = function()
         -- import nvim-treesitter plugin
-        local treesitter = require("nvim-treesitter.configs")
+        local treesitter = require("nvim-treesitter")
 
         -- configure treesitter
-        treesitter.setup({
-            -- enable syntax highlighting
-            highlight = { enable = true },
-            -- enable indentation
-            indent = { enable = true },
-            -- enable autotagging (w/ nvim-ts-autotag plugin)
-            autotag = { enable = true },
-            -- ensure these language parsers are installed
-            ensure_installed = {
-                "bash",
-                "css",
-                "dockerfile",
-                "eex",
-                "elixir",
-                "haskell",
-                "heex",
-                "html",
-                "json",
-                "javascript",
-                "lua",
-                "python",
-                "query",
-                "rust",
-                "scss",
-                "vim",
-                "vimdoc",
-                "yaml",
-            },
-            incremental_selection = {
-                enable = true,
-                keymaps = {
-                    init_selection = "<C-space>",
-                    node_incremental = "<C-space>",
-                    scope_incremental = false,
-                    node_decremental = "<BS>",
-                },
-            },
-        })
+        if nix and nix.enabled then
+            treesitter.setup({
+            install_dir = (nix and nix.enabled) and nix.parsers or {}
+            })
+        end
     end
 
 }

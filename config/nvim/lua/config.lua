@@ -64,7 +64,6 @@ vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 --     },
 -- }
 
--- require('my-luasnip')
 
 -- Treat '-' as a word character in CSS and friends, to ensure '*',
 -- '<leader>fc' etc. all work as expected
@@ -95,3 +94,7 @@ vim.diagnostic.config({
         severity = { min = vim.diagnostic.severity.WARN },
     }
 })
+
+require('clarkema.core')
+require('clarkema.lazy')
+require('clarkema.lsp')

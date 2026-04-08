@@ -6,10 +6,12 @@
 }:
 
 {
+  _module.args.pkgsUnstable = pkgs;
   imports = [
     ../features/desktop/common/clipboard.nix
     ../features/ham
     ../features/emacs/nixos.nix
+    ../features/neovim
     ../features/tmux
   ];
 
