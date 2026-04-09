@@ -45,6 +45,8 @@
       #devShells.${system} = import ./shell.nix { inherit pkgs; };
 
       homeManagerModules = {
+        neovim = import ./nix/home/features/neovim;
+        shell-tools = import ./nix/home/features/shell-tools;
         tmux = import ./nix/home/features/tmux;
       };
 
