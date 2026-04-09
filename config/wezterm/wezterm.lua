@@ -18,9 +18,11 @@ config.hide_tab_bar_if_only_one_tab = true
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 
+local act = wezterm.action
+
+
 -- Muxing
 config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 2000 }
-local act = wezterm.action
 config.keys = {
     {
         -- Bind ctrl+backspace to send ctrl+w to work with my MoErgo keyboard
@@ -94,8 +96,23 @@ config.keys = {
         key = 'K',
         mods = 'CTRL|SHIFT',
         action = act.ClearScrollback 'ScrollbackAndViewport',
-  },
-}
+    },
+    {
+        key = "n",
+        mods = "SHIFT|CTRL|SUPER",
+        action = act.SpawnCommandInNewWindow({
+          domain = { DomainName = "local" },
+        }),
+    },
+    {
+        key = "d",
+        mods = "SHIFT|CTRL",
+            action = act.ShowLauncherArgs({
+            flags = "DOMAINS",
+            title = "Connect to domain",
+        }),
+    },
+
     -- ----
     -- Tabs
     -- ----
