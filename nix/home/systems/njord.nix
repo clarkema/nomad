@@ -36,6 +36,7 @@
     nixfmt
 
     nomad-pkgs.pcal
+    nomad-pkgs.git-map
     gammastep
     signal-desktop
 

@@ -67,6 +67,27 @@
         "type": "github"
       }
     },
+    "git-map": {
+      "inputs": {
+        "nixpkgs": [
+          "nomad",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1775762969,
+        "narHash": "sha256-47+E1cccIvsRWXYB6prXpnhl5IkpLgbHhGvKk0Rh570=",
+        "owner": "clarkema",
+        "repo": "git-map",
+        "rev": "363372e740e434d22b0cde0d00fc577baee2ecc8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "clarkema",
+        "repo": "git-map",
+        "type": "github"
+      }
+    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -531,14 +552,15 @@
     },
     "nomad": {
       "inputs": {
+        "git-map": "git-map",
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1768154052,
-        "narHash": "sha256-2qTaNbXHmo9y0ab2mDOBPNoCwalVAnnz1fPCYaks5Ss=",
+        "lastModified": 1775763279,
+        "narHash": "sha256-5cVUtRS45kzInRJ9vtkokTVUpVGL+NN9NOsnnVeeM4Q=",
         "owner": "clarkema",
         "repo": "nix-nomad",
-        "rev": "072e2d1331a8277229c98a065c3e39b3507fe66f",
+        "rev": "4593e47f8b467449e12c21a08b59407bebc406bb",
         "type": "github"
       },
       "original": {
