@@ -1,0 +1,11 @@
+#! /usr/bin/env numbat
+
+let input_f: Scalar =
+  if len(args()) == 2 then
+    parse(element_at(1, args()))
+  else
+    error("Not enough args")
+
+let deg_c = from_fahrenheit(input_f) -> celsius
+
+print("{input_f}°F is {deg_c:.2}°C")
