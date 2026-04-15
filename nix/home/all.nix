@@ -22,8 +22,10 @@
     numbat
     pkgs.fastfetch
     pkgs.scmpuff
+    ripgrep
     skim
     pkgs.source-code-pro
+    mosh
 
     pkgs.shellcheck
     pkgs.bash-language-server

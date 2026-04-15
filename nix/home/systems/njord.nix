@@ -18,7 +18,6 @@
   home.packages = with pkgs; [
     librewolf
     mpv
-    ripgrep
 
     gcc
     gnumake
