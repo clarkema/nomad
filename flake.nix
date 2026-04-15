@@ -98,7 +98,6 @@
           extraSpecialArgs = { inherit inputs; };
           modules = [
             ./nix/home/features/dev/python.nix
-            ./nix/home/features/desktop/debian-bookworm-plus.nix
             ./nix/home/systems/vidar.nix
             {
               home = rec {
@@ -106,7 +105,9 @@
                 homeDirectory = "/home/${username}";
                 stateVersion = "22.11";
               };
-              _module.args = { nomad = nomad.packages.x86_64-linux; };
+              _module.args = {
+                nomad-pkgs = nomad.packages.x86_64-linux;
+              };
             }
           ];
         };
