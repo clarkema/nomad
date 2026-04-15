@@ -19,6 +19,7 @@
     pkgs.fd
     pkgs.fzf
     pkgs.htop
+    jq
     numbat
     pkgs.fastfetch
     pkgs.scmpuff
