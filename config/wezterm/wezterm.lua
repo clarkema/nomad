@@ -18,6 +18,21 @@ config.hide_tab_bar_if_only_one_tab = true
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 
+config.ssh_domains = {
+    {
+        name = "cbd-dev",
+        remote_address = "192.168.120.10",
+        username = "clarkema",
+        multiplexing = "None"
+    },
+    {
+        name = "cbd-deploy",
+        remote_address = "192.168.120.11",
+        username = "clarkema",
+        multiplexing = "None"
+    },
+}
+
 local act = wezterm.action
 
 
