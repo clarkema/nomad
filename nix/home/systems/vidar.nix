@@ -1,7 +1,6 @@
 {
   inputs,
   pkgs,
-  nomad,
   ...
 }:
 
@@ -22,9 +21,11 @@ in
     ../features/dev/elixir.nix
     ../features/dev/perl.nix
     ../features/desktop/common/kagi.nix
-    ../features/desktop/common/librewolf-wrapper.nix
+    #../features/desktop/common/librewolf-wrapper.nix
     #../features/emacs
-    ../features/desktop/common/wezterm-nonnix.nix
+  #  ../features/desktop/common/wezterm-nonnix.nix
+    ../features/neovim
+    ../features/tmux
   ];
 
   programs.vscode = {
@@ -52,26 +53,26 @@ in
       pathsToLink = [ "/bin" "/lib" "/share" ];
     };
   in with pkgs; [
+    librewolf
+    _1password-gui
     signal-desktop
     rakudo_env
-    neovim
     emacs.pkgs.treesit-grammars.with-all-grammars
     chirp
     ghostty
     clojure
     clj-kondo
-    nixfmt-rfc-style
-    nomad.pcal
+    nixfmt
   ];
 
   # Add the home-manager bin directory to KDE's PATH so things like .desktop
   # files can find executables
-  home.file.".config/plasma-workspace/env/path.sh" = {
-    executable = true;
-    text = ''
-    export PATH=$HOME/.nix-profile/bin:$PATH
-    '';
-  };
+#  home.file.".config/plasma-workspace/env/path.sh" = {
+#    executable = true;
+#    text = ''
+#    export PATH=$HOME/.nix-profile/bin:$PATH
+#    '';
+#  };
 
   home.file.".local/share/applications/codium.desktop".text =
     ''
@@ -95,21 +96,21 @@ in
     Name=New Empty Window
     '';
 
-  home.file.".local/share/applications/ghostty.desktop".text =
-    ''
-    [Desktop Entry]
-    Name=Ghostty
-    Type=Application
-    Comment=A terminal emulator
-    Exec=${pkgs.nixgl.nixGLIntel}/bin/nixGLIntel ${pkgs.ghostty}/bin/ghostty
-    Icon=com.mitchellh.ghostty
-    Categories=System;TerminalEmulator;
-    Keywords=terminal;tty;pty;
-    StartupNotify=true
-    Terminal=false
-    Actions=new-window;
-    X-GNOME-UsesNotifications=true
-    '';
+#  home.file.".local/share/applications/ghostty.desktop".text =
+#    ''
+#    [Desktop Entry]
+#    Name=Ghostty
+#    Type=Application
+#    Comment=A terminal emulator
+#    Exec=${pkgs.nixgl.nixGLIntel}/bin/nixGLIntel ${pkgs.ghostty}/bin/ghostty
+#    Icon=com.mitchellh.ghostty
+#    Categories=System;TerminalEmulator;
+#    Keywords=terminal;tty;pty;
+#    StartupNotify=true
+#    Terminal=false
+#    Actions=new-window;
+#    X-GNOME-UsesNotifications=true
+#    '';
 
   home.file.".local/share/applications/signal-desktop.desktop".source = "${pkgs.signal-desktop}/share/applications/signal-desktop.desktop";
 
@@ -136,27 +137,4 @@ in
     # Managed by home-manager
     hwdec=auto
     '';
-
-  # https://blog.tty8.org/posts/2020-05-18-howto-auto-start-ssh-agent-with-systemd-on-debian-bullseye.html
-  home.file.".config/systemd/user/ssh-agent.service".text =
-    ''
-    # Managed by home-manager
-    [Unit]
-    Description=SSH key agent
-
-    [Service]
-    Type=simple
-    # %t resolves to XDG_RUNTIME_DIR; see SPECIFIERS section in systemd.unit(5)
-    ExecStart=/usr/bin/ssh-agent -D -a "%t/ssh-agent.socket"
-
-    [Install]
-    WantedBy=default.target
-    '';
-
-
-  home.file.".pam_environment".text =
-    ''
-    SSH_AUTH_SOCK DEFAULT="''${XDG_RUNTIME_DIR}/ssh-agent.socket"
-    '';
-
 }
