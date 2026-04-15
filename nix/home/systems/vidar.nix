@@ -21,6 +21,7 @@ in
     ../features/dev/elixir.nix
     ../features/dev/perl.nix
     ../features/desktop/common/kagi.nix
+    ../features/desktop/common/clipboard.nix
     #../features/desktop/common/librewolf-wrapper.nix
     #../features/emacs
   #  ../features/desktop/common/wezterm-nonnix.nix
