@@ -25,6 +25,7 @@ in
     #../features/desktop/common/librewolf-wrapper.nix
     #../features/emacs
   #  ../features/desktop/common/wezterm-nonnix.nix
+    ../features/emacs/nixos.nix
     ../features/neovim
     ../features/tmux
   ];
