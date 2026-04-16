@@ -5,7 +5,7 @@ local scrollback = require 'scrollback'
 config.scrollback_lines = 50000
 -- Font settings
 config.font = wezterm.font("SauceCodePro NFM")
-config.font_size = 16
+config.font_size = 11
 
 config.colors = {
     cursor_bg = "red",
