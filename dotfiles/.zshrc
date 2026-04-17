@@ -290,6 +290,7 @@ alias -g F='| fzf'
 alias -g Fm='| fzf --multi'
 alias -g N="| fzf --multi | xargs -d '\n' nvim"
 
+alias nix='noglob nix' # Avoid having to quote for # in nix commands
 alias yt720='noglob yt-dlp -S res:720 "$@"'
 alias yt1080='noglob yt-dlp -S res:1080 "$@"'
 
