@@ -116,7 +116,30 @@
           pkgs = import nixpkgs {
             system = "x86_64-linux";
             config.allowUnfree = true;
-            overlays = [ nixgl.overlay ];
+            overlays = [
+              nixgl.overlay
+              (final: prev: {
+                tree-sitter-mike = prev.tree-sitter.overrideAttrs (oldAttrs: rec {
+                  version = "0.26.1";
+                  src = prev.fetchFromGitHub {
+                    owner = "tree-sitter";
+                    repo = "tree-sitter";
+                    tag = "v${version}";
+                    hash = "sha256-k8X2qtxUne8C6znYAKeb4zoBf+vffmcJZQHUmBvsilA=";
+                    fetchSubmodules = true;
+                  };
+                  cargoDeps = prev.rustPlatform.fetchCargoVendor {
+                    inherit src;
+                    name = "tree-sitter-${version}-vendor";
+                    hash = "sha256-hnFHYQ8xPNFqic1UYygiLBWu3n82IkTJuQvgcXcMdv0=";
+                  };
+                  patches = [ ];
+                  nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [
+                    prev.rustPlatform.bindgenHook
+                  ];
+                });
+              })
+            ];
           };
           extraSpecialArgs = { inherit inputs; };
           modules = [

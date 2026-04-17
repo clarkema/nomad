@@ -56,7 +56,7 @@ in
   programs.fzf.enable = true;
 
   home.packages = with pkgsUnstable; [
-    tree-sitter
+    tree-sitter-mike
     typescript-language-server
   ];
 
