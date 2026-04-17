@@ -57,6 +57,7 @@ in
 
   home.packages = with pkgsUnstable; [
     tree-sitter
+    typescript-language-server
   ];
 
   #home.file.".local/share/nvim/site/parser".source =

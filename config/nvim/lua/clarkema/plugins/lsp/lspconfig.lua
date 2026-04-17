@@ -16,6 +16,7 @@ return {
 
         vim.lsp.enable("elixirls")
         vim.lsp.enable("lua_ls")
+        vim.lsp.enable("ts_ls")
         --lspconfig["emmet_ls"].setup {
             --capabilities = capabilities,
             --filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" }
