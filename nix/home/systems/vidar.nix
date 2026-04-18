@@ -65,6 +65,7 @@ in
     clojure
     clj-kondo
     nixfmt
+    git-annex
   ];
 
   # Add the home-manager bin directory to KDE's PATH so things like .desktop
