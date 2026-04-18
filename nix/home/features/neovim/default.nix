@@ -48,7 +48,11 @@ let
   );
 in
 {
-  programs.neovim.enable = true;
+  programs.neovim = {
+    enable = true;
+    withRuby = false;
+    withPython3 = false;
+  };
   #enable = true;
   #    package = pkgsUnstable.neovim-unwrapped;
   #};
