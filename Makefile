@@ -6,3 +6,7 @@ vim-command-t:
 	cd vim/bundle/command-t/ruby/command-t/ext/command-t && \
 		ruby extconf.rb && \
 		make
+
+.PHONY: switch
+switch:
+	home-manager --flake . switch

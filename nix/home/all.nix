@@ -27,6 +27,7 @@
     skim
     pkgs.source-code-pro
     mosh
+    gnumake
 
     pkgs.shellcheck
     pkgs.bash-language-server
