@@ -140,6 +140,9 @@ in
   home.file.".config/mpv/mpv.conf".text =
     ''
     # Managed by home-manager
-    hwdec=auto
+    hwdec=vaapi
+    hwdec-codecs=all
+    vo=gpu-next
+    gpu-api=vulkan
     '';
 }
