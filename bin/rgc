@@ -3,4 +3,4 @@
 rg_args="${*: 1:$#-1}" # All but last arg
 query="${*: -1}" # Last arg
 
-sk --ansi -i -c "rg $rg_args -n --color always '{q}'" --preview "preview.sh {}" --cmd-query "$query" | awk -F: '{print $1}'
+sk --ansi -i -c "rg $rg_args -n --color always {q}" --preview "preview.sh {}" --cmd-query "$query" | awk -F: '{print $1}'
