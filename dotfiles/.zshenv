@@ -8,6 +8,10 @@
 
 export NOMAD=$HOME/.nomad
 
+source_if_exists() {
+  [[ -s "$1" ]] && source "$1"
+}
+
 typeset -U path
 path=(
     $HOME/bin
@@ -41,7 +45,7 @@ path=(
 # Use only those elements of the path array that exist.
 path=($^path(N-/))
 
-source $NOMAD/sh/env
+source_if_exists $NOMAD/sh/env
 
 # Set up nix if it's installed.  We have to deal with three cases.
 if [ -s "/etc/profile.d/nix.sh" ]; then
@@ -60,6 +64,6 @@ fi
 
 # .zshenv-nix is created by my home-manager configuration on systems where that
 # is in use; this allows us to make nix-specific adjustments to the environment.
-if [ -e "$HOME/.zshenv-nix" ]; then
-    source "$HOME/.zshenv-nix"
-fi
+source_if_exists "$HOME/.zshenv-nix"
+
+unset -f source_if_exists

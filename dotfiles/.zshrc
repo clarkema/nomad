@@ -203,7 +203,13 @@ update_colour_state() {
 # Git-ified prompt                                                   {{{
 #=======================================================================
 
-default_prompt="%h %n@%m:%~ ${vcs_info_msg_0_}%(!.#.>) "
+if [[ -n "$NOMAD_NIX_VM" ]]; then
+  default_prompt="%h %B%F{blue}%m%f%b:%~ ${vcs_info_msg_0_}%(!.#.>) "
+
+else
+  default_prompt="%h %n@%m:%~ ${vcs_info_msg_0_}%(!.#.>) "
+fi
+
 precmd() {
     local git_branch=$(parse_git_branch)
     local gitcolor gitcolor_new gitcolor_old reset
@@ -372,7 +378,11 @@ function source_environment_specific_files ()
         fi
     done
 }
-source_environment_specific_files
+# This is not required on a Nix VM; any differences should be taken care of by
+# home-manager or the VM config, and checking is slow.
+if [[ -z "$NOMAD_NIX_VM" ]]; then
+    source_environment_specific_files
+fi
 
 source_if_exists "$NOMAD/sh/funcs"
 
@@ -394,7 +404,16 @@ source_if_exists ~/.secrets
 
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
 
-source_if_exists "$NOMAD/breeze/scm_breeze.sh"
+# Load breeze, or a no-op function if we can't find it to allow
+# aliases to continue to work without breeze support.
+if [[ -s "$NOMAD/breeze/scm_breeze.sh" ]]; then
+    source "$NOMAD/breeze/scm_breeze.sh"
+else
+    function exec_scmb_expand_args {
+        eval "$@"
+    }
+    alias ks='git status'
+fi
 
 # OCaml package configuration
 [[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
@@ -402,6 +421,8 @@ source_if_exists "$NOMAD/breeze/scm_breeze.sh"
 if command -v zoxide > /dev/null; then
     eval "$(zoxide init zsh --cmd j)"
 fi
+
+source_if_exists "$HOME/.zshrc-nix"
 
 unset -f source_if_exists
 
