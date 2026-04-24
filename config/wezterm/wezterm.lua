@@ -120,6 +120,13 @@ config.keys = {
         }),
     },
     {
+        key = "t",
+        mods = "SHIFT|CTRL|SUPER",
+        action = act.SpawnCommandInNewTab({
+          domain = { DomainName = "local" },
+        }),
+    },
+    {
         key = "d",
         mods = "SHIFT|CTRL",
             action = act.ShowLauncherArgs({
