@@ -15,6 +15,26 @@
     ../features/tmux
   ];
 
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscode;
+
+    profiles.default.userSettings = {
+      "telemetry.telemetryLevel" = "off";
+      "telemetry.enableTelemetry" = false;
+      "telemetry.enableCrashReporter" = false;
+      "extensions.autoUpdate" = false; # also worth disabling for reproducibility
+      "update.mode" = "none"; # prevent VS Code from self-updating
+    };
+
+    # You can also pin extensions declaratively here
+    profiles.default.extensions = with pkgs.vscode-extensions; [
+      ms-vscode.vscode-speech
+      ms-vscode-remote.remote-ssh
+      anthropic.claude-code
+    ];
+  };
+
   home.packages = with pkgs; [
     librewolf
     mpv
