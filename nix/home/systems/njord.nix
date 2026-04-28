@@ -25,6 +25,7 @@
       "telemetry.enableCrashReporter" = false;
       "extensions.autoUpdate" = false; # also worth disabling for reproducibility
       "update.mode" = "none"; # prevent VS Code from self-updating
+      "window.titleBarStyle" = "native";
     };
 
     # You can also pin extensions declaratively here
