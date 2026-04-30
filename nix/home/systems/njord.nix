@@ -15,6 +15,10 @@
     ../features/tmux
   ];
 
+  features.neovim = {
+    enable = true;
+    claude.enable = false;
+  };
   programs.vscode = {
     enable = true;
     package = pkgs.vscode;
