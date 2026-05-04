@@ -144,7 +144,6 @@
             config.allowUnfree = true;
             overlays = [
               nixgl.overlay
-              treesitter-overlay
             ];
           };
           extraSpecialArgs = { inherit inputs; };
