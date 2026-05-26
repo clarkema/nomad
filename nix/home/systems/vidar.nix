@@ -41,6 +41,11 @@ in
     ];
   };
 
+  features.neovim = {
+    enable = true;
+    claude.enable = false;
+  };
+
   home.packages =
   let
     rakudo_env = pkgs.buildEnv {
