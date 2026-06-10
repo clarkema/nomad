@@ -67,6 +67,8 @@
 
     obsidian
     bruno
+    chirp
+    gimp
   ];
 
   programs.neovim = {
