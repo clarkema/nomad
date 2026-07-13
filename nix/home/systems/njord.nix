@@ -69,6 +69,8 @@
     bruno
     chirp
     gimp
+    herdr
+    freerdp
   ];
 
   programs.neovim = {
