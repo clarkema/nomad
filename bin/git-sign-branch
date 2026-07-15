@@ -1,0 +1,114 @@
+#!/usr/bin/env bash
+#
+# git-sign-branch.sh — Re-sign all commits after a given base commit
+#
+# Usage:
+#   ./git-sign-branch <base-commit>
+#   ./git-sign-branch          # auto-detects merge-base with main
+#
+# Examples:
+#   ./git-sign-branch abc1234
+#   ./git-sign-branch          # uses merge-base of HEAD and origin/main
+
+set -euo pipefail
+
+# ─── Colors ───────────────────────────────────────────────────────────────────
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+
+info()  { echo -e "${CYAN}[INFO]${NC}  $*"; }
+ok()    { echo -e "${GREEN}[OK]${NC}    $*"; }
+warn()  { echo -e "${YELLOW}[WARN]${NC}  $*"; }
+error() { echo -e "${RED}[ERROR]${NC} $*" >&2; }
+
+# ─── Pre-flight checks ────────────────────────────────────────────────────────
+if ! command -v git &>/dev/null; then
+    error "git is not installed or not on PATH."
+    exit 1
+fi
+
+if ! git rev-parse --is-inside-work-tree &>/dev/null; then
+    error "Not inside a git repository."
+    exit 1
+fi
+
+# Check that signing is configured
+signing_key=$(git config user.signingkey 2>/dev/null || true)
+if [[ -z "$signing_key" ]]; then
+    warn "No 'user.signingkey' is configured. The rebase may fail."
+    warn "Set it with: git config --global user.signingkey <KEY_ID>"
+    echo
+    read -rp "Continue anyway? [y/N] " confirm
+    [[ "$confirm" =~ ^[Yy]$ ]] || { info "Aborted."; exit 0; }
+fi
+
+# ─── Determine base commit ────────────────────────────────────────────────────
+base_commit="${1:-}"
+
+if [[ -z "$base_commit" ]]; then
+    # Auto-detect: try origin/main, then main, then master
+    for ref in origin/main origin/master main master; do
+        if git rev-parse --verify "$ref" &>/dev/null; then
+            base_commit=$(git merge-base HEAD "$ref")
+            info "Auto-detected base commit from ${ref}: ${base_commit}"
+            break
+        fi
+    done
+    if [[ -z "$base_commit" ]]; then
+        error "Could not auto-detect a base commit. Please provide one explicitly."
+        error "Usage: $0 <base-commit>"
+        exit 1
+    fi
+fi
+
+# Validate the base commit exists
+if ! git rev-parse --verify "${base_commit}^{commit}" &>/dev/null; then
+    error "Invalid base commit: ${base_commit}"
+    exit 1
+fi
+
+# Resolve to full hash for display
+base_hash=$(git rev-parse "${base_commit}^{commit}")
+
+# ─── Show what will be signed ─────────────────────────────────────────────────
+commits_to_sign=$(git rev-list "${base_hash}..HEAD")
+commit_count=$(echo "$commits_to_sign" | grep -c . || true)
+
+if [[ "$commit_count" -eq 0 ]]; then
+    warn "No commits to sign between ${base_hash} and HEAD."
+    exit 0
+fi
+
+echo
+info "Signing ${commit_count} commit(s) from ${base_hash} to HEAD:"
+echo
+git log --oneline "${base_hash}..HEAD"
+echo
+
+read -rsp $'Press ENTER to continue, or Ctrl+C to abort...\n'
+
+# ─── Perform the rebase ───────────────────────────────────────────────────────
+info "Starting rebase to sign commits..."
+echo
+
+if git rebase --exec 'git commit --amend --no-edit -S' "$base_hash"; then
+    echo
+    ok "Successfully signed all ${commit_count} commit(s)!"
+    echo
+    info "Verified signatures:"
+    git log --show-signature --oneline "${base_hash}..HEAD" 2>/dev/null || \
+        git log --pretty=format:'%h %G? %s' "${base_hash}..HEAD"
+    echo
+    echo
+    warn "Commit hashes have changed. Force-push when ready:"
+    warn "  git push --force-with-lease"
+else
+    echo
+    error "Rebase failed or was interrupted."
+    error "Resolve any conflicts, then run: git rebase --continue"
+    error "Or abort with: git rebase --abort"
+    exit 1
+fi
