@@ -9,3 +9,8 @@ year=$(date "+%Y")
 month=$(date "+%m")
 
 pcal -e -P a4 -m -F Monday -w "$month" "$year" > "$year.ps"
+
+# Month version:
+
+# nix shell github:clarkema/nix-nomad#pcal nixpkgs#ghostscript
+# pcal -e -P a4 -F Monday $MONTH $YEAR > $MONTH.ps
