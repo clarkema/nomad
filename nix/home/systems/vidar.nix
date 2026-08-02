@@ -76,6 +76,7 @@ in
     gimp
     awscli2
     thunderbird
+    todoist-electron
     dnsutils # dig, etc.
   ];
 
