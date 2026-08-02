@@ -75,6 +75,8 @@ in
     vlc
     gimp
     awscli2
+    thunderbird
+    dnsutils # dig, etc.
   ];
 
   # Add the home-manager bin directory to KDE's PATH so things like .desktop
