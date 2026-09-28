@@ -78,6 +78,7 @@ in
     thunderbird
     todoist-electron
     dnsutils # dig, etc.
+    libreoffice-qt
   ];
 
   # Add the home-manager bin directory to KDE's PATH so things like .desktop
